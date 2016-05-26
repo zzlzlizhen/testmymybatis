@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+">
+
+	<!-- 调度工厂 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+       <property name="triggers">  
+           <list>  
+              <!-- <ref bean="testTrigger01"/>  -->
+              <ref bean="testTrigger02"/>  
+           </list>  
+       </property>  
+       <property name="autoStartup" value="true"/>  
+	</bean>
+	<!-- 调度触发器 -->
+	<bean id="testTrigger01" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+       <property name="jobDetail" ref="testJobDetail01"/>  
+       <property name="cronExpression" value="*/15 * * * * ?"/><!-- 每隔15秒钟触发一次 -->  
+	</bean> 
+	<bean id="testTrigger02" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+       <property name="jobDetail" ref="testJobDetail02"/>  
+       <property name="cronExpression" value="0 */1 * * * ?"/><!-- 每隔1分钟触发一次 -->  
+	</bean> 
+	<!-- 任务 -->
+	<bean id="testJobDetail01" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+        <property name="targetObject" ref="testJob01"/>  
+        <property name="targetMethod" value="execute01"/>  
+        <!-- <property name="concurrent" value="false"/> -->
+        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+	</bean>  
+	<bean id="testJobDetail02" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+        <property name="targetObject" ref="testJob02"/>  
+        <property name="targetMethod" value="execute02"/>  
+        <!-- <property name="concurrent" value="false"/> -->
+        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+	</bean>  
+	<bean id="testJob01" class="lz.quartz.TestJob01"/> 
+	<bean id="testJob02" class="lz.quartz.TestJob01"/> 
+</beans>
