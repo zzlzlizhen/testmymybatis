@@ -3,6 +3,8 @@ package lz.business.authManage.service;
 import java.util.List;
 import java.util.Map;
 
+import com.github.pagehelper.PageInfo;
+
 import lz.model.Role;
 
 public interface RoleService {
@@ -17,9 +19,7 @@ public interface RoleService {
 	
 	Role getRoleById(String id);
 	
-	int getCount(Map<String,Object> map);
-	
-	List<Role> getRolePage(Map<String,Object> map);
+	PageInfo<Role> getRolePage(Map<String,Object> map);
 	
 	List<Role> getRoles(Map<String,Object> map);
 	

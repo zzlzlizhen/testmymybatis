@@ -115,12 +115,10 @@ public interface ResourceMapper {
     })
     List<Resource> selectResourceByPage(Map<String,Object> map);
     /**
-     * 分页查询总记录数
-     * @param map
+     * 
+     * @param id
      * @return
      */
-    @SelectProvider(type=ResourceSqlProvider.class, method="getCountByPage")
-    int getCountByPage(Map<String,Object> map);
     @Select({
         "select",
         "id, resource_name, resource_url, pid, remark, icons",

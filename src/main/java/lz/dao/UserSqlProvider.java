@@ -304,20 +304,7 @@ public class UserSqlProvider {
     	if(map.get("status")!=null){
     		sb.append(" and status = #{status} ");
     	}
-    	sb.append(" order by create_time desc limit #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}");
-    	return sb.toString();
-    }
-    public String getCountByPage(Map<String,Object> map){
-    	StringBuffer sb = new StringBuffer("select count(id) from t_user where 1=1 ");
-    	if(map.get("name")!=null){
-    		sb.append(" and name like #{name} ");
-    	}
-    	if(map.get("phone")!=null){
-    		sb.append(" and phone = #{phone} ");
-    	}
-    	if(map.get("status")!=null){
-    		sb.append(" and status = #{status} ");
-    	}
+    	sb.append(" order by create_time desc ");
     	return sb.toString();
     }
 }

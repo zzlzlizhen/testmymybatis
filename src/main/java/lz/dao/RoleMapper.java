@@ -99,13 +99,7 @@ public interface RoleMapper {
         @Result(column="remark", property="remark", jdbcType=JdbcType.CHAR)
     })
     List<Role> selectRoleByPage(Map<String,Object> map);
-    /**
-     * 分页查询总记录数
-     * @param map
-     * @return
-     */
-    @SelectProvider(type=RoleSqlProvider.class, method="getCountByPage")
-    int getCountByPage(Map<String,Object> map);
+    
     @Select({
         "select",
         "id, role_name, remark",

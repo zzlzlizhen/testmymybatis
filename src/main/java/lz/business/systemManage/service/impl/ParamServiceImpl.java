@@ -13,6 +13,9 @@ import lz.utils.IdGenerateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 @Transactional
 @Service("paramService")
 public class ParamServiceImpl implements ParamService {
@@ -21,14 +24,16 @@ public class ParamServiceImpl implements ParamService {
 	private SystemParamMapper systemParamMapper;
 	
 	@Override
-	public List<SystemParam> getParamByPage(Map<String, Object> map) {
-		List<SystemParam> list = null;
+	public PageInfo<SystemParam> getParamByPage(Map<String, Object> map) {
+		PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
+		PageInfo<SystemParam> page = null;
 		try {
-			list = systemParamMapper.selectParamByPage(map);
+			List<SystemParam> list = systemParamMapper.selectParamByPage(map);
+			page = new PageInfo<SystemParam>(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return list;
+		return page;
 	}
 
 	@Override
@@ -42,17 +47,6 @@ public class ParamServiceImpl implements ParamService {
 		return systemParamMapper.updateByPrimaryKeySelective(systemParam);
 	}
 	
-	@Override
-	public int getParamCount(Map<String, Object> map) {
-		/*SystemParamExample example = new SystemParamExample();
-		if(map.get("searchId")!=null){
-			String searchId = (String)map.get("searchId");
-			example.createCriteria().andParamKeyLike(searchId).andParam
-		}*/
-		int count = systemParamMapper.getCountByPage(map);
-		return count;
-	}
-
 	@Override
 	public int getParamCountByParamKey(String paramKey) {
 		SystemParamExample example = new SystemParamExample();

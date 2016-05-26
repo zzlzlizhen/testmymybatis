@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("/userController")
@@ -203,14 +204,15 @@ public class UserController {
 	@RequestMapping("/getUsers")
 	public void getusers(HttpServletRequest request,HttpServletResponse response){
 		String sEcho = request.getParameter("sEcho");
-		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
+		Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
 		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
 		String userName = request.getParameter("userName");
 		String phone = request.getParameter("phone");
 		String status = request.getParameter("status");
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("start",iDisplayStart);
-		map.put("end",iDisplayLength);
+		int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
+		map.put("pageNum",pageNum);
+		map.put("pageSize",iDisplayLength);
 		if(userName!=null && !"".equals(userName)){
 			map.put("name","%"+userName+"%");
 		}if(phone!=null && !"".equals(phone)){
@@ -218,8 +220,9 @@ public class UserController {
 		}if(status!=null && !"".equals(status)){
 			map.put("status",status);
 		}
-		List<User> list = userService.getUserPage(map);
-		int total = userService.getCount(map);
+		PageInfo<User> page = userService.getUserPage(map);
+		List<User> list = page.getList();
+		long total = page.getTotal();
 		Object[][] data=new Object[list.size()][7];
 		for(int j=0;j<list.size();j++){ 
 			User user = list.get(j); 

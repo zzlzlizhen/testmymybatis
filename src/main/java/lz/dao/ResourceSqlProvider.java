@@ -297,16 +297,11 @@ public class ResourceSqlProvider {
     	if(map.get("resourceName")!=null){
     		sb.append(" where t1.resource_name like #{resourceName} ");
     	}
-    	sb.append(" order by id desc limit #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}");
+    	//sb.append(" order by id desc limit #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}");
+    	sb.append(" order by id desc ");
     	return sb.toString();
     }
-    public String getCountByPage(Map<String,Object> map){
-    	StringBuffer sb = new StringBuffer("select count(id) from t_resource");
-    	if(map.get("resourceName")!=null){
-    		sb.append(" where resource_name like #{resourceName} ");
-    	}
-    	return sb.toString();
-    }
+    
     public String batchDelResource(Map<String,Object> map){
     	@SuppressWarnings("unchecked")
 		List<String> list = (List<String>)map.get("batchDelIds");

@@ -115,13 +115,6 @@ public interface UserMapper {
     })
     List<User> selectUserByPage(Map<String,Object> map);
     /**
-     * 分页查询总记录数
-     * @param map
-     * @return
-     */
-    @SelectProvider(type=UserSqlProvider.class, method="getCountByPage")
-    int getCountByPage(Map<String,Object> map);
-    /**
      * 根据id查询user对象和user的级联userRole对象
      */
     @Select({

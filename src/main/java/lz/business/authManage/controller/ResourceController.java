@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("/resourceController")
@@ -189,17 +190,19 @@ public class ResourceController {
 	@RequestMapping("/getResources")
 	public void getResources(HttpServletRequest request,HttpServletResponse response){
 		String sEcho = request.getParameter("sEcho");
-		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
+		Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
 		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
 		String searchId = request.getParameter("resourceName");
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("start",iDisplayStart);
-		map.put("end",iDisplayLength);
+		int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
+		map.put("pageNum",pageNum);
+		map.put("pageSize",iDisplayLength);
 		if(searchId!=null && !"".equals(searchId)){
 			map.put("resourceName","%"+searchId+"%");
 		}
-		List<Resource> list = resourceService.getResourcePage(map);
-		int total = resourceService.getCount(map);
+		PageInfo<Resource> page = resourceService.getResourcePage(map);
+		List<Resource> list = page.getList();
+		long total = page.getTotal();
 		Object[][] data=new Object[list.size()][6];
 		for(int j=0;j<list.size();j++){ 
 			Resource resource = list.get(j); 

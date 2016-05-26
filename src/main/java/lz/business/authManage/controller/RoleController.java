@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("/roleController")
@@ -186,17 +187,19 @@ public class RoleController {
 	@RequestMapping("/getRoles")
 	public void getroles(HttpServletRequest request,HttpServletResponse response){
 		String sEcho = request.getParameter("sEcho");
-		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
+		Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
 		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
 		String searchId = request.getParameter("roleName");
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("start",iDisplayStart);
-		map.put("end",iDisplayLength);
+		int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
+		map.put("pageNum",pageNum);
+		map.put("pageSize",iDisplayLength);
 		if(searchId!=null && !"".equals(searchId)){
 			map.put("roleName","%"+searchId+"%");
 		}
-		List<Role> list = roleService.getRolePage(map);
-		int total = roleService.getCount(map);
+		PageInfo<Role> page = roleService.getRolePage(map);
+		List<Role> list = page.getList();
+		long total = page.getTotal();
 		Object[][] data=new Object[list.size()][4];
 		for(int j=0;j<list.size();j++){ 
 			Role role = list.get(j); 

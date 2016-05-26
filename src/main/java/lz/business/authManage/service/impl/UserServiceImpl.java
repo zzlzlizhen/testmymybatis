@@ -8,6 +8,7 @@ import lz.business.authManage.service.UserService;
 import lz.constant.ConstantInfo;
 import lz.dao.UserMapper;
 import lz.dao.UserRoleMapper;
+import lz.model.Role;
 import lz.model.User;
 import lz.model.UserExample;
 import lz.model.UserRole;
@@ -18,6 +19,9 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 @Transactional
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -94,12 +98,17 @@ public class UserServiceImpl implements UserService {
 		userRoleMapper.deleteByExample(ure);
 		return userMapper.deleteByPrimaryKey(user.getId());
 	}
+
 	@Override
-	public int getCount(Map<String, Object> map) {
-		return userMapper.getCountByPage(map);
-	}
-	@Override
-	public List<User> getUserPage(Map<String, Object> map) {
-		return userMapper.selectUserByPage(map);
+	public PageInfo<User> getUserPage(Map<String, Object> map) {
+		PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
+		PageInfo<User> page = null;
+		try {
+			List<User> list = userMapper.selectUserByPage(map);
+			page = new PageInfo<User>(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return page;
 	}
 }

@@ -3,6 +3,8 @@ package lz.business.authManage.service;
 import java.util.List;
 import java.util.Map;
 
+import com.github.pagehelper.PageInfo;
+
 import lz.model.Resource;
 
 public interface ResourceService {
@@ -17,9 +19,7 @@ public interface ResourceService {
 	
 	Resource getResourceById(String id);
 	
-	int getCount(Map<String,Object> map);
-	
-	List<Resource> getResourcePage(Map<String,Object> map);
+	PageInfo<Resource> getResourcePage(Map<String,Object> map);
 	
 	List<Resource> getResources(Map<String,Object> map);
 	

@@ -255,16 +255,10 @@ public class RoleSqlProvider {
     	if(map.get("roleName")!=null){
     		sb.append(" where role_name like #{roleName} ");
     	}
-    	sb.append(" order by id desc limit #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}");
+    	sb.append(" order by id desc ");
     	return sb.toString();
     }
-    public String getCountByPage(Map<String,Object> map){
-    	StringBuffer sb = new StringBuffer("select count(id) from t_role");
-    	if(map.get("roleName")!=null){
-    		sb.append(" where role_name like #{roleName} ");
-    	}
-    	return sb.toString();
-    }
+    
     public String batchDelRole(Map<String,Object> map){
     	@SuppressWarnings("unchecked")
 		List<String> list = (List<String>)map.get("batchDelIds");

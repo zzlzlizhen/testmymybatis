@@ -103,11 +103,4 @@ public interface SystemParamMapper {
      */
     @DeleteProvider(type=SystemParamSqlProvider.class, method="batchDelSystemParam")
     int batchDelSystemParam(@Param("batchDelIds") List<String> delId);
-    /**
-     * 分页查询总记录数
-     * @param map
-     * @return
-     */
-    @SelectProvider(type=SystemParamSqlProvider.class, method="getCountByPage")
-    int getCountByPage(Map<String,Object> map);
 }

@@ -18,6 +18,9 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 @Transactional
 @Service("roleService")
 public class RoleServiceImpl implements RoleService {
@@ -69,23 +72,21 @@ public class RoleServiceImpl implements RoleService {
 	public Role getRoleById(String id) {
 		return roleMapper.selectById(id);
 	}
-	@Override
-	public int getCount(Map<String, Object> map) {
-		return roleMapper.getCountByPage(map);
-	}
 	/**
 	 * 角色列表分页
 	 */
 	
 	@Override
-	public List<Role> getRolePage(Map<String, Object> map) {
-		List<Role> list = null;
+	public PageInfo<Role> getRolePage(Map<String, Object> map) {
+		PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
+		PageInfo<Role> page = null;
 		try {
-			list = roleMapper.selectRoleByPage(map);
+			List<Role> list = roleMapper.selectRoleByPage(map);
+			page = new PageInfo<Role>(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return list;
+		return page;
 	}
 	/**
 	 * 获取所有的角色

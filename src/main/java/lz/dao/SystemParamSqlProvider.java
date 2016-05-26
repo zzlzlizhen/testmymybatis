@@ -243,14 +243,7 @@ public class SystemParamSqlProvider {
     	if(map.get("searchId")!=null){
     		sb.append(" where param_key like #{searchId} or param_value like #{searchId} ");
     	}
-    	sb.append(" order by id desc limit #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}");
-    	return sb.toString();
-    }
-    public String getCountByPage(Map<String,Object> map){
-    	StringBuffer sb = new StringBuffer("select count(id) from t_param");
-    	if(map.get("searchId")!=null){
-    		sb.append(" where param_key like #{searchId} or param_value like #{searchId} ");
-    	}
+    	sb.append(" order by id desc ");
     	return sb.toString();
     }
     public String batchDelSystemParam(Map<String,Object> map){

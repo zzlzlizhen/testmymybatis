@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import lz.business.authManage.service.ResourceService;
 import lz.dao.ResourceMapper;
 import lz.dao.UserMapper;
@@ -62,18 +65,16 @@ public class ResourceServiceImpl implements ResourceService {
 		return resourceMapper.selectById(id);
 	}
 	@Override
-	public int getCount(Map<String, Object> map) {
-		return resourceMapper.getCountByPage(map);
-	}
-	@Override
-	public List<Resource> getResourcePage(Map<String, Object> map) {
-		List<Resource> list = null;
+	public PageInfo<Resource> getResourcePage(Map<String, Object> map) {
+		PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
+		PageInfo<Resource> page = null;
 		try {
-			list = resourceMapper.selectResourceByPage(map);
+			List<Resource> list = resourceMapper.selectResourceByPage(map);
+			page = new PageInfo<Resource>(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return list;
+		return page;
 	}
 	@Override
 	public List<Resource> getResources(Map<String, Object> map) {
