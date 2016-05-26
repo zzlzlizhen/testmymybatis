@@ -79,8 +79,8 @@ public class ResourceServiceImpl implements ResourceService {
 	public List<Resource> getResources(Map<String, Object> map) {
 		List<Resource> list = null;
 		ResourceExample example = new ResourceExample();
-		if(map.get("resourceUrl")!=null){
-			example.createCriteria().andResourceUrlEqualTo("#");
+		if(map!=null&&map.get("resourceUrl")!=null){
+			example.createCriteria().andResourceUrlEqualTo((String)map.get("resourceUrl"));
 		}
 		try {
 			list = resourceMapper.selectByExample(example);
