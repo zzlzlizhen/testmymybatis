@@ -8,7 +8,6 @@ import com.rabbitmq.client.ConnectionFactory;
  
 /**
  * 
- * ���ܸ�Ҫ�� EndPoint���͵Ķ���
  * 
  * @author lizhen
  * @since  
@@ -44,7 +43,6 @@ public abstract class EndPoint{
      
      
     /**
-     * �ر�channel��connection�����Ǳ��룬��Ϊ�������Զ����õġ�
      * @throws IOException
      */
      public void close() throws IOException{

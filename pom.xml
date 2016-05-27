@@ -4,7 +4,7 @@
 	<groupId>lz-testmybatis</groupId>
 	<artifactId>testmybatis</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>testmybatis Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
@@ -13,7 +13,17 @@
     <artifactId>jstl</artifactId>
     <version>1.2</version>
 </dependency>
-		
+		<!-- javax.servlet -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>servlet-api</artifactId>
+		    <version>2.5</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.websocket</groupId>
+		    <artifactId>javax.websocket-api</artifactId>
+		    <version>1.0</version>
+		</dependency>
 		<!-- 单元测试包 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -194,6 +204,7 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 		</plugins>

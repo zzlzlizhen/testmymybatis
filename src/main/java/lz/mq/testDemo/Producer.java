@@ -8,7 +8,6 @@ import org.apache.commons.lang.SerializationUtils;
  
 /**
  * 
- * ���ܸ�Ҫ����Ϣ�����
  * 
  * @author lizhen
  * @since  

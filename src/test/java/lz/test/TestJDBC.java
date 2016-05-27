@@ -15,9 +15,8 @@ public class TestJDBC {
         String url = "jdbc:mysql://localhost:3306/lz?"
                 + "useUnicode=true&characterEncoding=UTF8";
         try {
-            Class.forName("com.mysql.jdbc.Driver");// 动态加载mysql驱动
+            Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(url,"root","123456");
-            System.out.println("成功加载MySQL驱动程序");
             sql = "select name from t_user where id = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1,"38015227-b8fa-4c10-b7ea-79658fc407c7");
@@ -27,7 +26,6 @@ public class TestJDBC {
             	System.out.println("name="+name);
             }
         } catch (SQLException e) {
-            System.out.println("MySQL操作错误");
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();

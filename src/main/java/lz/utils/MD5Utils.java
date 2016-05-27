@@ -22,7 +22,6 @@ public class MD5Utils {
 				buf.append(Integer.toHexString(i));
 			}
 			return buf.toString();
-			//16Œªº”√‹
 			//return buf.toString().substring(8,24);
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block

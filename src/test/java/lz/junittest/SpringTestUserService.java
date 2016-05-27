@@ -1,7 +1,6 @@
 package lz.junittest;
 
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 import lz.business.authManage.service.UserService;
@@ -15,14 +14,8 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.alibaba.fastjson.JSON;
 
 public class SpringTestUserService {
 	private static final Logger log = Logger.getLogger(SpringTestUserService.class);
@@ -72,16 +65,15 @@ public class SpringTestUserService {
 	public void TestRegex(){
 		String str = "12345_67890";
 		if(str==null||"".equals(str)){
-			System.out.println("����Ϊ��");
 		}else{
 			if(str.length()>15||str.length()<3){
-				System.out.println("���Ȳ���");
+				System.out.println("");
 			}else{
 				if(!str.matches("^[a-zA-Z0-9_]*$")){
-					System.out.println("�û���ֻ�������֡���ĸ���»������");
+					System.out.println("");
 				}
 				if(str.matches("^[0-9]*$")||str.matches("^[a-zA-Z]*$")||str.matches("^[_]*$")){
-					System.out.println("�û������Ǵ����֡���ĸ���»���");
+					System.out.println("");
 				}
 			}
 		}

@@ -15,7 +15,6 @@ import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
 /**
- * ×Ô¶¨ÒåjedisCluster¹¤³§£¬ÔÚ¼ÓÔØjedisClusterÊ±£¬³õÊ¼»¯ÅäÖÃ²ÎÊı
  * @author lizhen_pc
  *
  */
@@ -48,7 +47,6 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>,Initializi
 		return true;
 	}
 	/**
-	 * ³õÊ¼»¯redis¼¯ÈºÁ¬½Ó
 	 * @return
 	 * @throws Exception
 	 */
@@ -65,7 +63,7 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>,Initializi
 				//boolean isIpPort = p.matcher(val).matches();
 				boolean isIpPort = val.matches("^.+[:]\\d{1,5}\\s*$");
 				if (!isIpPort) {
-					throw new IllegalArgumentException("ip »ò port ²»ºÏ·¨");
+					throw new IllegalArgumentException("ipå’Œç«¯å£æ ¼å¼ä¸å¯¹");
 				}
 				String[] ipAndPort = val.split(":");
 				HostAndPort hap = new HostAndPort(ipAndPort[0], Integer.parseInt(ipAndPort[1]));
@@ -75,7 +73,7 @@ public class JedisClusterFactory implements FactoryBean<JedisCluster>,Initializi
 		} catch (IllegalArgumentException ex) {
 			throw ex;
 		} catch (Exception ex) {
-			throw new Exception("½âÎö jedis ÅäÖÃÎÄ¼şÊ§°Ü", ex);
+			throw new Exception("jedisClusterå¼‚å¸¸", ex);
 		}
 	}
 	public Resource getAddressConfig() {

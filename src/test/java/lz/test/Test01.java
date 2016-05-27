@@ -15,11 +15,6 @@ public class Test01 {
 	public static void main(String[] args) {
 		JedisCluster jc = getCluster();
 		testClusterString(jc);
-		//*********直接连接redis操作***********
-		//Jedis jedis = getJedis();
-		//testString(jedis);
-		//testList(jedis);
-		//testGetAllKey(jedis);
 	}
 
 	public static Jedis getJedis(){

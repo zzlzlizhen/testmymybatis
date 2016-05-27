@@ -1,13 +1,8 @@
 package lz.junittest;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
-import javax.annotation.Resource;
-
-import lz.mq.MessageProducer;
 import lz.mq.testDemo.Producer;
 import lz.mq.testDemo.QueueConsumer;
 import lz.mq.testDemo.QueueConsumer2;
