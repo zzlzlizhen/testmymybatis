@@ -173,8 +173,8 @@
 	<div class="ch-container">
 		<div>
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Tables</a></li>
+				<li><a href="#">权限管理</a></li>
+				<li><a href="#">用户管理</a></li>
 			</ul>
 		</div>
 
@@ -183,7 +183,7 @@
 				<div class="box-inner">
 					<div class="box-header well" data-original-title="">
 						<h2>
-							<i class="glyphicon glyphicon-user"></i>系统参数
+							<i class="glyphicon glyphicon-user"></i>用户列表
 						</h2>
 					</div>
 					<div class="box-content">

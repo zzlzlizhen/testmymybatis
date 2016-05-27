@@ -84,7 +84,7 @@
           <label class="control-label col-sm-3 " for="selectError">父资源：</label>
 		  <div class="col-sm-9">
 		  	<select id="pid" class="col-sm-9 form-control">
-		  	  <option id="0"></option>
+		  	  <option value="0"></option>
 		  	  <c:forEach items="${listResource}" var="res">
 		  	  	<option value="${res.id}" <c:if test='${res.id==resource.pid}'>selected</c:if>>${res.resourceName}</option>
 		  	  </c:forEach>

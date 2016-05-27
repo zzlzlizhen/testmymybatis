@@ -68,17 +68,21 @@ public class LoginController {
 	 */
 	@RequestMapping("/loginSuccess")
 	public String loginSuccess(HttpServletRequest request){
-		User user = (User)request.getSession().getAttribute("loginUser");
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("userId",user.getId());
-		map.put("pid",ConstantInfo.ONE_RESOURCE_PID);
-		List<Resource> listResourceMenu = getResourceMenu(map);
-		request.setAttribute("listResourceMenu",listResourceMenu);
 		return "/main";
 	}
 	@RequestMapping("/homePage")
 	public String homePage(HttpServletRequest request){
 		return "/homePage";
+	}
+	@RequestMapping("/getMenus")
+	@ResponseBody
+	public List<Resource> getMenus(HttpServletRequest request,HttpServletResponse response){
+		User user = (User)request.getSession().getAttribute("loginUser");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("userId",user.getId());
+		map.put("pid",ConstantInfo.ONE_RESOURCE_PID);
+		List<Resource> listResourceMenu = getResourceMenu(map);
+		return listResourceMenu;
 	}
 	public List<Resource> getResourceMenu(Map<String,Object> map){
 		List<Resource> rootResource = resourceService.getResourceMenuByUserId(map);
