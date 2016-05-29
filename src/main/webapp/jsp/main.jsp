@@ -9,7 +9,9 @@
 <meta name="description"
 	content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 <meta name="author" content="Muhammad Usman">
-
+<style type="text/css">
+.dropdown-menu li {list-style-type:none;}
+</style>
 <script type="text/javascript">
 	$(function() {
 		iFrameWidth();
@@ -87,7 +89,6 @@
 	        if (!$('#is-ajax').prop('checked') || $(this).parent().hasClass('active')) return;
 	        e.preventDefault();
 	        $('.sidebar-nav').removeClass('active');
-	        $('.navbar-toggle').removeClass('active');
 	        $('#loading').remove();
 	        $('#content').fadeOut().parent().append('<div id="loading" class="center">Loading...<div class="center"></div></div>');
 	        var $clink = $(this);
@@ -120,7 +121,7 @@
 						class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">首页</a></li>
+					<li><a target='main_target' href="${appctx}/loginController/homePage">首页</a></li>
 					<li class="divider"></li>
 					<li><a href="${appctx}/loginController/logout">退出</a></li>
 				</ul>
