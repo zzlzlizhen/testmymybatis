@@ -174,6 +174,27 @@ public class UserController {
 		}
 		return map;
 	}
+	/**
+	 * 暂定或者恢复用户
+	 * 描述：
+	 * 作者：李震
+	 * 时间：2016年5月30日 下午2:09:44
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value="/stopOrRecover")
+	@ResponseBody
+	public Map<String,Object> stopOrRecover(@RequestBody User user){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			userService.updateUserStatus(user);
+			map.put("result","success");
+		} catch (Exception e) {
+			map.put("result","error");
+			e.printStackTrace();
+		}
+		return map;
+	}
 	/*
 	 * 
 	@RequestMapping("/authPage/{id}")

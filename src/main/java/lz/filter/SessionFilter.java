@@ -81,6 +81,7 @@ public class SessionFilter implements Filter {
 					if(param.getParamValue().indexOf(servletPath)>-1){
 						chain.doFilter(request, response);
 					}else{
+						System.out.println(servletPath);
 						hres.sendRedirect(hreq.getContextPath()+"/index.jsp");
 					}
 				}else{

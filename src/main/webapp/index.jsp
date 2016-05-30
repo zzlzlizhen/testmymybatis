@@ -72,7 +72,7 @@
     <div class="row">
     <div class="row">
         <div class="col-md-12 center login-header">
-            <h2>Welcome to Charisma</h2>
+            <h2>闲玩系统</h2>
         </div>
     </div>
     <div class="row">
@@ -93,15 +93,15 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
                         <input type="password" class="form-control" id="password" placeholder="Password">
                     </div>
-                    <div class="clearfix"></div>
-
-                    <div class="input-prepend">
-                        <label class="remember" for="remember"><input type="checkbox" id="remember"> Remember me</label>
+                    <div class="clearfix"></div><br>
+                    <div class="row">
+	                    <div class="col-md-6" style="text-align: left;padding-left:25px;"><a target="_blank" href="${appctx}/loginController/registerPage">注册</a></div>
+	                    <div class="col-md-6" style="text-align: right;padding-right:25px;"><a target="_blank" href="${appctx}/loginController/getPswPage">找回密码</a></div>
                     </div>
+                    
                     <div class="clearfix"></div>
 
                     <p class="center col-md-5">
-                    	<!-- <a class="btn btn-primary" href="#" id="loginId" onclick="loginFunction()">登录</a> -->
                     	<button type="button" class="btn btn-primary" id="loginId" onclick="loginFunction()">登录</button>
                     </p>
                     

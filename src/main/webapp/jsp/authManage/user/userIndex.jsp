@@ -89,7 +89,8 @@
 										"mRender" : function(data, type, full) {
 										return '<a class="btn btn-success" href="#" onclick="viewFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-zoom-in icon-white"></i>查看</a>'
 							            +'<a class="btn btn-info" style="margin-left:10px;" href="#" onclick="editFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-edit icon-white"></i>修改</a>'
-							            +'<a class="btn btn-danger" style="margin-left:10px;" href="#" onclick="delFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-trash icon-white"></i>删除</a>';
+							            +'<a class="btn btn-danger" style="margin-left:10px;" href="#" onclick="delFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-trash icon-white"></i>删除</a>'
+							            +(full[5]==1?'<a class="btn btn-success" style="margin-left:10px;" href="#" onclick="stopFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-zoom-in icon-white"></i>停用</a>':'<a class="btn btn-success" style="margin-left:10px;" href="#" onclick="recoverFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-zoom-in icon-white"></i>启用</a>');
 										}
 									},
 								]
@@ -158,6 +159,60 @@
 	        	  table.fnDraw();
 	          }else if(data.result=="error"){
 	        	  $("#alertContent").html("删除失败，请联系管理员");
+	          }
+	        },
+	        error: function(jqXHR , textStatus , errorThrown){
+	        	$("#alertId").show();
+	        	$("#alertContent").html("系统异常，请联系管理员");
+	        }
+	       
+	      });
+	}
+	function stopFun(id){
+		delId = id;
+		$("#myModal .modal-header").find("h3").html("暂停用户");
+		$("#myModal .modal-footer #saveBtn").html("确定");
+		$("#myModal .modal-footer #closeBtn").html("取消");
+		$("#myModal .modal-body").html(
+				'<div class="alert alert-danger" id="alertId" style="display:none;">'
+				+'<button type="button" class="close" data-dismiss="alert">&times;</button>'
+				+'<strong id="alertContent"></strong>'
+				+'</div><h3>确定要将该用户暂停吗？</h3>'
+		);
+		$("#saveBtn").attr("onclick","stopOrRecoverSubmit(0)");
+		$("#saveBtn").show();
+		$("#myModal").modal('show');
+	}
+	function recoverFun(id){
+		delId = id;
+		$("#myModal .modal-header").find("h3").html("启用用户");
+		$("#myModal .modal-footer #saveBtn").html("确定");
+		$("#myModal .modal-footer #closeBtn").html("取消");
+		$("#myModal .modal-body").html(
+				'<div class="alert alert-danger" id="alertId" style="display:none;">'
+				+'<button type="button" class="close" data-dismiss="alert">&times;</button>'
+				+'<strong id="alertContent"></strong>'
+				+'</div><h3>确定要将该用户启动吗？</h3>'
+		);
+		$("#saveBtn").attr("onclick","stopOrRecoverSubmit(1)");
+		$("#saveBtn").show();
+		$("#myModal").modal('show');
+	}
+	function stopOrRecoverSubmit(stat){
+		$.ajax({
+	        url: '${appctx}/userController/stopOrRecover',
+	        async: true,
+	        contentType:"application/json",
+	        type: 'POST',
+	        data: JSON.stringify({id:delId,status:stat}),
+	        success: function(data , textStatus){
+	          $("#alertId").show();
+	          if(data.result=="success"){
+	        	  $("#alertContent").html("处理成功！");
+	        	  setTimeout("$('#myModal').modal('hide')",1000); 
+	        	  table.fnDraw();
+	          }else if(data.result=="error"){
+	        	  $("#alertContent").html("处理失败，请联系管理员");
 	          }
 	        },
 	        error: function(jqXHR , textStatus , errorThrown){

@@ -72,7 +72,7 @@
 	         值：
 	      </label>
 	      <div class="col-sm-9">
-	         <input type="text" id="paramValue" class="form-control" value="${systemParam.paramValue}">
+	      		<textarea class="form-control" rows="3" id="paramValue">${systemParam.paramValue}</textarea>
 	      </div>
 	   </div>
 	</form>

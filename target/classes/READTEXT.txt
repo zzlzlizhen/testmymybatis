@@ -1,4 +1,4 @@
-说明：
+系统架构说明：
 本框架是由maven基于springMVC，mybatis，spring整合的框架
 其中数据库mysql，缓存redis集群
 消息通信rabbitmq，webService （cxf），webSocket

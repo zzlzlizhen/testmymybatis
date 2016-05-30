@@ -31,10 +31,10 @@
 	   </div>
 	   <div class="form-group">
 	      <label class="col-sm-3 control-label">
-	         值：
+	        值：
 	      </label>
 	      <div class="col-sm-9">
-	         <input type="text" class="form-control" value="${systemParam.paramValue}" disabled="disabled">
+	      		<textarea class="form-control" rows="3" disabled="disabled">${systemParam.paramValue}</textarea>
 	      </div>
 	   </div>
 	   <div class="form-group">

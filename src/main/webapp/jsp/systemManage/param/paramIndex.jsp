@@ -29,7 +29,7 @@
 								"sInfoEmpty" : "没有数据"
 							},
 							"sPaginationType" : "bootstrap",
-							//"bAutoWidth" : true,//自动宽度
+							"bAutoWidth" : true,//自动宽度
 							"bProcessing" : true, //开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
 							"bServerSide" : true, //开启服务器模式，使用服务器端处理配置datatable。注意：sAjaxSource参数也必须被给予为了给datatable源代码来获取所需的数据对于每个画。 这个翻译有点别扭。开启此模式后，你对datatables的每个操作 每页显示多少条记录、下一页、上一页、排序（表头）、搜索，这些都会传给服务器相应的值。
 							"sAjaxSource" : "${appctx}/paramController/getParams",
@@ -72,7 +72,7 @@
 										"aTargets" : [ 3 ],
 										"sClass" : "text-center",
 										"bSortable": false,
-										"sWidth": "20%",
+										"sWidth": "25%",
 										"mRender" : function(data, type, full) {
 											return full[2];
 										}
@@ -81,7 +81,7 @@
 										"aTargets" : [ 4 ],
 										"sClass" : "text-center",
 										"bSortable": false,
-										"sWidth": "20%",
+										"sWidth": "15%",
 										"mRender" : function(data, type, full) {
 											return full[3];
 										}
@@ -91,7 +91,7 @@
 										"sClass" : "text-center",
 										"bSortable": false,
 										"mData" : null,
-										"sWidth": "20%",
+										"sWidth": "30%",
 										"mRender" : function(data, type, full) {
 										return '<a class="btn btn-success" href="#" onclick="viewFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-zoom-in icon-white"></i>查看</a>'
 							            +'<a class="btn btn-info" style="margin-left:10px;" href="#" onclick="editFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-edit icon-white"></i>修改</a>'

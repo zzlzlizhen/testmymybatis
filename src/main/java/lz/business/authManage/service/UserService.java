@@ -12,7 +12,11 @@ public interface UserService {
 	
     int insertUser(User user);
 	
+    int insertRegisterUser(User user);
+    
 	int updateUser(User user);
+	
+	int updateUserStatus(User user);
 	
 	int delUser(User user);
 	
@@ -23,5 +27,6 @@ public interface UserService {
 	List<User> getUsers(Map<String,Object> map);
 	
 	PageInfo<User> getUserPage(Map<String,Object> map);
+	
 	
 }

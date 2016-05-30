@@ -20,7 +20,9 @@ public class User {
 
     private String status;
     
-    private List<Role> roleLists;
+    private String securityCode;
+    
+	private List<Role> roleLists;
 
 	public List<Role> getRoleLists() {
 		return roleLists;
@@ -93,4 +95,13 @@ public class User {
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
     }
+    
+    public String getSecurityCode() {
+		return securityCode;
+	}
+
+	public void setSecurityCode(String securityCode) {
+		this.securityCode = securityCode;
+	}
+
 }

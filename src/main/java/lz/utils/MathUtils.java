@@ -23,4 +23,18 @@ public class MathUtils {
 		}
 		return val;
 	}
+	/**
+	 * 生成随机数的工具
+	 * @param lenght
+	 * @return
+	 */
+	public static String getNum(int lenght){
+		String val="";
+		Random random = new Random();
+		for(int i=0;i<lenght;i++){
+			String numValue = random.nextInt(10)+"";
+			val += numValue;
+		}
+		return val;
+	}
 }

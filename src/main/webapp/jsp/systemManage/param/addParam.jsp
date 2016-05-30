@@ -70,10 +70,10 @@
 	   </div>
 	   <div class="form-group">
 	      <label class="col-sm-2 control-label">
-	         值：
+	          值：
 	      </label>
 	      <div class="col-sm-10">
-	         <input type="text" class="form-control" id="paramValue">
+	      		<textarea class="form-control" rows="3" id="paramValue"></textarea>
 	      </div>
 	   </div>
 	</form>

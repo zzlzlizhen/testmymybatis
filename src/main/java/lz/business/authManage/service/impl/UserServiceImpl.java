@@ -61,9 +61,25 @@ public class UserServiceImpl implements UserService {
 		return userMapper.insertSelective(user);
 	}
 	
+	/**
+	 * 注册用户
+	 */
+	@Override
+	public int insertRegisterUser(User user) {
+		user.setId(IdGenerateUtils.getId());
+		user.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
+		user.setStatus("1");
+		return userMapper.insertSelective(user);
+	}
+	
 	@Override
 	public List<User> getUsers(Map<String,Object> map) {
 		UserExample ue = new UserExample();
+		if(map.get("username")!=null){
+			ue.createCriteria().andNameEqualTo((String)map.get("username"));
+		}else if(map.get("telephone")!=null){
+			ue.createCriteria().andPhoneEqualTo((String)map.get("telephone"));
+		}
 		return userMapper.selectByExample(ue);
 	}
 	@Override
@@ -92,6 +108,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.updateByPrimaryKeySelective(user);
 	}
 	@Override
+	public int updateUserStatus(User user) {
+		user.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
+		return userMapper.updateByPrimaryKeySelective(user);
+	}
+	@Override
 	public int delUser(User user) {
 		UserRoleExample ure = new UserRoleExample();
 		ure.createCriteria().andUserIdEqualTo(user.getId());
@@ -111,4 +132,5 @@ public class UserServiceImpl implements UserService {
 		}
 		return page;
 	}
+	
 }
