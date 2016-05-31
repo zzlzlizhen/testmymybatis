@@ -62,11 +62,15 @@ public class ParamServiceImpl implements ParamService {
 	}
 
 	@Override
-	public List<SystemParam> getParamByParamKey(String paramKey) {
+	public SystemParam getParamByParamKey(String paramKey) {
 		SystemParamExample example = new SystemParamExample();
 		example.createCriteria().andParamKeyEqualTo(paramKey);
 		List<SystemParam> systemParams = systemParamMapper.selectByExample(example);
-		return systemParams;
+		if(systemParams!=null&&systemParams.size()>0){
+			return systemParams.get(0);
+		}else{
+			return null;
+		}
 	}
 
 	@Override

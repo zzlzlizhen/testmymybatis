@@ -1,11 +1,10 @@
 package lz.business.systemManage.service;
 
-import java.util.List;
 import java.util.Map;
 
-import com.github.pagehelper.PageInfo;
-
 import lz.model.SystemParam;
+
+import com.github.pagehelper.PageInfo;
 
 public interface ParamService {
 
@@ -17,7 +16,7 @@ public interface ParamService {
 	
 	SystemParam getParamById(String id);
 	
-	List<SystemParam> getParamByParamKey(String paramKey);
+	SystemParam getParamByParamKey(String paramKey);
 	
 	int delSystemParam(String id);
 	

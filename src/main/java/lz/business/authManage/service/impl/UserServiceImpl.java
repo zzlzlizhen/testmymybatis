@@ -4,11 +4,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import lz.business.authManage.service.UserService;
+import lz.business.systemManage.service.ParamService;
 import lz.constant.ConstantInfo;
+import lz.dao.RoleMapper;
 import lz.dao.UserMapper;
 import lz.dao.UserRoleMapper;
 import lz.model.Role;
+import lz.model.RoleExample;
+import lz.model.SystemParam;
 import lz.model.User;
 import lz.model.UserExample;
 import lz.model.UserRole;
@@ -25,20 +31,14 @@ import com.github.pagehelper.PageInfo;
 @Transactional
 @Service("userService")
 public class UserServiceImpl implements UserService {
-
+	@Autowired
 	private UserMapper userMapper;
+	@Autowired
 	private UserRoleMapper userRoleMapper;
-	public UserMapper getUserMapper() {
-		return userMapper;
-	}
 	@Autowired
-	public void setUserMapper(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
-	@Autowired
-	public void setUserRoleMapper(UserRoleMapper userRoleMapper) {
-		this.userRoleMapper = userRoleMapper;
-	}
+	private RoleMapper roleMapper;
+	@Resource(name="paramService")
+	private ParamService paramService;
 	@Override
 	public User getUserById(String id) {
 		User user = userMapper.selectById(id);
@@ -66,9 +66,22 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public int insertRegisterUser(User user) {
-		user.setId(IdGenerateUtils.getId());
+		String userId = IdGenerateUtils.getId();
+		user.setId(userId);
 		user.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		user.setStatus("1");
+		//给注册的用户添加默认的角色
+		SystemParam param = paramService.getParamByParamKey("defaultRole");
+		if(param!=null){
+			RoleExample roleExample = new RoleExample();
+			roleExample.createCriteria().andRoleNameEqualTo(param.getParamValue());
+			List<Role> roles = roleMapper.selectByExample(roleExample);
+			UserRole ur = new UserRole();
+			ur.setId(IdGenerateUtils.getId());
+			ur.setUserId(userId);
+			ur.setRoleId((roles!=null&&roles.size()>0)?roles.get(0).getId():"");
+			userRoleMapper.insertSelective(ur);
+		}
 		return userMapper.insertSelective(user);
 	}
 	
@@ -79,6 +92,8 @@ public class UserServiceImpl implements UserService {
 			ue.createCriteria().andNameEqualTo((String)map.get("username"));
 		}else if(map.get("telephone")!=null){
 			ue.createCriteria().andPhoneEqualTo((String)map.get("telephone"));
+		}else if(map.get("name")!=null&&map.get("phone")!=null){
+			ue.createCriteria().andNameEqualTo((String)map.get("name")).andPhoneEqualTo((String)map.get("phone"));
 		}
 		return userMapper.selectByExample(ue);
 	}
@@ -131,6 +146,17 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		return page;
+	}
+	/**
+	 * 更改密码
+	 */
+	@Override
+	public int updatePswByName(User user) {
+		User record = new User();
+		record.setPwd(user.getPwd());
+		UserExample ue = new UserExample();
+		ue.createCriteria().andNameEqualTo(user.getName());
+		return userMapper.updateByExampleSelective(record, ue);
 	}
 	
 }

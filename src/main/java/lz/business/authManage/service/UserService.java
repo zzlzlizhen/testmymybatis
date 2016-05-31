@@ -20,6 +20,8 @@ public interface UserService {
 	
 	int delUser(User user);
 	
+	int updatePswByName(User user);
+	
 	User getUserByNameAndPwd(User user);
 
 	User getUserById(String id);

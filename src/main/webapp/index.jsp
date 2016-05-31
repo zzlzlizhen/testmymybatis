@@ -46,7 +46,7 @@
     		        data: JSON.stringify({name:$("#username").val(),pwd:$("#password").val()}),
     		        success: function(data , textStatus){
     		          if(data.result=="success"){
-    		        	  location.href="${appctx}/loginController/loginSuccess";
+    		        	  location.href="${appctx}/indexController/loginSuccess";
     		          }else if(data.result=="userStop"){
     		        	  $("#alertId").show();
     		        	  $("#alertContent").html("已停用，请联系系统管理员！");
@@ -95,8 +95,8 @@
                     </div>
                     <div class="clearfix"></div><br>
                     <div class="row">
-	                    <div class="col-md-6" style="text-align: left;padding-left:25px;"><a target="_blank" href="${appctx}/loginController/registerPage">注册</a></div>
-	                    <div class="col-md-6" style="text-align: right;padding-right:25px;"><a target="_blank" href="${appctx}/loginController/getPswPage">找回密码</a></div>
+	                    <div class="col-md-6" style="text-align: left;padding-left:25px;"><a href="${appctx}/loginController/registerPage">注册</a></div>
+	                    <div class="col-md-6" style="text-align: right;padding-right:25px;"><a href="${appctx}/loginController/getPswPage">找回密码</a></div>
                     </div>
                     
                     <div class="clearfix"></div>

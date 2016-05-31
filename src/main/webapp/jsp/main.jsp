@@ -36,7 +36,7 @@
 	}
 	function initMenu() {
 		$.ajax({
-			url : '${appctx}/loginController/getMenus',
+			url : '${appctx}/resourceController/getResourceMenuByUserId',
 			async : true,
 			contentType : "application/json",
 			type : 'POST',
@@ -121,9 +121,9 @@
 						class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a target='main_target' href="${appctx}/loginController/homePage">首页</a></li>
+					<li><a target='main_target' href="${appctx}/indexController/homePage">首页</a></li>
 					<li class="divider"></li>
-					<li><a href="${appctx}/loginController/logout">退出</a></li>
+					<li><a href="${appctx}/indexController/logout">退出</a></li>
 				</ul>
 			</div>
 		</div>
@@ -188,7 +188,7 @@
 				</div>
 			</div>
 			<div id="content" class="col-lg-10 col-sm-10">
-				<iframe src="${appctx}/loginController/homePage" name='main_target'
+				<iframe src="${appctx}/indexController/homePage" name='main_target'
 					id="iframepage" frameborder="0" scrolling="no" marginheight="0"
 					marginwidth="0" onLoad="iFrameHeight()"></iframe>
 			</div>

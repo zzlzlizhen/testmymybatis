@@ -53,7 +53,7 @@ public class ParamController {
 	}
 	@RequestMapping("/testIn/{key}")
 	public void editPage(@PathVariable String key,HttpServletRequest request,HttpServletResponse response){
-		List<SystemParam> systemParam = paramService.getParamByParamKey(key);
+		SystemParam systemParam = paramService.getParamByParamKey(key);
 		String str = JSON.toJSONStringWithDateFormat(systemParam,"yyyy-MM-dd HH:mm:ss");
 		try {
 			response.getWriter().print(str);

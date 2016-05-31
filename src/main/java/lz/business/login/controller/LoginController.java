@@ -1,24 +1,18 @@
 package lz.business.login.controller;
 
-import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import lz.business.authManage.service.ResourceService;
 import lz.business.authManage.service.UserService;
 import lz.constant.ConstantInfo;
-import lz.model.Resource;
-import lz.model.SystemParam;
 import lz.model.User;
 import lz.utils.MathUtils;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -61,43 +55,7 @@ public class LoginController {
 		}
 		return map;
 	}
-	/**
-	 * 描述：登录成功跳转界面
-	 * 作者：李震
-	 * 时间：2016年5月17日 下午6:29:29
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping("/loginSuccess")
-	public String loginSuccess(HttpServletRequest request){
-		return "/main";
-	}
-	@RequestMapping("/homePage")
-	public String homePage(HttpServletRequest request){
-		return "/homePage";
-	}
-	@RequestMapping("/getMenus")
-	@ResponseBody
-	public List<Resource> getMenus(HttpServletRequest request,HttpServletResponse response){
-		User user = (User)request.getSession().getAttribute("loginUser");
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("userId",user.getId());
-		map.put("pid",ConstantInfo.ONE_RESOURCE_PID);
-		List<Resource> listResourceMenu = getResourceMenu(map);
-		return listResourceMenu;
-	}
-	public List<Resource> getResourceMenu(Map<String,Object> map){
-		List<Resource> rootResource = resourceService.getResourceMenuByUserId(map);
-		for(Resource resource:rootResource){
-			map.put("pid",resource.getId());
-			List<Resource> childResource = getResourceMenu(map);
-			if(childResource!=null&&childResource.size()>0){
-				resource.setChildResource(childResource);
-				resource.setHasChild(true);
-			}
-		}
-		return rootResource;
-	}
+	
 	/**
 	 * 跳转到注册页面
 	 * 描述：
@@ -110,6 +68,15 @@ public class LoginController {
 	public String registerPage(HttpServletRequest request){
 		return "/registerPage";
 	}
+	/**
+	 * 注册用户
+	 * 描述：
+	 * 作者：李震
+	 * 时间：2016年5月31日 下午5:17:04
+	 * @param user
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/register")
 	@ResponseBody
 	public Map<String,Object> register(@RequestBody User user,HttpServletRequest request){
@@ -154,6 +121,15 @@ public class LoginController {
 	public String getPswPage(HttpServletRequest request){
 		return "/getPswPage";
 	}
+	/**
+	 * 注册时发送验证码
+	 * 描述：
+	 * 作者：李震
+	 * 时间：2016年5月31日 下午5:16:50
+	 * @param args
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/sendSecurityCode")
 	@ResponseBody
 	public Map<String,Object> sendSecurityCode(@RequestBody Map<String,Object> args,HttpServletRequest request){
@@ -170,16 +146,83 @@ public class LoginController {
 		return map;
 	}
 	/**
-	 * 描述：退出
+	 * 找回密码验证用户名和手机号信息
+	 * 描述：
 	 * 作者：李震
-	 * 时间：2016年5月17日 下午6:29:47
+	 * 时间：2016年5月31日 下午5:16:35
+	 * @param args
 	 * @param request
-	 * @param response
-	 * @throws IOException
+	 * @return
 	 */
-	@RequestMapping("/logout")
-	public void logout(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		request.getSession().removeAttribute("loginUser");
-		response.sendRedirect(request.getContextPath()+"/index.jsp");
+	@RequestMapping(value="/getPwdValidateUserNameAndPhone")
+	@ResponseBody
+	public Map<String,Object> getPwdValidateUserNameAndPhone(@RequestBody Map<String,Object> args,HttpServletRequest request){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			List<User> users = userService.getUsers(args);
+			if(users!=null&&users.size()>0){
+				String securityCode = MathUtils.getNum(6);
+				request.getSession().setAttribute("getPwdSecurityCode",securityCode);
+				map.put("result","success");
+				map.put("securityCode", securityCode);
+				map.put("resetPswUserName",args.get("name"));
+			}else{
+				map.put("result","infoError");
+			}
+		} catch (Exception e) {
+			map.put("result","error");
+			e.printStackTrace();
+		}
+		return map;
 	}
+	/**
+	 * 找回密码验证验证码
+	 * 描述：
+	 * 作者：李震
+	 * 时间：2016年5月31日 下午5:16:12
+	 * @param args
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/getPwdValidateSecurity")
+	@ResponseBody
+	public Map<String,Object> getPwdValidateSecurity(@RequestBody Map<String,Object> args,HttpServletRequest request){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			String security = (String)request.getSession().getAttribute("getPwdSecurityCode");
+			String securityCode = (String)args.get("securityCode");
+			if(security.equals(securityCode)){
+				map.put("result","success");
+			}else{
+				map.put("result","securityError");
+			}
+		} catch (Exception e) {
+			map.put("result","error");
+			e.printStackTrace();
+		}
+		return map;
+	}
+	/**
+	 * 重置密码
+	 * 描述：
+	 * 作者：李震
+	 * 时间：2016年5月31日 下午5:16:01
+	 * @param user
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/getPwdValidateResetPsw")
+	@ResponseBody
+	public Map<String,Object> getPwdValidateResetPsw(@RequestBody User user,HttpServletRequest request){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			userService.updatePswByName(user);
+			map.put("result","success");
+		} catch (Exception e) {
+			map.put("result","error");
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
 }

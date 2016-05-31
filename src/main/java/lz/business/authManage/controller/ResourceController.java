@@ -266,8 +266,16 @@ public class ResourceController {
 		}
 		return ja;
 	}
-	
-	
+	@RequestMapping(value="/getResourceMenuByUserId")
+	@ResponseBody
+	public List<Resource> getResourceMenuByUserId(HttpServletRequest request,HttpServletResponse response){
+		User user = (User)request.getSession().getAttribute("loginUser");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("userId",user.getId());
+		map.put("pid",ConstantInfo.ONE_RESOURCE_PID);
+		List<Resource> listResourceMenu = getResourceMenu(map);
+		return listResourceMenu;
+	}
 	public List<Resource> getResourceMenu(Map<String,Object> map){
 		List<Resource> rootResource = resourceService.getResourceMenuByUserId(map);
 		for(Resource resource:rootResource){
@@ -279,22 +287,5 @@ public class ResourceController {
 			}
 		}
 		return rootResource;
-	}
-	@RequestMapping(value="/getResourceMenuByUserId")
-	@ResponseBody
-	public List<Resource> getResourceMenuByUserId(HttpServletRequest request,HttpServletResponse response){
-		User user = (User)request.getSession().getAttribute("loginUser");
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("userId",user.getId());
-		map.put("pid",ConstantInfo.ONE_RESOURCE_PID);
-		List<Resource> listResourceMenu = getResourceMenu(map);
-		return listResourceMenu;
-		/*String jsonStr = JSON.toJSONString(listResourceMenu);
-		try {
-			response.getWriter().print(jsonStr);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 	}
 }

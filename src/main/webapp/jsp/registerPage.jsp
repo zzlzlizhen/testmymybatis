@@ -11,87 +11,86 @@
     <script type="text/javascript">
     var countdown = 0;
     var phoneRegex = /^[1][0-9]{10}$/;
-    	$(function(){
-    		//document.onkeydown=keyDownSearch;
-    		$("input").keypress(function(e){
-        		// 兼容FF和IE和Opera    
-        		var theEvent = e || window.event;    
-                var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
-     		   	if (code == 13) {
-     		   		loginFunction();
-     		   	}
-     		 });
-    	});
 
-    	function registerFunction(){
-    		if($("#username").val()==null||(!$("#username").val().length>0)){
-    			$("#alertContent").html("请输入用户名");
-    			$("#alertId").show();
-    		}else if($("#telephone").val().length>0&&!phoneRegex.test($("#telephone").val())){
-    			$("#alertId").show();
-    			$("#alertContent").html("请输入合法的手机号，如：15899999999");
-    		}else if($("#password").val()==null||(!$("#password").val().length>0)){
-    			$("#alertId").show();
-    			$("#alertContent").html("请输入密码");
-    		}else if($("#security").val()==null||(!$("#security").val().length>0)){
-    			$("#alertId").show();
-    			$("#alertContent").html("验证码不能为空");
+   	function registerFunction(){
+   		if($("#username").val()==null||(!$("#username").val().length>0)){
+   			$("#alertContent").html("请输入用户名");
+   			$("#alertId").show();
+   		}else if($("#password").val()==null||(!$("#password").val().length>0)){
+   			$("#alertId").show();
+   			$("#alertContent").html("请输入密码");
+   		}else if($("#telephone").val()==null||(!$("#telephone").val().length>0)||(!phoneRegex.test($("#telephone").val()))){
+   			$("#alertId").show();
+   			$("#alertContent").html("请输入合法的手机号，如：15899999999");
+   		}else if($("#security").val()==null||(!$("#security").val().length>0)){
+   			$("#alertId").show();
+   			$("#alertContent").html("验证码不能为空");
+   		}else{
+   			$.ajax({
+   		        url: '${appctx}/loginController/register',
+   		        async: true,
+   		        contentType:"application/json",
+   		        type: 'POST',
+   		        data: JSON.stringify({name:$("#username").val(),pwd:$("#password").val(),phone:$("#telephone").val(),securityCode:$("#security").val()}),
+   		        success: function(data , textStatus){
+   		        	$("#alertId").show();
+   			          if(data.result=="success"){
+   			        	  countdown = 5;
+   			        	  settime1();
+   			          }else if(data.result=="securityError"){
+   			        	  $("#alertContent").html("验证码验证失败，请重新输入！");
+   			          }
+   			          else if(data.result=="nameIsExist"){
+   			        	  $("#alertContent").html("该用户名已经被注册，请重新输入！");
+   			          }else if(data.result=="phoneIsExist"){
+   			        	  $("#alertContent").html("该手机号已经被注册，请重新输入！");
+   			          }else if(data.result=="error"){
+   			        	  $("#alertContent").html("注册失败，请联系管理员");
+   			          }
+   		        },
+   		        error: function(jqXHR , textStatus , errorThrown){
+   		        	$("#alertId").show();
+   		        	$("#alertContent").html("系统异常，请联系管理员！");
+   		        }
+   		      });
     		}
-    		else{
-    			$.ajax({
-    		        url: '${appctx}/loginController/register',
+    	}
+    	//获取验证码
+    	function getSecurityCode(){
+    		if($("#username").val()==null||(!$("#username").val().length>0)){
+       			$("#alertContent").html("请输入用户名");
+       			$("#alertId").show();
+       		}else if($("#password").val()==null||(!$("#password").val().length>0)){
+       			$("#alertId").show();
+       			$("#alertContent").html("请输入密码");
+       		}else if($("#telephone").val()==null||(!$("#telephone").val().length>0)||(!phoneRegex.test($("#telephone").val()))){
+       			$("#alertId").show();
+       			$("#alertContent").html("请输入合法的手机号，如：15899999999");
+       		}else{
+       			countdown = 60; 
+        		settime();
+        		var telephone = $("#telephone").val();
+        		$.ajax({
+    		        url: '${appctx}/loginController/sendSecurityCode',
     		        async: true,
     		        contentType:"application/json",
     		        type: 'POST',
-    		        data: JSON.stringify({name:$("#username").val(),pwd:$("#password").val(),phone:$("#telephone").val(),securityCode:$("#security").val()}),
+    		        data: JSON.stringify({"telephone":telephone}),
     		        success: function(data , textStatus){
-    		        	$("#alertId").show();
-    			          if(data.result=="success"){
-    			        	  countdown = 5;
-    			        	  settime1();
-    			          }else if(data.result=="securityError"){
-    			        	  $("#alertContent").html("验证码验证失败，请重新输入！");
-    			          }
-    			          else if(data.result=="nameIsExist"){
-    			        	  $("#alertContent").html("该用户名已经被注册，请重新输入！");
-    			          }else if(data.result=="phoneIsExist"){
-    			        	  $("#alertContent").html("该手机号已经被注册，请重新输入！");
-    			          }else if(data.result=="error"){
-    			        	  $("#alertContent").html("注册失败，请联系管理员");
-    			          }
+    		          if(data.result=="success"){
+    		        	  $("#alertId").show();
+    		        	  $("#alertContent").html("发送成功,验证码是"+data.securityCode);
+    		          }else if(data.result=="error"){
+    		        	  $("#alertId").show();
+    		        	  $("#alertContent").html("发送失败");
+    		          }
     		        },
     		        error: function(jqXHR , textStatus , errorThrown){
     		        	$("#alertId").show();
     		        	$("#alertContent").html("系统异常，请联系管理员！");
     		        }
     		      });
-    		}
-    	}
-    	//获取验证码
-    	function getSecurityCode(){
-    		countdown = 60; 
-    		settime();
-    		var telephone = $("#telephone").val();
-    		$.ajax({
-		        url: '${appctx}/loginController/sendSecurityCode',
-		        async: true,
-		        contentType:"application/json",
-		        type: 'POST',
-		        data: JSON.stringify({"telephone":telephone}),
-		        success: function(data , textStatus){
-		          if(data.result=="success"){
-		        	  $("#alertId").show();
-		        	  $("#alertContent").html("发送成功,验证码是"+data.securityCode);
-		          }else if(data.result=="error"){
-		        	  $("#alertId").show();
-		        	  $("#alertContent").html("发送失败");
-		          }
-		        },
-		        error: function(jqXHR , textStatus , errorThrown){
-		        	$("#alertId").show();
-		        	$("#alertContent").html("系统异常，请联系管理员！");
-		        }
-		      });
+       		}
     	}
     	function settime() { 
     		if (countdown == 0) { 
@@ -142,24 +141,27 @@
                         <input type="text" class="form-control" id="username" placeholder="请输入用户名">
                     </div>
                     <div class="clearfix"></div><br>
-
-					<div class="input-group input-group-lg">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone red"></i></span>
-                        <input type="text" class="form-control" id="telephone" placeholder="请输入手机号">
-                    </div>
-                    <div class="clearfix"></div><br>
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
                         <input type="password" class="form-control" id="password" placeholder="请输入密码">
                     </div>
                     <div class="clearfix"></div><br>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone red"></i></span>
+                        <input type="text" class="form-control" id="telephone" maxlength="11" placeholder="请输入手机号">
+                    </div>
+                    <div class="clearfix"></div><br>
 					<div class="input-group input-group-lg">
                         <span class="input-group-addon"><i class="red">验证码</i></span>
-                        <input type="password" class="form-control" id="security" placeholder="请输入验证码">
+                        <input type="text" class="form-control" id="security" maxlength="6" placeholder="请输入验证码">
                         <span class="input-group-addon"><i class="blue"><a id="getSecurityCode" href="javascript:getSecurityCode()" class="blue">获取验证码</a></i></span>
                         <!-- <span>
                         	<button type="button" class="btn btn-primary" id="loginId" onclick="loginFunction()">获取验证码</button>
                         </span> -->
+                    </div>
+                    <div class="clearfix"></div><br>
+                    <div class="row">
+	                    <div class="col-md-6" style="text-align: left;padding-left:25px;"><a href="${appctx}/index.jsp">返回登录</a></div>
                     </div>
                     <div class="clearfix"></div>
                     <p class="center col-md-5">
