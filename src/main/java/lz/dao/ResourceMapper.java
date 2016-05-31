@@ -166,7 +166,7 @@ public interface ResourceMapper {
         "SELECT re.id,re.resource_name,re.resource_url,re.pid,re.icons ",
         "FROM t_user u,t_user_role ur,t_role_resource ures,t_resource re ",
         "WHERE u.id=ur.user_id AND ur.role_id = ures.role_id AND ures.resource_id = re.id ",
-        "AND u.id=#{userId,jdbcType=CHAR} AND pid = #{pid,jdbcType=CHAR}"
+        "AND u.id=#{userId,jdbcType=CHAR} AND pid = #{pid,jdbcType=CHAR} GROUP BY re.id"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.CHAR, id=true),
