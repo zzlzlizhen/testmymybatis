@@ -11,7 +11,6 @@
     <script type="text/javascript">
     var countdown = 0;
     var phoneRegex = /^[1][0-9]{10}$/;
-
    	function registerFunction(){
    		if($("#username").val()==null||(!$("#username").val().length>0)){
    			$("#alertContent").html("请输入用户名");
@@ -19,6 +18,12 @@
    		}else if($("#password").val()==null||(!$("#password").val().length>0)){
    			$("#alertId").show();
    			$("#alertContent").html("请输入密码");
+   		}else if($("#password1").val()==null||(!$("#password1").val().length>0)){
+   			$("#alertId").show();
+   			$("#alertContent").html("请再次输入密码");
+   		}else if($("#password").val()!=$("#password1").val()){
+   			$("#alertId").show();
+   			$("#alertContent").html("二次输入的密码不一致");
    		}else if($("#telephone").val()==null||(!$("#telephone").val().length>0)||(!phoneRegex.test($("#telephone").val()))){
    			$("#alertId").show();
    			$("#alertContent").html("请输入合法的手机号，如：15899999999");
@@ -39,8 +44,9 @@
    			        	  settime1();
    			          }else if(data.result=="securityError"){
    			        	  $("#alertContent").html("验证码验证失败，请重新输入！");
-   			          }
-   			          else if(data.result=="nameIsExist"){
+   			          }else if(data.result=="securityTimeOut"){
+   			        	  $("#alertContent").html("验证码超过10分钟，已失效！请重新获取验证码");
+   			          }else if(data.result=="nameIsExist"){
    			        	  $("#alertContent").html("该用户名已经被注册，请重新输入！");
    			          }else if(data.result=="phoneIsExist"){
    			        	  $("#alertContent").html("该手机号已经被注册，请重新输入！");
@@ -67,8 +73,7 @@
        			$("#alertId").show();
        			$("#alertContent").html("请输入合法的手机号，如：15899999999");
        		}else{
-       			countdown = 60; 
-        		settime();
+       			
         		var telephone = $("#telephone").val();
         		$.ajax({
     		        url: '${appctx}/loginController/sendSecurityCode',
@@ -77,11 +82,16 @@
     		        type: 'POST',
     		        data: JSON.stringify({"telephone":telephone}),
     		        success: function(data , textStatus){
+    		          $("#alertId").show();
     		          if(data.result=="success"){
-    		        	  $("#alertId").show();
-    		        	  $("#alertContent").html("发送成功,验证码是"+data.securityCode);
+    		        	  countdown = 60; 
+    		        	  settime();
+    		        	  $("#alertContent").html("发送验证码"+data.securityCode+"成功，请妥善保管！验证码有效期是10分钟");
+    		          }else if(data.result=="phoneIsExist"){
+    		        	  $("#alertContent").html("该手机号已经被注册，请重新输入！");
+    		          }else if(data.result=="timeTooShort"){
+    		        	  $("#alertContent").html("发送验证码太频繁，请稍后重试");
     		          }else if(data.result=="error"){
-    		        	  $("#alertId").show();
     		        	  $("#alertContent").html("发送失败");
     		          }
     		        },
@@ -144,6 +154,11 @@
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
                         <input type="password" class="form-control" id="password" placeholder="请输入密码">
+                    </div>
+                    <div class="clearfix"></div><br>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                        <input type="password" class="form-control" id="password1" placeholder="请再次输入密码">
                     </div>
                     <div class="clearfix"></div><br>
                     <div class="input-group input-group-lg">

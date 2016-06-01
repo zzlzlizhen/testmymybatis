@@ -52,13 +52,19 @@
 										"bSortable": false
 									},
 									{
-										"aTargets" : [ 2 ],	
+										"aTargets" : [ 2 ],
+										"sClass" : "text-center",
+										"sWidth": "15%",
+										"bSortable": false
+									},
+									{
+										"aTargets" : [ 3 ],	
 										"sClass" : "text-center",
 										"sWidth": "30%",
 										"bSortable": false
 									},
 									{
-										"aTargets" : [ 3 ],
+										"aTargets" : [ 4 ],
 										"sClass" : "text-center",
 										"bSortable": false,
 										"sWidth": "50%",
@@ -178,7 +184,7 @@
 						<div class="btn-toolbar">
 							<div class="pull-right">
 								<div class="input-append">
-									权限名字：<input type="text" placeholder="权限名字" id="roleName">
+									角色名字：<input type="text" placeholder="角色名字" id="roleName">
 									<a class="btn btn-primary" href="#" onclick="searchFun()">
 										<i class="glyphicon glyphicon-search"></i>查询
 									</a>
@@ -196,7 +202,8 @@
 								<thead>
 									<tr>
 										<th>id</th>
-										<th>权限名字</th>
+										<th>角色名字</th>
+										<th>角色标志</th>
 										<th>备注</th>
 										<th>操作</th>
 									</tr>

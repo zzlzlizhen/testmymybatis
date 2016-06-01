@@ -13,4 +13,7 @@ public class ConstantInfo {
 	public static final String INIT_PASSWORD = "123456";
 	//资源菜单一级菜单初始化pid
 	public static final String ONE_RESOURCE_PID = "0";
+	//验证码的类型
+	public static final String SECURITY_CODE_PHONE="securityCodePhone";
+	public static final String SECURITY_CODE_EMAIL="securityCodeEmail";
 }

@@ -19,11 +19,15 @@
 		if($("#roleName1").val()==null||(!$("#roleName1").val().length>0)){
 			$("#alertId").show();
 			$("#alertContent").html("角色名字不能为空");
+		}else if($("#roleType").val()==null||(!$("#roleType").val().length>0)){
+			$("#alertId").show();
+			$("#alertContent").html("角色标志不能为空");
 		}
 		else{
 			var jsonData  = {};
 			jsonData.id=$("#id").val();
 			jsonData.roleName=$("#roleName1").val();
+			jsonData.roleType=$("#roleType").val();
 			jsonData.remark=$("#remark").val();
 			$.ajax({
 		        url: '${appctx}/roleController/edit',
@@ -64,6 +68,14 @@
 	      </label>
 	      <div class="col-sm-9">
 	         <input type="text" class="form-control" id="roleName1" value="${role.roleName}">
+	      </div>
+	   </div>
+	   <div class="form-group">
+	      <label class="col-sm-3 control-label">
+	         角色标志：<font color="red">*</font>
+	      </label>
+	      <div class="col-sm-9">
+	         <input type="text" class="form-control" id="roleType" value="${role.roleType}">
 	      </div>
 	   </div>
 	   <div class="form-group">

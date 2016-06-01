@@ -13,6 +13,8 @@ public class Role {
 
     private String updateTime;
     
+    private String roleType;
+    
     private List<Resource> resources;
     
     public List<Resource> getResources() {
@@ -61,5 +63,13 @@ public class Role {
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime == null ? null : updateTime.trim();
+    }
+    
+    public String getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(String roleType) {
+        this.roleType = roleType == null ? null : roleType.trim();
     }
 }

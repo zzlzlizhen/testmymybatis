@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
 		SystemParam param = paramService.getParamByParamKey("defaultRole");
 		if(param!=null){
 			RoleExample roleExample = new RoleExample();
-			roleExample.createCriteria().andRoleNameEqualTo(param.getParamValue());
+			roleExample.createCriteria().andRoleTypeEqualTo(param.getParamValue());
 			List<Role> roles = roleMapper.selectByExample(roleExample);
 			UserRole ur = new UserRole();
 			ur.setId(IdGenerateUtils.getId());

@@ -18,7 +18,8 @@
     		background: url(${ctx}/img/myimage/mod_sub_nav.png) no-repeat 0 0;
     		margin: 30px 30px;
     		line-height: 34px;
-    		margin-left:100px;
+    		margin-left:80px;
+    		margin-right:80px;
     		color: #666;
     		font-size: 16px;
     		font-family: "Microsoft Yahei",\5fae\8f6f\96c5\9ed1,\9ed1\4f53;
@@ -41,6 +42,11 @@
     	.input-group{
     		width:400px;
     		margin:auto;
+    	}
+    	.alert-danger{
+    		width:700px;
+    		margin:auto;
+    		margin-bottom: 10px;
     	}
     </style>
     <script type="text/javascript">
@@ -72,76 +78,7 @@
     		}
     		currOper--;
     	}
-    	function resetPsw(){
-    		if($("#password1").val()==null||(!$("#password1").val().length>0)){
-       			$("#alertId").show();
-       			$("#alertContent").html("请输入密码");
-       		}else if($("#password2").val()==null||(!$("#password2").val().length>0)){
-       			$("#alertId").show();
-       			$("#alertContent").html("请再次输入密码");
-       		}else if($("#password1").val()!=$("#password2").val()){
-       			$("#alertId").show();
-       			$("#alertContent").html("二次输入的密码不一致，请重新输入");
-       		}else{
-       			$.ajax({
-    		        url: '${appctx}/loginController/getPwdValidateResetPsw',
-    		        async: true,
-    		        contentType:"application/json",
-    		        type: 'POST',
-    		        data: JSON.stringify({pwd:$("#password1").val(),name:$("#resetPswUserName").val()}),
-    		        success: function(data , textStatus){
-    		          if(data.result=="success"){
-    		        	  $("#alertId").show();
-    		        	  countdown = 5;
-   			        	  settime1();
-    		          }else if(data.result=="error"){
-    		        	  $("#alertId").show();
-    		        	  $("#alertContent").html("重置密码失败，请联系管理员！");
-    		          }
-    		        },
-    		        error: function(jqXHR , textStatus , errorThrown){
-    		        	$("#alertId").show();
-    		        	$("#alertContent").html("系统异常，请联系管理员！");
-    		        }
-    		      });
-       		}
-    	}
-    	//验证用户输入的验证码是否正确
-    	function validateSecurity(){
-    		if($("#security").val()==null||(!$("#security").val().length>0)){
-    			$("#alertContent").html("请输入验证码");
-    			$("#alertId").show();
-    		}else{
-    			$.ajax({
-    		        url: '${appctx}/loginController/getPwdValidateSecurity',
-    		        async: true,
-    		        contentType:"application/json",
-    		        type: 'POST',
-    		        data: JSON.stringify({securityCode:$("#security").val()}),
-    		        success: function(data , textStatus){
-    		          if(data.result=="success"){
-    		        	  	$(".mod-sub-nav .mod-sub-list2").removeClass("list2-active");
-    		        		$(".mod-sub-nav .mod-sub-list3").addClass("list3-active");
-    		    			$("#form2").hide();
-    		        		$("#form3").show();
-    		        		$("#alertId").hide();
-    		        		currOper++;
-    		          }else if(data.result=="securityError"){
-    		        	  $("#alertId").show();
-    		        	  $("#alertContent").html("您输入的验证码不对，请重新输入");
-    		          }else if(data.result=="error"){
-    		        	  $("#alertId").show();
-    		        	  $("#alertContent").html("验证码验证失败，请联系管理员！");
-    		          }
-    		        },
-    		        error: function(jqXHR , textStatus , errorThrown){
-    		        	$("#alertId").show();
-    		        	$("#alertContent").html("系统异常，请联系管理员！");
-    		        }
-    		      });
-    		}
-    	}
-    	//验证用户输入的用户名和手机号是否正确
+    	//第一步验证用户名和手机号
     	function validatePhone(){
     		if($("#username").val()==null||(!$("#username").val().length>0)){
     			$("#alertContent").html("请输入用户名");
@@ -164,8 +101,9 @@
     		        	 $("#form1").hide();
     		        	 $("#form2").show();
     		        	 $("#alertId").show();
-   		        	  	 $("#alertContent").html("发送成功,验证码是"+data.securityCode);
+   		        	  	 $("#alertContent").html("发送验证码"+data.securityCode+"成功，请妥善保管！验证码有效期是10分钟");
    		        	  	 $("#resetPswUserName").val(data.resetPswUserName);
+   		        	  	 $("#resetPswPhone").val(data.resetPswPhone);
    		        	  	 currOper++;
     		          }else if(data.result=="infoError"){
     		        	  $("#alertId").show();
@@ -173,6 +111,9 @@
     		          }else if(data.result=="error"){
     		        	  $("#alertId").show();
     		        	  $("#alertContent").html("验证用户名失败，请联系管理员！");
+    		          }else if(data.result="securityTimeOut"){
+    		        	  $("#alertId").show();
+    		        	  $("#alertContent").html("您找回密码操作过于频繁，请稍等一会在继续操作");
     		          }
     		        },
     		        error: function(jqXHR , textStatus , errorThrown){
@@ -182,6 +123,88 @@
     		      });
     		}
     	}
+    	//第二步，验证验证码（正确性和有效性）
+    	function validateSecurity(){
+    		if($("#security").val()==null||(!$("#security").val().length>0)){
+    			$("#alertContent").html("请输入验证码");
+    			$("#alertId").show();
+    		}else{
+    			$.ajax({
+    		        url: '${appctx}/loginController/getPwdValidateSecurity',
+    		        async: true,
+    		        contentType:"application/json",
+    		        type: 'POST',
+    		        data: JSON.stringify({securityCode:$("#security").val(),phone:$("#resetPswPhone").val()}),
+    		        success: function(data , textStatus){
+    		          if(data.result=="success"){
+    		        	  	$(".mod-sub-nav .mod-sub-list2").removeClass("list2-active");
+    		        		$(".mod-sub-nav .mod-sub-list3").addClass("list3-active");
+    		    			$("#form2").hide();
+    		        		$("#form3").show();
+    		        		$("#alertId").hide();
+    		        		currOper++;
+    		        		$("#resetPswSecurity").val(data.resetPswSecurity);
+    		          }else if(data.result=="securityTimeOut"){
+    		        	  $("#alertId").show();
+    		        	  $("#alertContent").html("验证码超过10分钟，已失效！请重新获取验证码");
+    		          }else if(data.result=="securityError"){
+    		        	  $("#alertId").show();
+    		        	  $("#alertContent").html("您输入的验证码不对，请重新输入");
+    		          }else if(data.result=="error"){
+    		        	  $("#alertId").show();
+    		        	  $("#alertContent").html("验证码验证失败，请联系管理员！");
+    		          }
+    		        },
+    		        error: function(jqXHR , textStatus , errorThrown){
+    		        	$("#alertId").show();
+    		        	$("#alertContent").html("系统异常，请联系管理员！");
+    		        }
+    		      });
+    		}
+    	}
+    	//第三步，重置密码（验证验证码有效性，有漏洞如果这个请求只篡改用户名的话，可以把篡改的用户名的密码给修改了）
+    	function resetPsw(){
+    		if($("#password1").val()==null||(!$("#password1").val().length>0)){
+       			$("#alertId").show();
+       			$("#alertContent").html("请输入密码");
+       		}else if($("#password2").val()==null||(!$("#password2").val().length>0)){
+       			$("#alertId").show();
+       			$("#alertContent").html("请再次输入密码");
+       		}else if($("#password1").val()!=$("#password2").val()){
+       			$("#alertId").show();
+       			$("#alertContent").html("二次输入的密码不一致，请重新输入");
+       		}else{
+       			$.ajax({
+    		        url: '${appctx}/loginController/getPwdValidateResetPsw',
+    		        async: true,
+    		        contentType:"application/json",
+    		        type: 'POST',
+    		        data: JSON.stringify({pwd:$("#password1").val(),name:$("#resetPswUserName").val(),phone:$("#resetPswPhone").val(),securityCode:$("#resetPswSecurity").val()}),
+    		        success: function(data , textStatus){
+    		          if(data.result=="success"){
+    		        	  $("#alertId").show();
+    		        	  countdown = 5;
+   			        	  settime1();
+    		          }else if(data.result="pswIsExist"){
+    		        	  $("#alertId").show();
+    		        	  $("#alertContent").html("新设置的密码不能与原密码一致，请修改!");
+    		          }else if(data.result=="securityTimeOut"){
+    		        	  $("#alertId").show();
+    		        	  $("#alertContent").html("重置密码失败，原因是输入的验证码信息超时异常！");
+    		          }else if(data.result=="error"){
+    		        	  $("#alertId").show();
+    		        	  $("#alertContent").html("重置密码失败，请联系管理员！");
+    		          }
+    		        },
+    		        error: function(jqXHR , textStatus , errorThrown){
+    		        	$("#alertId").show();
+    		        	$("#alertContent").html("系统异常，请联系管理员！");
+    		        }
+    		      });
+       		}
+    	}
+    	
+    	
     	function settime1(){
     		if (countdown == 0) { 
     			location.href="${appctx}/index.jsp";
@@ -215,6 +238,9 @@
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				<strong id="alertContent"></strong>
 			</div>
+			<input type="hidden" id="resetPswUserName"/> 
+			<input type="hidden" id="resetPswPhone"/> 
+			<input type="hidden" id="resetPswSecurity"/>
             <form class="form-horizontal" id="form1">
                 <fieldset>
                     <div class="input-group input-group-lg">
@@ -242,7 +268,6 @@
             </form>
             <form class="form-horizontal" id="form3" style="display: none;">
                 <fieldset>
-                	<input type="hidden" id="resetPswUserName"/> 
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
                         <input type="password" class="form-control" id="password1" placeholder="请输入密码">

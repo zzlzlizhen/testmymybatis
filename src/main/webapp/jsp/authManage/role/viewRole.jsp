@@ -26,16 +26,39 @@
 	         角色名字：
 	      </label>
 	      <div class="col-sm-9">
-	         <input type="text" class="form-control" id="resourceName1" value="${role.roleName}" disabled="disabled">
+	         <input type="text" class="form-control" value="${role.roleName}" disabled="disabled">
 	      </div>
 	   </div>
-	   
+	   <div class="form-group">
+	      <label class="col-sm-3 control-label">
+	         角色名字：
+	      </label>
+	      <div class="col-sm-9">
+	         <input type="text" class="form-control" value="${role.roleType}" disabled="disabled">
+	      </div>
+	   </div>
+	   <div class="form-group">
+	      <label class="col-sm-3 control-label">
+	         创建时间：
+	      </label>
+	      <div class="col-sm-9">
+	         <input type="text" class="form-control" value="${role.createTime}" disabled="disabled">
+	      </div>
+	   </div>
+	   <div class="form-group">
+	      <label class="col-sm-3 control-label">
+	         修改时间：
+	      </label>
+	      <div class="col-sm-9">
+	         <input type="text" class="form-control" value="${role.updateTime}" disabled="disabled">
+	      </div>
+	   </div>
 	   <div class="form-group">
 	      <label class="col-sm-3 control-label">
 	         备注：
 	      </label>
 	      <div class="col-sm-9">
-	      		<textarea class="form-control" rows="3" id="remark" disabled="disabled">${role.remark}</textarea>
+	      		<textarea class="form-control" rows="3" disabled="disabled">${role.remark}</textarea>
 	      </div>
 	   </div>
 	</form>

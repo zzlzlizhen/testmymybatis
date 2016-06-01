@@ -15,73 +15,72 @@ import static org.apache.ibatis.jdbc.SqlBuilder.WHERE;
 
 import java.util.List;
 import java.util.Map;
+import lz.model.Security;
+import lz.model.SecurityExample.Criteria;
+import lz.model.SecurityExample.Criterion;
+import lz.model.SecurityExample;
 
-import lz.model.Role;
-import lz.model.RoleExample.Criteria;
-import lz.model.RoleExample.Criterion;
-import lz.model.RoleExample;
+public class SecuritySqlProvider {
 
-public class RoleSqlProvider {
-
-	public String countByExample(RoleExample example) {
+    public String countByExample(SecurityExample example) {
         BEGIN();
         SELECT("count(*)");
-        FROM("t_role");
+        FROM("t_security");
         applyWhere(example, false);
         return SQL();
     }
 
-    public String deleteByExample(RoleExample example) {
+    public String deleteByExample(SecurityExample example) {
         BEGIN();
-        DELETE_FROM("t_role");
+        DELETE_FROM("t_security");
         applyWhere(example, false);
         return SQL();
     }
 
-    public String insertSelective(Role record) {
+    public String insertSelective(Security record) {
         BEGIN();
-        INSERT_INTO("t_role");
+        INSERT_INTO("t_security");
         
         if (record.getId() != null) {
             VALUES("id", "#{id,jdbcType=CHAR}");
         }
         
-        if (record.getRoleName() != null) {
-            VALUES("role_name", "#{roleName,jdbcType=CHAR}");
+        if (record.getPhone() != null) {
+            VALUES("phone", "#{phone,jdbcType=CHAR}");
         }
         
-        if (record.getRemark() != null) {
-            VALUES("remark", "#{remark,jdbcType=CHAR}");
+        if (record.getSecurityCode() != null) {
+            VALUES("security_code", "#{securityCode,jdbcType=CHAR}");
+        }
+        
+        if (record.getType() != null) {
+            VALUES("type", "#{type,jdbcType=CHAR}");
         }
         
         if (record.getCreateTime() != null) {
             VALUES("create_time", "#{createTime,jdbcType=CHAR}");
         }
         
-        if (record.getUpdateTime() != null) {
-            VALUES("update_time", "#{updateTime,jdbcType=CHAR}");
-        }
-        
-        if (record.getRoleType() != null) {
-            VALUES("role_type", "#{roleType,jdbcType=CHAR}");
+        if (record.getEmail() != null) {
+            VALUES("email", "#{email,jdbcType=CHAR}");
         }
         
         return SQL();
     }
 
-    public String selectByExample(RoleExample example) {
+    public String selectByExample(SecurityExample example) {
         BEGIN();
         if (example != null && example.isDistinct()) {
             SELECT_DISTINCT("id");
         } else {
             SELECT("id");
         }
-        SELECT("role_name");
-        SELECT("remark");
+        SELECT("phone");
+        SELECT("security_code");
+        SELECT("type");
         SELECT("create_time");
-        SELECT("update_time");
-        SELECT("role_type");
-        FROM("t_role");
+        SELECT("email");
+        FROM("t_security");
         applyWhere(example, false);
         
         if (example != null && example.getOrderByClause() != null) {
@@ -92,34 +91,34 @@ public class RoleSqlProvider {
     }
 
     public String updateByExampleSelective(Map<String, Object> parameter) {
-        Role record = (Role) parameter.get("record");
-        RoleExample example = (RoleExample) parameter.get("example");
+        Security record = (Security) parameter.get("record");
+        SecurityExample example = (SecurityExample) parameter.get("example");
         
         BEGIN();
-        UPDATE("t_role");
+        UPDATE("t_security");
         
         if (record.getId() != null) {
             SET("id = #{record.id,jdbcType=CHAR}");
         }
         
-        if (record.getRoleName() != null) {
-            SET("role_name = #{record.roleName,jdbcType=CHAR}");
+        if (record.getPhone() != null) {
+            SET("phone = #{record.phone,jdbcType=CHAR}");
         }
         
-        if (record.getRemark() != null) {
-            SET("remark = #{record.remark,jdbcType=CHAR}");
+        if (record.getSecurityCode() != null) {
+            SET("security_code = #{record.securityCode,jdbcType=CHAR}");
+        }
+        
+        if (record.getType() != null) {
+            SET("type = #{record.type,jdbcType=CHAR}");
         }
         
         if (record.getCreateTime() != null) {
             SET("create_time = #{record.createTime,jdbcType=CHAR}");
         }
         
-        if (record.getUpdateTime() != null) {
-            SET("update_time = #{record.updateTime,jdbcType=CHAR}");
-        }
-        
-        if (record.getRoleType() != null) {
-            SET("role_type = #{record.roleType,jdbcType=CHAR}");
+        if (record.getEmail() != null) {
+            SET("email = #{record.email,jdbcType=CHAR}");
         }
         
         applyWhere(example, true);
@@ -128,42 +127,42 @@ public class RoleSqlProvider {
 
     public String updateByExample(Map<String, Object> parameter) {
         BEGIN();
-        UPDATE("t_role");
+        UPDATE("t_security");
         
         SET("id = #{record.id,jdbcType=CHAR}");
-        SET("role_name = #{record.roleName,jdbcType=CHAR}");
-        SET("remark = #{record.remark,jdbcType=CHAR}");
+        SET("phone = #{record.phone,jdbcType=CHAR}");
+        SET("security_code = #{record.securityCode,jdbcType=CHAR}");
+        SET("type = #{record.type,jdbcType=CHAR}");
         SET("create_time = #{record.createTime,jdbcType=CHAR}");
-        SET("update_time = #{record.updateTime,jdbcType=CHAR}");
-        SET("role_type = #{record.roleType,jdbcType=CHAR}");
+        SET("email = #{record.email,jdbcType=CHAR}");
         
-        RoleExample example = (RoleExample) parameter.get("example");
+        SecurityExample example = (SecurityExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
     }
 
-    public String updateByPrimaryKeySelective(Role record) {
+    public String updateByPrimaryKeySelective(Security record) {
         BEGIN();
-        UPDATE("t_role");
+        UPDATE("t_security");
         
-        if (record.getRoleName() != null) {
-            SET("role_name = #{roleName,jdbcType=CHAR}");
+        if (record.getPhone() != null) {
+            SET("phone = #{phone,jdbcType=CHAR}");
         }
         
-        if (record.getRemark() != null) {
-            SET("remark = #{remark,jdbcType=CHAR}");
+        if (record.getSecurityCode() != null) {
+            SET("security_code = #{securityCode,jdbcType=CHAR}");
+        }
+        
+        if (record.getType() != null) {
+            SET("type = #{type,jdbcType=CHAR}");
         }
         
         if (record.getCreateTime() != null) {
             SET("create_time = #{createTime,jdbcType=CHAR}");
         }
         
-        if (record.getUpdateTime() != null) {
-            SET("update_time = #{updateTime,jdbcType=CHAR}");
-        }
-        
-        if (record.getRoleType() != null) {
-            SET("role_type = #{roleType,jdbcType=CHAR}");
+        if (record.getEmail() != null) {
+            SET("email = #{email,jdbcType=CHAR}");
         }
         
         WHERE("id = #{id,jdbcType=CHAR}");
@@ -171,7 +170,7 @@ public class RoleSqlProvider {
         return SQL();
     }
 
-    protected void applyWhere(RoleExample example, boolean includeExamplePhrase) {
+    protected void applyWhere(SecurityExample example, boolean includeExamplePhrase) {
         if (example == null) {
             return;
         }
@@ -262,28 +261,5 @@ public class RoleSqlProvider {
         if (sb.length() > 0) {
             WHERE(sb.toString());
         }
-    }
-  //************************自定义sql**********************
-    public String selectRoleByPage(Map<String,Object> map){
-    	StringBuffer sb = new StringBuffer("SELECT id,role_name,remark,create_time,update_time,role_type from t_role ");
-    	if(map.get("roleName")!=null){
-    		sb.append(" where role_name like #{roleName} ");
-    	}
-    	sb.append(" order by id desc ");
-    	return sb.toString();
-    }
-    
-    public String batchDelRole(Map<String,Object> map){
-    	@SuppressWarnings("unchecked")
-		List<String> list = (List<String>)map.get("batchDelIds");
-    	StringBuffer sb = new StringBuffer("delete from t_role where id in ( ");
-    	for(int i=0;i<list.size();i++){
-    		sb.append("#{batchDelIds["+i+"]}");
-    		if(i<list.size()-1){
-    			sb.append(",");
-    		}
-    	}
-    	sb.append(" )");
-    	return sb.toString();
     }
 }

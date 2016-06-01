@@ -1,5 +1,6 @@
 package lz.business.login.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,10 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import lz.business.authManage.service.ResourceService;
 import lz.business.authManage.service.UserService;
+import lz.business.login.service.SecurityService;
 import lz.constant.ConstantInfo;
+import lz.model.Security;
 import lz.model.User;
 import lz.utils.MathUtils;
 
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +29,8 @@ public class LoginController {
 	UserService userService;
 	@javax.annotation.Resource
 	private ResourceService resourceService;
+	@javax.annotation.Resource
+	private SecurityService securityService;
 	/**
 	 * 
 	 * 描述：登录用户名密码校验
@@ -81,24 +88,35 @@ public class LoginController {
 	@ResponseBody
 	public Map<String,Object> register(@RequestBody User user,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> queryMap = new HashMap<String,Object>();
 		String security = (String)request.getSession().getAttribute("registerSecurityCode");
 		try {
 			if(user.getSecurityCode().equals(security)){
-				Map<String,Object> args = new HashMap<String,Object>();
-				args.put("username", user.getName());
-				List<User> users1 = userService.getUsers(args);
-				if(users1!=null&&users1.size()>0){
-					map.put("result","nameIsExist");
-				}else{
-					args.clear();
-					args.put("telephone",user.getPhone());
-					List<User> users2 = userService.getUsers(args);
-					if(users2!=null&&users2.size()>0){
-						map.put("result","phoneIsExist");
+				Date currentDate = new Date();
+				String createTime = DateFormatUtils.format(DateUtils.addMinutes(currentDate,-10),"yyyy-MM-dd HH:mm:ss");
+				queryMap.put("createTime",createTime);
+				queryMap.put("securityType",ConstantInfo.SECURITY_CODE_PHONE);
+				queryMap.put("phone",user.getPhone());
+				//验证注册的验证码是否超过10分钟有效期
+				if(securityService.getSecurityIsEffective(queryMap)>0){
+					Map<String,Object> args = new HashMap<String,Object>();
+					args.put("username", user.getName());
+					List<User> users1 = userService.getUsers(args);
+					if(users1!=null&&users1.size()>0){
+						map.put("result","nameIsExist");
 					}else{
-						userService.insertRegisterUser(user);
-						map.put("result","success");
+						args.clear();
+						args.put("telephone",user.getPhone());
+						List<User> users2 = userService.getUsers(args);
+						if(users2!=null&&users2.size()>0){
+							map.put("result","phoneIsExist");
+						}else{
+							userService.insertRegisterUser(user);
+							map.put("result","success");
+						}
 					}
+				}else{
+					map.put("result","securityTimeOut");
 				}
 			}else{
 				map.put("result","securityError");
@@ -134,11 +152,44 @@ public class LoginController {
 	@ResponseBody
 	public Map<String,Object> sendSecurityCode(@RequestBody Map<String,Object> args,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> queryMap = new HashMap<String,Object>();
+		Security security = null;
 		try {
-			String securityCode = MathUtils.getNum(6);
-			request.getSession().setAttribute("registerSecurityCode",securityCode);
-			map.put("result","success");
-			map.put("securityCode", securityCode);
+			List<User> users2 = userService.getUsers(args);
+			//验证该手机号是否已经注册过
+			if(users2!=null&&users2.size()>0){
+				map.put("result","phoneIsExist");
+			}else{
+				queryMap.put("securityType",ConstantInfo.SECURITY_CODE_PHONE);
+				queryMap.put("phone",args.get("telephone"));
+				security = securityService.getSecurity(queryMap);
+				String securityCode = MathUtils.getNum(6);
+				//该手机号首次发送验证码
+				if(security==null){
+					security = new Security();
+					security.setType(ConstantInfo.SECURITY_CODE_PHONE);
+					security.setSecurityCode(securityCode);
+					security.setPhone((String)args.get("telephone"));
+					securityService.insertSecurity(security);
+					request.getSession().setAttribute("registerSecurityCode",securityCode);
+					map.put("result","success");
+					map.put("securityCode", securityCode);
+				}else{
+					Date currentDate = new Date();
+					String createTime = DateFormatUtils.format(DateUtils.addMinutes(currentDate,-1),"yyyy-MM-dd HH:mm:ss");
+					queryMap.put("createTime",createTime);
+					//距离上次发送验证码不到一分钟，提示发送验证码频繁，请稍等会重新发送
+					if(securityService.getSecurityIsEffective(queryMap)>0){
+						map.put("result","timeTooShort");
+					}else{
+						security.setSecurityCode(securityCode);
+						securityService.updateSecurity(security);
+						request.getSession().setAttribute("registerSecurityCode",securityCode);
+						map.put("result","success");
+						map.put("securityCode", securityCode);
+					}
+				}
+			}
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
@@ -158,14 +209,44 @@ public class LoginController {
 	@ResponseBody
 	public Map<String,Object> getPwdValidateUserNameAndPhone(@RequestBody Map<String,Object> args,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> queryMap = new HashMap<String,Object>();
+		Security security = null;
 		try {
 			List<User> users = userService.getUsers(args);
 			if(users!=null&&users.size()>0){
 				String securityCode = MathUtils.getNum(6);
-				request.getSession().setAttribute("getPwdSecurityCode",securityCode);
-				map.put("result","success");
-				map.put("securityCode", securityCode);
-				map.put("resetPswUserName",args.get("name"));
+				queryMap.put("securityType",ConstantInfo.SECURITY_CODE_PHONE);
+				queryMap.put("phone",args.get("phone"));
+				security = securityService.getSecurity(queryMap);
+				if(security==null){
+					security = new Security();
+					security.setType(ConstantInfo.SECURITY_CODE_PHONE);
+					security.setSecurityCode(securityCode);
+					security.setPhone((String)args.get("phone"));
+					securityService.insertSecurity(security);
+					request.getSession().setAttribute("getPwdSecurityCode",securityCode);
+					map.put("result","success");
+					map.put("securityCode", securityCode);
+					map.put("resetPswUserName",args.get("name"));
+					map.put("resetPswPhone",args.get("phone"));
+				}else{
+					Date currentDate = new Date();
+					String createTime = DateFormatUtils.format(DateUtils.addMinutes(currentDate,-1),"yyyy-MM-dd HH:mm:ss");
+					queryMap.put("createTime",createTime);
+					//距离上次找回密码发送验证码不到一分钟，提示发送验证码频繁，请稍等会重新发送
+					if(securityService.getSecurityIsEffective(queryMap)>0){
+						map.put("result","timeTooShort");
+					}else{
+						security.setSecurityCode(securityCode);
+						securityService.updateSecurity(security);
+						request.getSession().setAttribute("getPwdSecurityCode",securityCode);
+						map.put("result","success");
+						map.put("securityCode", securityCode);
+						map.put("resetPswUserName",args.get("name"));
+						map.put("resetPswPhone",args.get("phone"));
+					}
+				}
+				
 			}else{
 				map.put("result","infoError");
 			}
@@ -188,11 +269,22 @@ public class LoginController {
 	@ResponseBody
 	public Map<String,Object> getPwdValidateSecurity(@RequestBody Map<String,Object> args,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> queryMap = new HashMap<String,Object>();
 		try {
 			String security = (String)request.getSession().getAttribute("getPwdSecurityCode");
 			String securityCode = (String)args.get("securityCode");
 			if(security.equals(securityCode)){
-				map.put("result","success");
+				Date currentDate = new Date();
+				String createTime = DateFormatUtils.format(DateUtils.addMinutes(currentDate,-10),"yyyy-MM-dd HH:mm:ss");
+				queryMap.put("createTime",createTime);
+				queryMap.put("securityType",ConstantInfo.SECURITY_CODE_PHONE);
+				queryMap.put("phone",args.get("phone"));
+				if(securityService.getSecurityIsEffective(queryMap)>0){
+					map.put("result","success");
+					map.put("resetPswSecurity",securityCode);
+				}else{
+					map.put("result","securityTimeOut");
+				}
 			}else{
 				map.put("result","securityError");
 			}
@@ -203,7 +295,7 @@ public class LoginController {
 		return map;
 	}
 	/**
-	 * 重置密码
+	 * 重置密码,验证
 	 * 描述：
 	 * 作者：李震
 	 * 时间：2016年5月31日 下午5:16:01
@@ -215,9 +307,29 @@ public class LoginController {
 	@ResponseBody
 	public Map<String,Object> getPwdValidateResetPsw(@RequestBody User user,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> queryMap = new HashMap<String,Object>();
 		try {
-			userService.updatePswByName(user);
-			map.put("result","success");
+			String security = (String)request.getSession().getAttribute("getPwdSecurityCode");
+			String securityCode = user.getSecurityCode();
+			if(security.equals(securityCode)){
+				Date currentDate = new Date();
+				String createTime = DateFormatUtils.format(DateUtils.addMinutes(currentDate,-10),"yyyy-MM-dd HH:mm:ss");
+				queryMap.put("createTime",createTime);
+				queryMap.put("securityType",ConstantInfo.SECURITY_CODE_PHONE);
+				queryMap.put("phone",user.getPhone());
+				if(securityService.getSecurityIsEffective(queryMap)>0){
+					if(userService.getUserByNameAndPwd(user)!=null){
+						map.put("result","pwdIsExsit");
+					}else{
+						userService.updatePswByName(user);
+						map.put("result","success");
+					}
+				}else{
+					map.put("result","securityTimeOut");
+				}
+			}else{
+				map.put("result","securityTimeOut");
+			}
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();

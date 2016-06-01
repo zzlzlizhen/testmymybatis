@@ -205,7 +205,8 @@ public class RoleController {
 			Role role = list.get(j); 
 			data[j][0]=role.getId();
 			data[j][1]=role.getRoleName();
-			data[j][2]=role.getRemark();
+			data[j][2]=role.getRoleType();
+			data[j][3]=role.getRemark();
 		}
 		JSONObject jo = new JSONObject();
 		jo.put("iTotalDisplayRecords",total);
