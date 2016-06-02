@@ -9,7 +9,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import lz.annotation.LogAspectAnnotation;
+import lz.business.systemManage.service.ExcepLogService;
 import lz.business.systemManage.service.OperLogService;
+import lz.exception.ControllerException;
+import lz.model.ExcepLog;
 import lz.model.OperLog;
 import lz.model.User;
 import lz.utils.IdGenerateUtils;
@@ -37,6 +40,8 @@ public class LogAspect {
 	private HttpSession session;  
 	@Resource
 	private OperLogService operLogService;
+	@Resource
+	private ExcepLogService excepLogService;
 	/**
 	 * 切点,对(lz.business包里的所有的方法并且有注入LogAspectAnnotation的方法)切入
 	 * 描述：
@@ -45,7 +50,17 @@ public class LogAspect {
 	 */
 	@Pointcut(value="execution(* lz.business..*.*(..)) && @annotation(lz.annotation.LogAspectAnnotation)")
 	//@Pointcut(value="@annotation(lz.annotation.LogAspectAnnotation)")
-	private void aopConfig(){
+	private void operLogAop(){
+		
+	}
+	/**
+	 * 对所有的方法，加入切入点，如果该方法抛出ControllerException,则处理
+	 * 描述：
+	 * 作者：李震
+	 * 时间：2016年6月2日 下午4:45:33
+	 */
+	@Pointcut(value="execution(* lz.business..*.*(..))")
+	private void excepLogAop(){
 		
 	}
 	/**
@@ -54,7 +69,7 @@ public class LogAspect {
 	 * 作者：李震
 	 * 时间：2016年6月2日 上午10:17:02
 	 */
-	@Before(value="aopConfig()")
+	@Before(value="operLogAop()")
 	public void before(){
 	}
 	/**
@@ -65,7 +80,7 @@ public class LogAspect {
 	 * @param joinPoint
 	 * @param log
 	 */
-	@After(value="aopConfig() && @annotation(log)")
+	@After(value="operLogAop() && @annotation(log)")
 	public void after(JoinPoint joinPoint,LogAspectAnnotation log){
 		
 	}
@@ -78,7 +93,7 @@ public class LogAspect {
 	 * @param log
 	 * @param retVal
 	 */
-	@AfterReturning(value="aopConfig() && @annotation(log)",returning="retVal")
+	@AfterReturning(value="operLogAop() && @annotation(log)",returning="retVal")
 	public void afterReturning(JoinPoint joinPoint,LogAspectAnnotation log,Object retVal){
 		User user = (User)session.getAttribute("loginUser");
 		if(user==null){
@@ -86,6 +101,9 @@ public class LogAspect {
 				if (o instanceof User){
 					user = (User)o;
 					break;
+				}else if((o instanceof String) && log.logDesc().equals("退出系统")){
+					user = new User();
+					user.setName((String)o);
 				}
 			}
 		}
@@ -106,8 +124,29 @@ public class LogAspect {
 	 * @param log
 	 * @param e
 	 */
-	@AfterThrowing(value="aopConfig() && @annotation(log)",throwing="e")
-	public void afterThrowing(JoinPoint joinPoint,LogAspectAnnotation log,Exception e){
-		
+	@AfterThrowing(value="excepLogAop()",throwing="e")
+	public void afterThrowing(JoinPoint joinPoint,ControllerException e){
+		User user = (User)session.getAttribute("loginUser");
+		if(user==null){
+			for(Object o:joinPoint.getArgs()){
+				if (o instanceof User){
+					user = (User)o;
+					break;
+				}
+			}
+		}
+		ExcepLog excepLog = new ExcepLog();
+		excepLog.setId(IdGenerateUtils.getId());
+		excepLog.setName(user!=null?user.getName():"");
+		excepLog.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
+		excepLog.setExceptionTarget(e.getExceptionTarget());
+		excepLog.setExceptionDesc(e.getExceptionDesc());
+		excepLog.setExceptionBusiness(e.getExceptionBusiness());
+		Exception exception = e.getException();
+		if(exception!=null){
+			String exceptionInfo = exception.toString();
+			excepLog.setExceptionInfo(exceptionInfo.length()>5000?exceptionInfo.substring(0, 5000):exceptionInfo);
+		}
+		excepLogService.insertExcepLog(excepLog);
 	}
 }

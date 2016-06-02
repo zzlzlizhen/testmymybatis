@@ -12,6 +12,7 @@ import lz.business.authManage.service.ResourceService;
 import lz.business.authManage.service.UserService;
 import lz.business.login.service.SecurityService;
 import lz.constant.ConstantInfo;
+import lz.exception.ControllerException;
 import lz.model.Security;
 import lz.model.User;
 import lz.utils.MathUtils;
@@ -61,6 +62,7 @@ public class LoginController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"登录失败","登录","/loginController/loginValid");
 		}
 		return map;
 	}

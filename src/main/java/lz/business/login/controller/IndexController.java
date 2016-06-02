@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import lz.annotation.LogAspectAnnotation;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -36,9 +37,9 @@ public class IndexController {
 	 * @param response
 	 * @throws IOException
 	 */
-	@RequestMapping("/logout")
+	@RequestMapping("/logout/{name}")
 	@LogAspectAnnotation(logDesc="退出系统",logBusiness="登录")
-	public void logout(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void logout(@PathVariable String name,HttpServletRequest request,HttpServletResponse response) throws IOException{
 		request.getSession().removeAttribute("loginUser");
 		response.sendRedirect(request.getContextPath()+"/index.jsp");
 	}

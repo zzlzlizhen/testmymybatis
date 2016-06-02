@@ -123,7 +123,7 @@
 				<ul class="dropdown-menu">
 					<li><a target='main_target' href="${appctx}/indexController/homePage">首页</a></li>
 					<li class="divider"></li>
-					<li><a href="${appctx}/indexController/logout">退出</a></li>
+					<li><a href="${appctx}/indexController/logout/${loginUser.name}">退出</a></li>
 				</ul>
 			</div>
 		</div>
