@@ -16,6 +16,11 @@
     <description>myListener</description>
     <listener-class>lz.listener.MyListener</listener-class>
   </listener>
+  <listener>
+  	<description>用来在普通的方法中获取上下文，通过注解</description>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+  
   <filter>
     <description>字符集过滤器</description>
     <filter-name>encodingFilter</filter-name>

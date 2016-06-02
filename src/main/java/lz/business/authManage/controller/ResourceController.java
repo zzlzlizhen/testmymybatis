@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lz.annotation.LogAspectAnnotation;
 import lz.business.authManage.service.ResourceService;
 import lz.business.authManage.service.RoleService;
 import lz.constant.ConstantInfo;
@@ -106,6 +107,7 @@ public class ResourceController {
 	 */
 	@RequestMapping(value="/add")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="保存资源信息",logBusiness="资源管理")
 	public Map<String,Object> add(@RequestBody Resource resource){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -126,6 +128,7 @@ public class ResourceController {
 	 */
 	@RequestMapping(value="/edit")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="修改资源信息",logBusiness="资源管理")
 	public Map<String,Object> edit(@RequestBody Resource resource){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -146,6 +149,7 @@ public class ResourceController {
 	 */
 	@RequestMapping(value="/del")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="删除资源信息",logBusiness="资源管理")
 	public Map<String,Object> del(@RequestBody Resource resource){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -166,6 +170,7 @@ public class ResourceController {
 	 */
 	@RequestMapping(value="/batchDel")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="批量删除资源信息",logBusiness="资源管理")
 	public Map<String,Object> batchDel(@RequestBody Resource resource){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {

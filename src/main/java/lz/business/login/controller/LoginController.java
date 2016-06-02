@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lz.annotation.LogAspectAnnotation;
 import lz.business.authManage.service.ResourceService;
 import lz.business.authManage.service.UserService;
 import lz.business.login.service.SecurityService;
@@ -42,6 +43,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/loginValid")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="登录成功",logBusiness="登录")
 	public Map<String,Object> add(@RequestBody User user,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -86,6 +88,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/register")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="注册成功",logBusiness="注册")
 	public Map<String,Object> register(@RequestBody User user,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
 		Map<String,Object> queryMap = new HashMap<String,Object>();
@@ -305,6 +308,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/getPwdValidateResetPsw")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="找回密码成功",logBusiness="找回密码")
 	public Map<String,Object> getPwdValidateResetPsw(@RequestBody User user,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
 		Map<String,Object> queryMap = new HashMap<String,Object>();

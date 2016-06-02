@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lz.annotation.LogAspectAnnotation;
 import lz.business.authManage.service.ResourceService;
 import lz.business.authManage.service.RoleService;
 import lz.model.Resource;
@@ -106,6 +107,7 @@ public class RoleController {
 	 */
 	@RequestMapping(value="/add")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="保存角色信息",logBusiness="角色管理")
 	public Map<String,Object> add(@RequestBody Role role){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -126,6 +128,7 @@ public class RoleController {
 	 */
 	@RequestMapping(value="/edit")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="修改角色信息",logBusiness="角色管理")
 	public Map<String,Object> edit(@RequestBody Role role){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -146,6 +149,7 @@ public class RoleController {
 	 */
 	@RequestMapping(value="/del")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="删除角色信息",logBusiness="角色管理")
 	public Map<String,Object> del(@RequestBody Role role){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -166,6 +170,7 @@ public class RoleController {
 	 */
 	@RequestMapping(value="/auth")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="角色授权",logBusiness="角色管理")
 	public Map<String,Object> auth(@RequestBody Role role){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {

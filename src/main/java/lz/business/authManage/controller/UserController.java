@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lz.annotation.LogAspectAnnotation;
 import lz.business.authManage.service.RoleService;
 import lz.business.authManage.service.UserService;
 import lz.model.Role;
@@ -121,6 +122,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/add")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="添加用户信息",logBusiness="用户管理")
 	public Map<String,Object> add(@RequestBody User user){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -142,6 +144,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/edit")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="修改用户信息",logBusiness="用户管理")
 	public Map<String,Object> edit(@RequestBody User user){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -163,6 +166,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/del")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="删除用户信息",logBusiness="用户管理")
 	public Map<String,Object> del(@RequestBody User user){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -184,6 +188,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/stopOrRecover")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="停用或启用用户信息",logBusiness="用户管理")
 	public Map<String,Object> stopOrRecover(@RequestBody User user){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {

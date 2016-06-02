@@ -32,13 +32,16 @@
 							"bAutoWidth" : true,//自动宽度
 							"bProcessing" : true, //开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
 							"bServerSide" : true, //开启服务器模式，使用服务器端处理配置datatable。注意：sAjaxSource参数也必须被给予为了给datatable源代码来获取所需的数据对于每个画。 这个翻译有点别扭。开启此模式后，你对datatables的每个操作 每页显示多少条记录、下一页、上一页、排序（表头）、搜索，这些都会传给服务器相应的值。
-							"sAjaxSource" : "${appctx}/paramController/getParams",
+							"sAjaxSource" : "${appctx}/operLogController/getOperLogs",
 							"fnInitComplete": function(oSettings, json) { 
 								window.parent.iFrameHeight();
 							},
 							"fnServerParams": function (aoData) {  //查询条件
 			                    aoData.push(
-			                    	{ "name": "searchId", "value": $("#searchId").val()}
+			                    	{ "name": "name", "value": $("#name").val()},
+			                    	{ "name": "logDesc", "value": $("#logDesc").val()},
+			                    	{ "name": "startTime", "value": $("#startTime").val()},
+			                    	{ "name": "endTime", "value": $("#endTime").val()}
 			                    );
 			                },
 							"aoColumnDefs" : [
@@ -88,19 +91,15 @@
 										"mRender" : function(data, type, full) {
 											return full[3];
 										}
-									},
-									{
+									},{
 										"aTargets" : [ 5 ],
 										"sClass" : "text-center",
 										"bSortable": false,
-										"mData" : null,
-										"sWidth": "30%",
+										"sWidth": "15%",
 										"mRender" : function(data, type, full) {
-										return '<a class="btn btn-success" href="#" onclick="viewFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-zoom-in icon-white"></i>查看</a>'
-							            +'<a class="btn btn-info" style="margin-left:10px;" href="#" onclick="editFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-edit icon-white"></i>修改</a>'
-							            +'<a class="btn btn-danger" style="margin-left:10px;" href="#" onclick="delFun(\''+ full[0]+ '\')"><i class="glyphicon glyphicon-trash icon-white"></i>删除</a>';
+											return full[4];
 										}
-									},
+									}
 								]
 						});
 		
@@ -118,74 +117,6 @@
 	}
 	function searchFun(){
 		table.fnDraw();
-	}
-	function viewFun(id){
-		$("#myModal .modal-header").find("h3").html("系统参数详情");
-		$("#myModal .modal-footer #saveBtn").html("保存");
-		$("#myModal .modal-footer #closeBtn").html("取消");
-		$("#saveBtn").hide();
-		$("#myModal").modal({
-		    remote: "${appctx}/paramController/viewPage/"+id
-		});
-	}
-	function addFun(){
-		$("#myModal .modal-header").find("h3").html("新增系统参数");
-		$("#myModal .modal-footer #saveBtn").html("保存");
-		$("#myModal .modal-footer #closeBtn").html("取消");
-		$("#saveBtn").attr("onclick","saveSubmit()");
-		$("#saveBtn").show();
-		$("#myModal").modal({
-		    remote: "${appctx}/paramController/addPage"
-		});
-	}
-	function editFun(id){
-		$("#myModal .modal-header").find("h3").html("修改参数详情");
-		$("#myModal .modal-footer #saveBtn").html("修改");
-		$("#myModal .modal-footer #closeBtn").html("取消");
-		$("#saveBtn").attr("onclick","saveSubmit()");
-		$("#saveBtn").show();
-		$("#myModal").modal({
-		    remote: "${appctx}/paramController/editPage/"+id
-		});
-	}
-	function delFun(id){
-		delId = id;
-		$("#myModal .modal-header").find("h3").html("删除系统参数");
-		$("#myModal .modal-footer #saveBtn").html("确定");
-		$("#myModal .modal-footer #closeBtn").html("取消");
-		$("#myModal .modal-body").html(
-				'<div class="alert alert-danger" id="alertId" style="display:none;">'
-				+'<button type="button" class="close" data-dismiss="alert">&times;</button>'
-				+'<strong id="alertContent">键值不能为空</strong>'
-				+'</div><h3>确定要删除该条数据？</h3>'
-		);
-		$("#saveBtn").attr("onclick","delSubmit()");
-		$("#saveBtn").show();
-		$("#myModal").modal('show');
-	}
-	function delSubmit(){
-		$.ajax({
-	        url: '${appctx}/paramController/del',
-	        async: true,
-	        contentType:"application/json",
-	        type: 'POST',
-	        data: JSON.stringify({id:delId}),
-	        success: function(data , textStatus){
-	          $("#alertId").show();
-	          if(data.result=="success"){
-	        	  $("#alertContent").html("删除成功！");
-	        	  setTimeout("$('#myModal').modal('hide')",1000); 
-	        	  table.fnDraw();
-	          }else if(data.result=="error"){
-	        	  $("#alertContent").html("删除失败，请联系管理员");
-	          }
-	        },
-	        error: function(jqXHR , textStatus , errorThrown){
-	        	$("#alertId").show();
-	        	$("#alertContent").html("系统异常，请联系管理员");
-	        }
-	       
-	      });
 	}
 	function batchDelFun(){
 		batchDelId="";
@@ -220,11 +151,11 @@
 	}
 	function batchDelSubmit(){
 		$.ajax({
-	        url: '${appctx}/paramController/batchDel',
+	        url: '${appctx}/operLogController/batchDel',
 	        async: true,
 	        contentType:"application/json",
 	        type: 'POST',
-	        data: JSON.stringify({paramValue:batchDelId}),
+	        data: JSON.stringify({logDesc:batchDelId}),
 	        success: function(data , textStatus){
 	          $("#alertId").show();
 	          if(data.result=="success"){
@@ -248,8 +179,8 @@
 	<div class="ch-container">
 		<div>
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Tables</a></li>
+				<li><a href="#">系统管理</a></li>
+				<li><a href="#">操作日志</a></li>
 			</ul>
 		</div>
 
@@ -258,22 +189,22 @@
 				<div class="box-inner">
 					<div class="box-header well" data-original-title="">
 						<h2>
-							<i class="glyphicon glyphicon-user"></i>系统参数
+							<i class="glyphicon glyphicon-user"></i>操作日志
 						</h2>
 					</div>
 					<div class="box-content">
 						<div class="btn-toolbar">
 							<div class="pull-right">
 								<div class="input-append">
-									键/值：<input type="text" placeholder="键/值" id="searchId">
+									用户名：<input type="text" placeholder="用户名" id="name"/>
+									操作描述：<input type="text" placeholder="操作描述" id="logDesc"/>
+									时间：<input type="text" placeholder="开始时间" id="startTime" onClick="WdatePicker({maxDate:'#F{$dp.$D(\'endTime\')||\'%y-%M-%d\'}',dateFmt:'yyyy-MM-dd'})"/>
+									-- <input type="text" placeholder="结束时间" id="endTime" onClick="WdatePicker({minDate:'#F{$dp.$D(\'startTime\')}',maxDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd'})"/>
 									<a class="btn btn-primary" href="#" onclick="searchFun()">
 										<i class="glyphicon glyphicon-search"></i>查询
 									</a>
 								</div>
 							</div>
-							<a class="btn btn-primary" href="#" onclick="addFun()">
-								<i class="glyphicon glyphicon-plus"></i>添加
-							</a>
 							<a class="btn btn-danger" href="#" onclick="batchDelFun()" data-toggle="modal" data-target="#myModal">
 								<i class="glyphicon glyphicon-trash "></i>批量删除
 							</a>
@@ -289,10 +220,10 @@
 											<input type="checkbox" onclick="selectAll(this)" name="cb-check-all">
 										</th>
 										<th>id</th>
-										<th>键</th>
-										<th>值</th>
-										<th>创建时间</th>
-										<th>操作</th>
+										<th>用户名</th>
+										<th>操作功能</th>
+										<th>操作描述</th>
+										<th>操作时间</th>
 									</tr>
 								</thead>
 								<tbody>

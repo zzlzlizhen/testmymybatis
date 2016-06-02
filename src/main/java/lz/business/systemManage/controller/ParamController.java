@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lz.annotation.LogAspectAnnotation;
 import lz.business.systemManage.service.ParamService;
 import lz.model.SystemParam;
 
@@ -64,6 +65,7 @@ public class ParamController {
 	}
 	@RequestMapping(value="/add")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="添加系统参数信息",logBusiness="参数管理")
 	public Map<String,Object> add(@RequestBody SystemParam sp){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -82,6 +84,7 @@ public class ParamController {
 	}
 	@RequestMapping(value="/edit")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="修改系统参数信息",logBusiness="参数管理")
 	public Map<String,Object> edit(@RequestBody SystemParam sp){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -105,6 +108,7 @@ public class ParamController {
 	}
 	@RequestMapping(value="/del")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="删除系统参数信息",logBusiness="参数管理")
 	public Map<String,Object> del(@RequestBody SystemParam sp){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
@@ -118,6 +122,7 @@ public class ParamController {
 	}
 	@RequestMapping(value="/batchDel")
 	@ResponseBody
+	@LogAspectAnnotation(logDesc="批量删除系统参数信息",logBusiness="参数管理")
 	public Map<String,Object> batchDel(@RequestBody SystemParam sp){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {

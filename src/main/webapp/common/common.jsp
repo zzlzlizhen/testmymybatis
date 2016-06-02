@@ -25,7 +25,6 @@
 <link href='${ctx}/css/mycss.css' rel='stylesheet'>
 
 
-
 <!-- jQuery -->
 <script src="${ctx}/bower_components/jquery/jquery.min.js"></script>
 <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -67,3 +66,4 @@
 <script src="${ctx}/js/charisma.js"></script>
 <script type="text/javascript" src="${ctx}/bower_components/zTree/js/jquery.ztree.core.js"></script>
 <script type="text/javascript" src="${ctx}/bower_components/zTree/js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="${ctx}/bower_components/My97DatePicker/WdatePicker.js"></script>
