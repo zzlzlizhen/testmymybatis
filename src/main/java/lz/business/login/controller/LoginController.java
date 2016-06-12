@@ -129,6 +129,7 @@ public class LoginController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"注册失败","注册","/loginController/register");
 		}
 		return map;
 	}
@@ -198,6 +199,7 @@ public class LoginController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"注册时发送验证码失败","发送验证码","/loginController/sendSecurityCode");
 		}
 		return map;
 	}
@@ -230,6 +232,7 @@ public class LoginController {
 					security.setPhone((String)args.get("phone"));
 					securityService.insertSecurity(security);
 					request.getSession().setAttribute("getPwdSecurityCode",securityCode);
+					request.getSession().setAttribute("getPwdName",args.get("name"));
 					map.put("result","success");
 					map.put("securityCode", securityCode);
 					map.put("resetPswUserName",args.get("name"));
@@ -258,6 +261,7 @@ public class LoginController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"找回密码验证用户名和密码失败","找回密码","/loginController/getPwdValidateUserNameAndPhone");
 		}
 		return map;
 	}
@@ -296,6 +300,7 @@ public class LoginController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"找回密码验证验证码失败","找回密码","/loginController/getPwdValidateSecurity");
 		}
 		return map;
 	}
@@ -314,6 +319,7 @@ public class LoginController {
 	public Map<String,Object> getPwdValidateResetPsw(@RequestBody User user,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
 		Map<String,Object> queryMap = new HashMap<String,Object>();
+		String getPswName = (String)request.getSession().getAttribute("getPswName");
 		try {
 			String security = (String)request.getSession().getAttribute("getPwdSecurityCode");
 			String securityCode = user.getSecurityCode();
@@ -324,12 +330,17 @@ public class LoginController {
 				queryMap.put("securityType",ConstantInfo.SECURITY_CODE_PHONE);
 				queryMap.put("phone",user.getPhone());
 				if(securityService.getSecurityIsEffective(queryMap)>0){
-					if(userService.getUserByNameAndPwd(user)!=null){
-						map.put("result","pwdIsExsit");
+					if(getPswName.equals(user.getName())){
+						if(userService.getUserByNameAndPwd(user)!=null){
+							map.put("result","pwdIsExsit");
+						}else{
+							userService.updatePswByName(user);
+							map.put("result","success");
+						}
 					}else{
-						userService.updatePswByName(user);
-						map.put("result","success");
+						map.put("result","error");
 					}
+					
 				}else{
 					map.put("result","securityTimeOut");
 				}
@@ -339,6 +350,7 @@ public class LoginController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"找回密码重置密码失败","找回密码","/loginController/getPwdValidateResetPsw");
 		}
 		return map;
 	}

@@ -15,6 +15,7 @@ import lz.annotation.LogAspectAnnotation;
 import lz.business.authManage.service.ResourceService;
 import lz.business.authManage.service.RoleService;
 import lz.constant.ConstantInfo;
+import lz.exception.ControllerException;
 import lz.model.Resource;
 import lz.model.Role;
 import lz.model.User;
@@ -116,6 +117,7 @@ public class ResourceController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"保存资源信息失败","资源管理","/resourceController/add");
 		}
 		return map;
 	}
@@ -137,6 +139,7 @@ public class ResourceController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"修改资源信息失败","资源管理","/resourceController/edit");
 		}
 		return map;
 	}
@@ -158,6 +161,7 @@ public class ResourceController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"删除资源信息失败","资源管理","/resourceController/del");
 		}
 		return map;
 	}
@@ -182,6 +186,7 @@ public class ResourceController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"批量删除资源信息失败","资源管理","/resourceController/batchDel");
 		}
 		return map;
 	}
@@ -194,39 +199,40 @@ public class ResourceController {
 	 */
 	@RequestMapping("/getResources")
 	public void getResources(HttpServletRequest request,HttpServletResponse response){
-		String sEcho = request.getParameter("sEcho");
-		Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
-		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
-		String searchId = request.getParameter("resourceName");
-		Map<String,Object> map = new HashMap<String,Object>();
-		int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
-		map.put("pageNum",pageNum);
-		map.put("pageSize",iDisplayLength);
-		if(searchId!=null && !"".equals(searchId)){
-			map.put("resourceName","%"+searchId+"%");
-		}
-		PageInfo<Resource> page = resourceService.getResourcePage(map);
-		List<Resource> list = page.getList();
-		long total = page.getTotal();
-		Object[][] data=new Object[list.size()][6];
-		for(int j=0;j<list.size();j++){ 
-			Resource resource = list.get(j); 
-			data[j][0]=resource.getId();
-			data[j][1]=resource.getResourceName();
-			data[j][2]=resource.getResourceUrl();
-			//remark存放是父资源的名字
-			data[j][3]=resource.getRemark();
-			data[j][4]=resource.getIcons();
-		}
-		JSONObject jo = new JSONObject();
-		jo.put("iTotalDisplayRecords",total);
-		jo.put("iTotalRecords",total);
-		jo.put("sEcho",sEcho);
-		jo.put("aaData",data);
 		try {
+			String sEcho = request.getParameter("sEcho");
+			Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
+			int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+			String searchId = request.getParameter("resourceName");
+			Map<String,Object> map = new HashMap<String,Object>();
+			int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
+			map.put("pageNum",pageNum);
+			map.put("pageSize",iDisplayLength);
+			if(searchId!=null && !"".equals(searchId)){
+				map.put("resourceName","%"+searchId+"%");
+			}
+			PageInfo<Resource> page = resourceService.getResourcePage(map);
+			List<Resource> list = page.getList();
+			long total = page.getTotal();
+			Object[][] data=new Object[list.size()][6];
+			for(int j=0;j<list.size();j++){ 
+				Resource resource = list.get(j); 
+				data[j][0]=resource.getId();
+				data[j][1]=resource.getResourceName();
+				data[j][2]=resource.getResourceUrl();
+				//remark存放是父资源的名字
+				data[j][3]=resource.getRemark();
+				data[j][4]=resource.getIcons();
+			}
+			JSONObject jo = new JSONObject();
+			jo.put("iTotalDisplayRecords",total);
+			jo.put("iTotalRecords",total);
+			jo.put("sEcho",sEcho);
+			jo.put("aaData",data);
 			response.getWriter().print(jo.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new ControllerException(e,"获取资源分页列表信息失败","资源管理","/resourceController/getResources");
 		}
 	}
 	/**
@@ -267,7 +273,8 @@ public class ResourceController {
 				ja.add(jo);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();			
+			throw new ControllerException(e,"角色授权时获取资源树信息失败","资源管理","/resourceController/getCheckedResourceByRoleId/"+id);
 		}
 		return ja;
 	}

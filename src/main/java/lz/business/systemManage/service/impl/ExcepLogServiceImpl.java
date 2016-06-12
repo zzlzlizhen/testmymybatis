@@ -51,13 +51,8 @@ public class ExcepLogServiceImpl implements ExcepLogService {
 	@Override
 	public PageInfo<ExcepLog> getExcepLogByPage(Map<String, Object> map) {
 		PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
-		PageInfo<ExcepLog> page = null;
-		try {
-			List<ExcepLog> list = excepLogMapper.selectExcepLogByPage(map);
-			page = new PageInfo<ExcepLog>(list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<ExcepLog> list = excepLogMapper.selectExcepLogByPage(map);
+		PageInfo<ExcepLog> page = new PageInfo<ExcepLog>(list);
 		return page;
 	}
 

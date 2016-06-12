@@ -26,13 +26,8 @@ public class ParamServiceImpl implements ParamService {
 	@Override
 	public PageInfo<SystemParam> getParamByPage(Map<String, Object> map) {
 		PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
-		PageInfo<SystemParam> page = null;
-		try {
-			List<SystemParam> list = systemParamMapper.selectParamByPage(map);
-			page = new PageInfo<SystemParam>(list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<SystemParam> list = systemParamMapper.selectParamByPage(map);
+		PageInfo<SystemParam> page = new PageInfo<SystemParam>(list);
 		return page;
 	}
 

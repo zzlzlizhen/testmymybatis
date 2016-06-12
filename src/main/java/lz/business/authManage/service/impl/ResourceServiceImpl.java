@@ -67,27 +67,17 @@ public class ResourceServiceImpl implements ResourceService {
 	@Override
 	public PageInfo<Resource> getResourcePage(Map<String, Object> map) {
 		PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
-		PageInfo<Resource> page = null;
-		try {
-			List<Resource> list = resourceMapper.selectResourceByPage(map);
-			page = new PageInfo<Resource>(list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<Resource> list = resourceMapper.selectResourceByPage(map);
+		PageInfo<Resource> page = new PageInfo<Resource>(list);
 		return page;
 	}
 	@Override
 	public List<Resource> getResources(Map<String, Object> map) {
-		List<Resource> list = null;
 		ResourceExample example = new ResourceExample();
 		if(map!=null&&map.get("resourceUrl")!=null){
 			example.createCriteria().andResourceUrlEqualTo((String)map.get("resourceUrl"));
 		}
-		try {
-			list = resourceMapper.selectByExample(example);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<Resource> list = resourceMapper.selectByExample(example);
 		return list;
 	}
 	@Override

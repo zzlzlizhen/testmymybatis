@@ -47,13 +47,8 @@ public class OperLogServiceImpl implements OperLogService {
 	@Override
 	public PageInfo<OperLog> getOperLogByPage(Map<String, Object> map) {
 		PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
-		PageInfo<OperLog> page = null;
-		try {
-			List<OperLog> list = operLogMapper.selectOperLogByPage(map);
-			page = new PageInfo<OperLog>(list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<OperLog> list = operLogMapper.selectOperLogByPage(map);
+		PageInfo<OperLog> page = new PageInfo<OperLog>(list);
 		return page;
 	}
 

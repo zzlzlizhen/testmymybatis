@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import lz.annotation.LogAspectAnnotation;
 import lz.business.systemManage.service.ParamService;
+import lz.exception.ControllerException;
 import lz.model.SystemParam;
 
 import org.apache.commons.lang.time.DateFormatUtils;
@@ -52,17 +53,6 @@ public class ParamController {
 		request.setAttribute("systemParam",systemParam);
 		return "/systemManage/param/editParam";
 	}
-	@RequestMapping("/testIn/{key}")
-	public void editPage(@PathVariable String key,HttpServletRequest request,HttpServletResponse response){
-		SystemParam systemParam = paramService.getParamByParamKey(key);
-		String str = JSON.toJSONStringWithDateFormat(systemParam,"yyyy-MM-dd HH:mm:ss");
-		try {
-			response.getWriter().print(str);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	@RequestMapping(value="/add")
 	@ResponseBody
 	@LogAspectAnnotation(logDesc="添加系统参数信息",logBusiness="参数管理")
@@ -79,6 +69,7 @@ public class ParamController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"添加系统参数信息失败","参数管理","/paramController/add");
 		}
 		return map;
 	}
@@ -103,6 +94,7 @@ public class ParamController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"修改系统参数信息失败","参数管理","/paramController/edit");
 		}
 		return map;
 	}
@@ -117,6 +109,7 @@ public class ParamController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"删除系统参数信息失败","参数管理","/paramController/del");
 		}
 		return map;
 	}
@@ -132,44 +125,46 @@ public class ParamController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"批量删除系统操作日志信息失败","参数管理","/paramController/batchDel");
+
 		}
 		return map;
 	}
 	@RequestMapping("/getParams")
 	public void getParams(HttpServletRequest request,HttpServletResponse response){
-		String sEcho = request.getParameter("sEcho");
-		Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
-		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
-		String searchId = request.getParameter("searchId");
-		Map<String,Object> map = new HashMap<String,Object>();
-		int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
-		map.put("pageNum",pageNum);
-		map.put("pageSize",iDisplayLength);
-		if(searchId!=null && !"".equals(searchId)){
-			map.put("searchId","%"+searchId+"%");
-		}
-		/*List<SystemParam> list = paramService.getParamByPage(map);
-		int total = paramService.getParamCount(map);*/
-		PageInfo<SystemParam> page = paramService.getParamByPage(map);
-		List<SystemParam> list = page.getList();
-		long total = page.getTotal();
-		Object[][] data=new Object[list.size()][5];
-		for(int j=0;j<list.size();j++){ 
-			SystemParam sp = list.get(j); 
-			data[j][0]=sp.getId();
-			data[j][1]=sp.getParamKey();
-			data[j][2]=sp.getParamValue();
-			data[j][3]=sp.getCreateTime();
-		}
-		JSONObject jo = new JSONObject();
-		jo.put("iTotalDisplayRecords",total);
-		jo.put("iTotalRecords",total);
-		jo.put("sEcho",sEcho);
-		jo.put("aaData",data);
 		try {
+			String sEcho = request.getParameter("sEcho");
+			Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
+			int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+			String searchId = request.getParameter("searchId");
+			Map<String,Object> map = new HashMap<String,Object>();
+			int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
+			map.put("pageNum",pageNum);
+			map.put("pageSize",iDisplayLength);
+			if(searchId!=null && !"".equals(searchId)){
+				map.put("searchId","%"+searchId+"%");
+			}
+			PageInfo<SystemParam> page = paramService.getParamByPage(map);
+			List<SystemParam> list = page.getList();
+			long total = page.getTotal();
+			Object[][] data=new Object[list.size()][5];
+			for(int j=0;j<list.size();j++){ 
+				SystemParam sp = list.get(j); 
+				data[j][0]=sp.getId();
+				data[j][1]=sp.getParamKey();
+				data[j][2]=sp.getParamValue();
+				data[j][3]=sp.getCreateTime();
+			}
+			JSONObject jo = new JSONObject();
+			jo.put("iTotalDisplayRecords",total);
+			jo.put("iTotalRecords",total);
+			jo.put("sEcho",sEcho);
+			jo.put("aaData",data);	
 			response.getWriter().print(jo.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new ControllerException(e,"获取系统参数分页列表信息失败","参数管理","/paramController/getParams");
+
 		}
 	}
 }

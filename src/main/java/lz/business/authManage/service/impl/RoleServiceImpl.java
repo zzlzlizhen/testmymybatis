@@ -79,13 +79,8 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public PageInfo<Role> getRolePage(Map<String, Object> map) {
 		PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
-		PageInfo<Role> page = null;
-		try {
-			List<Role> list = roleMapper.selectRoleByPage(map);
-			page = new PageInfo<Role>(list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<Role> list = roleMapper.selectRoleByPage(map);
+		PageInfo<Role> page = new PageInfo<Role>(list);
 		return page;
 	}
 	/**
@@ -93,14 +88,8 @@ public class RoleServiceImpl implements RoleService {
 	 */
 	@Override
 	public List<Role> getRoles(Map<String, Object> map) {
-		List<Role> list = null;
 		RoleExample example = new RoleExample();
-		//example.createCriteria();
-		try {
-			list = roleMapper.selectByExample(example);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<Role> list = roleMapper.selectByExample(example);
 		return list;
 	}
 	/**

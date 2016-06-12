@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import lz.annotation.LogAspectAnnotation;
 import lz.business.authManage.service.RoleService;
 import lz.business.authManage.service.UserService;
+import lz.exception.ControllerException;
 import lz.model.Role;
 import lz.model.User;
 
@@ -132,6 +133,7 @@ public class UserController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"添加用户信息失败","用户管理","/userController/add");
 		}
 		return map;
 	}
@@ -154,6 +156,7 @@ public class UserController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"修改用户信息失败","用户管理","/userController/edit");
 		}
 		return map;
 	}
@@ -175,6 +178,7 @@ public class UserController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"删除用户信息失败","用户管理","/userController/del");
 		}
 		return map;
 	}
@@ -197,6 +201,7 @@ public class UserController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"停用或启用用户信息失败","用户管理","/userController/stopOrRecover");
 		}
 		return map;
 	}
@@ -229,46 +234,47 @@ public class UserController {
 	 */
 	@RequestMapping("/getUsers")
 	public void getusers(HttpServletRequest request,HttpServletResponse response){
-		String sEcho = request.getParameter("sEcho");
-		Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
-		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
-		String userName = request.getParameter("userName");
-		String phone = request.getParameter("phone");
-		String status = request.getParameter("status");
-		Map<String,Object> map = new HashMap<String,Object>();
-		int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
-		map.put("pageNum",pageNum);
-		map.put("pageSize",iDisplayLength);
-		if(userName!=null && !"".equals(userName)){
-			map.put("name","%"+userName+"%");
-		}if(phone!=null && !"".equals(phone)){
-			map.put("phone",phone);
-		}if(status!=null && !"".equals(status)){
-			map.put("status",status);
-		}
-		PageInfo<User> page = userService.getUserPage(map);
-		List<User> list = page.getList();
-		long total = page.getTotal();
-		Object[][] data=new Object[list.size()][7];
-		for(int j=0;j<list.size();j++){ 
-			User user = list.get(j); 
-			data[j][0]=user.getId();
-			data[j][1]=user.getName();
-			data[j][2]=user.getPhone();
-			data[j][3]=user.getEmail();
-			data[j][4]=user.getCreateTime();
-			data[j][5]=user.getStatus();
-			
-		}
-		JSONObject jo = new JSONObject();
-		jo.put("iTotalDisplayRecords",total);
-		jo.put("iTotalRecords",total);
-		jo.put("sEcho",sEcho);
-		jo.put("aaData",data);
 		try {
+			String sEcho = request.getParameter("sEcho");
+			Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
+			int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+			String userName = request.getParameter("userName");
+			String phone = request.getParameter("phone");
+			String status = request.getParameter("status");
+			Map<String,Object> map = new HashMap<String,Object>();
+			int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
+			map.put("pageNum",pageNum);
+			map.put("pageSize",iDisplayLength);
+			if(userName!=null && !"".equals(userName)){
+				map.put("name","%"+userName+"%");
+			}if(phone!=null && !"".equals(phone)){
+				map.put("phone",phone);
+			}if(status!=null && !"".equals(status)){
+				map.put("status",status);
+			}
+			PageInfo<User> page = userService.getUserPage(map);
+			List<User> list = page.getList();
+			long total = page.getTotal();
+			Object[][] data=new Object[list.size()][7];
+			for(int j=0;j<list.size();j++){ 
+				User user = list.get(j); 
+				data[j][0]=user.getId();
+				data[j][1]=user.getName();
+				data[j][2]=user.getPhone();
+				data[j][3]=user.getEmail();
+				data[j][4]=user.getCreateTime();
+				data[j][5]=user.getStatus();
+				
+			}
+			JSONObject jo = new JSONObject();
+			jo.put("iTotalDisplayRecords",total);
+			jo.put("iTotalRecords",total);
+			jo.put("sEcho",sEcho);
+			jo.put("aaData",data);
 			response.getWriter().print(jo.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new ControllerException(e,"获取用户分页列表信息失败","用户管理","/userController/getUsers");
 		}
 	}
 }

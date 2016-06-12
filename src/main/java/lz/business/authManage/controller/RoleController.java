@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import lz.annotation.LogAspectAnnotation;
 import lz.business.authManage.service.ResourceService;
 import lz.business.authManage.service.RoleService;
+import lz.exception.ControllerException;
 import lz.model.Resource;
 import lz.model.Role;
 
@@ -116,6 +117,7 @@ public class RoleController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"保存角色信息失败","角色管理","/roleController/add");
 		}
 		return map;
 	}
@@ -137,6 +139,7 @@ public class RoleController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"修改角色信息失败","角色管理","/roleController/edit");
 		}
 		return map;
 	}
@@ -158,6 +161,7 @@ public class RoleController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			throw new ControllerException(e,"删除角色信息失败","角色管理","/roleController/del");
 		}
 		return map;
 	}
@@ -178,7 +182,8 @@ public class RoleController {
 			map.put("result","success");
 		} catch (Exception e) {
 			map.put("result","error");
-			e.printStackTrace();
+			e.printStackTrace();			
+			throw new ControllerException(e,"角色授权失败","角色管理","/roleController/auth");
 		}
 		return map;
 	}
@@ -191,37 +196,38 @@ public class RoleController {
 	 */
 	@RequestMapping("/getRoles")
 	public void getroles(HttpServletRequest request,HttpServletResponse response){
-		String sEcho = request.getParameter("sEcho");
-		Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
-		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
-		String searchId = request.getParameter("roleName");
-		Map<String,Object> map = new HashMap<String,Object>();
-		int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
-		map.put("pageNum",pageNum);
-		map.put("pageSize",iDisplayLength);
-		if(searchId!=null && !"".equals(searchId)){
-			map.put("roleName","%"+searchId+"%");
-		}
-		PageInfo<Role> page = roleService.getRolePage(map);
-		List<Role> list = page.getList();
-		long total = page.getTotal();
-		Object[][] data=new Object[list.size()][4];
-		for(int j=0;j<list.size();j++){ 
-			Role role = list.get(j); 
-			data[j][0]=role.getId();
-			data[j][1]=role.getRoleName();
-			data[j][2]=role.getRoleType();
-			data[j][3]=role.getRemark();
-		}
-		JSONObject jo = new JSONObject();
-		jo.put("iTotalDisplayRecords",total);
-		jo.put("iTotalRecords",total);
-		jo.put("sEcho",sEcho);
-		jo.put("aaData",data);
 		try {
+			String sEcho = request.getParameter("sEcho");
+			Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
+			int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+			String searchId = request.getParameter("roleName");
+			Map<String,Object> map = new HashMap<String,Object>();
+			int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
+			map.put("pageNum",pageNum);
+			map.put("pageSize",iDisplayLength);
+			if(searchId!=null && !"".equals(searchId)){
+				map.put("roleName","%"+searchId+"%");
+			}
+			PageInfo<Role> page = roleService.getRolePage(map);
+			List<Role> list = page.getList();
+			long total = page.getTotal();
+			Object[][] data=new Object[list.size()][4];
+			for(int j=0;j<list.size();j++){ 
+				Role role = list.get(j); 
+				data[j][0]=role.getId();
+				data[j][1]=role.getRoleName();
+				data[j][2]=role.getRoleType();
+				data[j][3]=role.getRemark();
+			}
+			JSONObject jo = new JSONObject();
+			jo.put("iTotalDisplayRecords",total);
+			jo.put("iTotalRecords",total);
+			jo.put("sEcho",sEcho);
+			jo.put("aaData",data);
 			response.getWriter().print(jo.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new ControllerException(e,"获取角色列表失败","角色管理","/roleController/getRoles");
 		}
 	}
 }

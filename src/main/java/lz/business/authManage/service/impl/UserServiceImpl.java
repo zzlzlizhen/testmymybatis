@@ -138,13 +138,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public PageInfo<User> getUserPage(Map<String, Object> map) {
 		PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
-		PageInfo<User> page = null;
-		try {
-			List<User> list = userMapper.selectUserByPage(map);
-			page = new PageInfo<User>(list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<User> list = userMapper.selectUserByPage(map);
+		PageInfo<User> page = new PageInfo<User>(list);
 		return page;
 	}
 	/**
