@@ -111,7 +111,7 @@
     		          }else if(data.result=="error"){
     		        	  $("#alertId").show();
     		        	  $("#alertContent").html("验证用户名失败，请联系管理员！");
-    		          }else if(data.result="securityTimeOut"){
+    		          }else if(data.result=="securityTimeOut"){
     		        	  $("#alertId").show();
     		        	  $("#alertContent").html("您找回密码操作过于频繁，请稍等一会在继续操作");
     		          }
@@ -185,7 +185,7 @@
     		        	  $("#alertId").show();
     		        	  countdown = 5;
    			        	  settime1();
-    		          }else if(data.result="pswIsExist"){
+    		          }else if(data.result=="pswIsExist"){
     		        	  $("#alertId").show();
     		        	  $("#alertContent").html("新设置的密码不能与原密码一致，请修改!");
     		          }else if(data.result=="securityTimeOut"){

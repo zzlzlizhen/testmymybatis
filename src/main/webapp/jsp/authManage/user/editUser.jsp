@@ -97,7 +97,7 @@
 	      <div class="col-sm-9">
 	      	<c:forEach items="${allRoles}" var="role">
       			<label class="checkbox-inline">
-				  <input type="checkbox" <c:if test="${role.updateTime==1}">checked=checked</c:if> name="checkRoles" value="${role.id}">${role.roleName}
+				  <input type="checkbox" <c:if test="${role.updateTime=='1'}">checked=checked</c:if> name="checkRoles" value="${role.id}">${role.roleName}
 				</label>
 	      	</c:forEach>
 	      </div>

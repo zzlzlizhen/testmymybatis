@@ -126,10 +126,24 @@ public class UserController {
 	@LogAspectAnnotation(logDesc="添加用户信息",logBusiness="用户管理")
 	public Map<String,Object> add(@RequestBody User user){
 		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> args = new HashMap<String,Object>();
 		try {
-			//此处用pwd来接收用户所选择的权限
-			userService.insertUser(user);
-			map.put("result","success");
+			args.put("username", user.getName());
+			List<User> users1 = userService.getUsers(args);
+			if(users1!=null&&users1.size()>0){
+				map.put("result","nameIsExist");
+			}else{
+				args.clear();
+				args.put("telephone",user.getPhone());
+				List<User> users2 = userService.getUsers(args);
+				if(users2!=null&&users2.size()>0){
+					map.put("result","phoneIsExist");
+				}else{
+					//此处用pwd来接收用户所选择的权限
+					userService.insertUser(user);
+					map.put("result","success");
+				}
+			}
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
@@ -147,12 +161,27 @@ public class UserController {
 	@RequestMapping(value="/edit")
 	@ResponseBody
 	@LogAspectAnnotation(logDesc="修改用户信息",logBusiness="用户管理")
-	public Map<String,Object> edit(@RequestBody User user){
+	public Map<String,Object> edit(@RequestBody User user,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> args = new HashMap<String,Object>();
+		User oldUser = userService.getUserById(user.getId());
 		try {
-			//此处用pwd来接收用户所选择的权限
-			userService.updateUser(user);
-			map.put("result","success");
+			args.put("username", user.getName());
+			List<User> users1 = userService.getUsers(args);
+			if(users1!=null&&users1.size()>0&&(!users1.get(0).getName().equals(oldUser.getName()))){
+				map.put("result","nameIsExist");
+			}else{
+				args.clear();
+				args.put("telephone",user.getPhone());
+				List<User> users2 = userService.getUsers(args);
+				if(users2!=null&&users2.size()>0&&(!users2.get(0).getPhone().equals(oldUser.getPhone()))){
+					map.put("result","phoneIsExist");
+				}else{
+					//此处用pwd来接收用户所选择的权限
+					userService.updateUser(user);
+					map.put("result","success");
+				}
+			}
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();

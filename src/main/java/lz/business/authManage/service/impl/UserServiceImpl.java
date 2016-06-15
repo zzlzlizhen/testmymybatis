@@ -123,6 +123,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.updateByPrimaryKeySelective(user);
 	}
 	@Override
+	public int updatePersonInfo(User user){
+		user.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
+		return userMapper.updateByPrimaryKeySelective(user);
+	}
+	@Override
 	public int updateUserStatus(User user) {
 		user.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		return userMapper.updateByPrimaryKeySelective(user);

@@ -264,6 +264,9 @@ public class OperLogSqlProvider {
     	if(map.get("endTime")!=null){
     		sb.append(" and create_time <= #{endTime}");
     	}
+    	if(map.get("loginUserName")!=null){
+    		sb.append(" and name = #{loginUserName}");
+    	}
     	sb.append(" order by id desc ");
     	return sb.toString();
     }
