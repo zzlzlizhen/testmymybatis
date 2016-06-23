@@ -73,6 +73,11 @@
 										"sClass" : "text-center",
 										"bSortable": false,
 										"sWidth": "15%"
+									},{
+										"aTargets" : [ 5 ],
+										"sClass" : "text-center",
+										"bSortable": false,
+										"sWidth": "15%",
 									}
 								]
 						});
@@ -190,6 +195,7 @@
 										<th>用户名</th>
 										<th>操作功能</th>
 										<th>操作描述</th>
+										<th>操作ip</th>
 										<th>操作时间</th>
 									</tr>
 								</thead>
