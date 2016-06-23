@@ -23,7 +23,7 @@ import lz.model.OperLogExample;
 
 public class OperLogSqlProvider {
 
-    public String countByExample(OperLogExample example) {
+	public String countByExample(OperLogExample example) {
         BEGIN();
         SELECT("count(*)");
         FROM("t_oper_log");
@@ -62,6 +62,10 @@ public class OperLogSqlProvider {
             VALUES("create_time", "#{createTime,jdbcType=CHAR}");
         }
         
+        if (record.getOperIp() != null) {
+            VALUES("oper_ip", "#{operIp,jdbcType=CHAR}");
+        }
+        
         return SQL();
     }
 
@@ -76,6 +80,7 @@ public class OperLogSqlProvider {
         SELECT("log_business");
         SELECT("log_desc");
         SELECT("create_time");
+        SELECT("oper_ip");
         FROM("t_oper_log");
         applyWhere(example, false);
         
@@ -113,6 +118,10 @@ public class OperLogSqlProvider {
             SET("create_time = #{record.createTime,jdbcType=CHAR}");
         }
         
+        if (record.getOperIp() != null) {
+            SET("oper_ip = #{record.operIp,jdbcType=CHAR}");
+        }
+        
         applyWhere(example, true);
         return SQL();
     }
@@ -126,6 +135,7 @@ public class OperLogSqlProvider {
         SET("log_business = #{record.logBusiness,jdbcType=CHAR}");
         SET("log_desc = #{record.logDesc,jdbcType=CHAR}");
         SET("create_time = #{record.createTime,jdbcType=CHAR}");
+        SET("oper_ip = #{record.operIp,jdbcType=CHAR}");
         
         OperLogExample example = (OperLogExample) parameter.get("example");
         applyWhere(example, true);
@@ -150,6 +160,10 @@ public class OperLogSqlProvider {
         
         if (record.getCreateTime() != null) {
             SET("create_time = #{createTime,jdbcType=CHAR}");
+        }
+        
+        if (record.getOperIp() != null) {
+            SET("oper_ip = #{operIp,jdbcType=CHAR}");
         }
         
         WHERE("id = #{id,jdbcType=CHAR}");
@@ -251,7 +265,7 @@ public class OperLogSqlProvider {
     }
   //************************自定义sql**********************
     public String selectOperLogByPage(Map<String,Object> map){
-    	StringBuffer sb = new StringBuffer("select id,name,log_business,log_desc,create_time from t_oper_log where 1=1 ");
+    	StringBuffer sb = new StringBuffer("select id,name,log_business,log_desc,create_time,oper_ip from t_oper_log where 1=1 ");
     	if(map.get("name")!=null){
     		sb.append(" and name like #{name}");
     	}

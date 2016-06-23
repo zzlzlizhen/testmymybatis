@@ -6,6 +6,7 @@ package lz.aspect;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import lz.annotation.LogAspectAnnotation;
@@ -38,6 +39,8 @@ import org.springframework.stereotype.Component;
 public class LogAspect {
 	@Autowired  
 	private HttpSession session;  
+	@Autowired  
+	private HttpServletRequest request; 
 	@Resource
 	private OperLogService operLogService;
 	@Resource
@@ -112,6 +115,14 @@ public class LogAspect {
 		operLog.setLogBusiness(log.logBusiness());
 		operLog.setLogDesc(log.logDesc());
 		operLog.setName(user!=null?user.getName():"");
+		String custIP = "";
+		//应用部署在后端，前端用nginx做反向代理或者用nginx做负载时，nginx将客户端的真实ip地址放入到请求头里，变量名称是X-Real-IP
+		custIP = request.getHeader("X-Real-IP");
+		if(custIP==null||"".equals(custIP)){
+			//应用直接部署在最外端获取客户端ip的方式
+			custIP = request.getRemoteAddr();
+		}
+		operLog.setOperIp("客户端ip："+custIP+"---服务端ip："+request.getLocalAddr());
 		operLog.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		operLogService.insertOperLog(operLog);
 	}

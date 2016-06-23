@@ -99,6 +99,14 @@
 										"mRender" : function(data, type, full) {
 											return full[4];
 										}
+									},{
+										"aTargets" : [ 6 ],
+										"sClass" : "text-center",
+										"bSortable": false,
+										"sWidth": "15%",
+										"mRender" : function(data, type, full) {
+											return full[5];
+										}
 									}
 								]
 						});
@@ -223,6 +231,7 @@
 										<th>用户名</th>
 										<th>操作功能</th>
 										<th>操作描述</th>
+										<th>操作ip</th>
 										<th>操作时间</th>
 									</tr>
 								</thead>

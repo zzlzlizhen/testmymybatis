@@ -453,6 +453,76 @@ public class OperLogExample {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
+
+        public Criteria andOperIpIsNull() {
+            addCriterion("oper_ip is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpIsNotNull() {
+            addCriterion("oper_ip is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpEqualTo(String value) {
+            addCriterion("oper_ip =", value, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpNotEqualTo(String value) {
+            addCriterion("oper_ip <>", value, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpGreaterThan(String value) {
+            addCriterion("oper_ip >", value, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpGreaterThanOrEqualTo(String value) {
+            addCriterion("oper_ip >=", value, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpLessThan(String value) {
+            addCriterion("oper_ip <", value, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpLessThanOrEqualTo(String value) {
+            addCriterion("oper_ip <=", value, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpLike(String value) {
+            addCriterion("oper_ip like", value, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpNotLike(String value) {
+            addCriterion("oper_ip not like", value, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpIn(List<String> values) {
+            addCriterion("oper_ip in", values, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpNotIn(List<String> values) {
+            addCriterion("oper_ip not in", values, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpBetween(String value1, String value2) {
+            addCriterion("oper_ip between", value1, value2, "operIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperIpNotBetween(String value1, String value2) {
+            addCriterion("oper_ip not between", value1, value2, "operIp");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

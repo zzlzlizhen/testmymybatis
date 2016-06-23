@@ -21,7 +21,7 @@ import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
 
 public interface OperLogMapper {
-    @SelectProvider(type=OperLogSqlProvider.class, method="countByExample")
+	@SelectProvider(type=OperLogSqlProvider.class, method="countByExample")
     int countByExample(OperLogExample example);
 
     @DeleteProvider(type=OperLogSqlProvider.class, method="deleteByExample")
@@ -35,9 +35,9 @@ public interface OperLogMapper {
 
     @Insert({
         "insert into t_oper_log (id, name, log_business, ",
-        "log_desc, create_time)",
+        "log_desc, create_time, oper_ip)",
         "values (#{id,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{logBusiness,jdbcType=CHAR}, ",
-        "#{logDesc,jdbcType=CHAR}, #{createTime,jdbcType=CHAR})"
+        "#{logDesc,jdbcType=CHAR}, #{createTime,jdbcType=CHAR}, #{operIp,jdbcType=CHAR})"
     })
     int insert(OperLog record);
 
@@ -50,13 +50,14 @@ public interface OperLogMapper {
         @Result(column="name", property="name", jdbcType=JdbcType.CHAR),
         @Result(column="log_business", property="logBusiness", jdbcType=JdbcType.CHAR),
         @Result(column="log_desc", property="logDesc", jdbcType=JdbcType.CHAR),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.CHAR)
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.CHAR),
+        @Result(column="oper_ip", property="operIp", jdbcType=JdbcType.CHAR)
     })
     List<OperLog> selectByExample(OperLogExample example);
 
     @Select({
         "select",
-        "id, name, log_business, log_desc, create_time",
+        "id, name, log_business, log_desc, create_time, oper_ip",
         "from t_oper_log",
         "where id = #{id,jdbcType=CHAR}"
     })
@@ -65,7 +66,8 @@ public interface OperLogMapper {
         @Result(column="name", property="name", jdbcType=JdbcType.CHAR),
         @Result(column="log_business", property="logBusiness", jdbcType=JdbcType.CHAR),
         @Result(column="log_desc", property="logDesc", jdbcType=JdbcType.CHAR),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.CHAR)
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.CHAR),
+        @Result(column="oper_ip", property="operIp", jdbcType=JdbcType.CHAR)
     })
     OperLog selectByPrimaryKey(String id);
 
@@ -83,7 +85,8 @@ public interface OperLogMapper {
         "set name = #{name,jdbcType=CHAR},",
           "log_business = #{logBusiness,jdbcType=CHAR},",
           "log_desc = #{logDesc,jdbcType=CHAR},",
-          "create_time = #{createTime,jdbcType=CHAR}",
+          "create_time = #{createTime,jdbcType=CHAR},",
+          "oper_ip = #{operIp,jdbcType=CHAR}",
         "where id = #{id,jdbcType=CHAR}"
     })
     int updateByPrimaryKey(OperLog record);
@@ -96,7 +99,8 @@ public interface OperLogMapper {
         @Result(column="name", property="name", jdbcType=JdbcType.CHAR),
         @Result(column="log_business", property="logBusiness", jdbcType=JdbcType.CHAR),
         @Result(column="log_desc", property="logDesc", jdbcType=JdbcType.CHAR),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.CHAR)
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.CHAR),
+        @Result(column="oper_ip", property="operIp", jdbcType=JdbcType.CHAR)
     })
     List<OperLog> selectOperLogByPage(Map<String,Object> map);
     /**

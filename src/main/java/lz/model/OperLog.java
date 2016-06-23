@@ -11,6 +11,8 @@ public class OperLog {
 
     private String createTime;
 
+    private String operIp;
+
     public String getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class OperLog {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime == null ? null : createTime.trim();
+    }
+
+    public String getOperIp() {
+        return operIp;
+    }
+
+    public void setOperIp(String operIp) {
+        this.operIp = operIp == null ? null : operIp.trim();
     }
 }

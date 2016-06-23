@@ -78,14 +78,15 @@ public class OperLogController {
 			PageInfo<OperLog> page = operLogService.getOperLogByPage(map);
 			List<OperLog> list = page.getList();
 			long total = page.getTotal();
-			Object[][] data=new Object[list.size()][6];
+			Object[][] data=new Object[list.size()][7];
 			for(int j=0;j<list.size();j++){ 
 				OperLog ol = list.get(j); 
 				data[j][0]=ol.getId();
 				data[j][1]=ol.getName();
 				data[j][2]=ol.getLogBusiness();
 				data[j][3]=ol.getLogDesc();
-				data[j][4]=ol.getCreateTime();
+				data[j][4]=ol.getOperIp();
+				data[j][5]=ol.getCreateTime();
 			}
 			JSONObject jo = new JSONObject();
 			jo.put("iTotalDisplayRecords",total);
@@ -123,14 +124,15 @@ public class OperLogController {
 			PageInfo<OperLog> page = operLogService.getOperLogByPage(map);
 			List<OperLog> list = page.getList();
 			long total = page.getTotal();
-			Object[][] data=new Object[list.size()][6];
+			Object[][] data=new Object[list.size()][7];
 			for(int j=0;j<list.size();j++){ 
 				OperLog ol = list.get(j); 
 				data[j][0]=ol.getId();
 				data[j][1]=ol.getName();
 				data[j][2]=ol.getLogBusiness();
 				data[j][3]=ol.getLogDesc();
-				data[j][4]=ol.getCreateTime();
+				data[j][4]=ol.getOperIp();
+				data[j][5]=ol.getCreateTime();
 			}
 			JSONObject jo = new JSONObject();
 			jo.put("iTotalDisplayRecords",total);
