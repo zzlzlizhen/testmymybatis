@@ -10,10 +10,10 @@ import java.util.Map;
 import lz.business.systemManage.service.OperLogService;
 import lz.dao.OperLogMapper;
 import lz.model.OperLog;
-import lz.model.SystemParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
@@ -23,7 +23,7 @@ import com.github.pagehelper.PageInfo;
  * @author lizhen_pc
  *123
  */
-@Transactional
+@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
 @Service("operLogService")
 public class OperLogServiceImpl implements OperLogService {
 
@@ -31,11 +31,13 @@ public class OperLogServiceImpl implements OperLogService {
 	private OperLogMapper operLogMapper;
 	
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int insertOperLog(OperLog operLog) {
 		return operLogMapper.insert(operLog);
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int batchDelOperLog(String batchDelId) {
 		List<String> batchDelIds = new ArrayList<String>();
 		for(String id:batchDelId.split(",")){

@@ -4,14 +4,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import lz.business.authManage.service.UserService;
 import lz.business.systemManage.service.ParamService;
 import lz.constant.ConstantInfo;
+import lz.dao.MessageMapper;
 import lz.dao.RoleMapper;
 import lz.dao.UserMapper;
 import lz.dao.UserRoleMapper;
+import lz.model.Message;
 import lz.model.Role;
 import lz.model.RoleExample;
 import lz.model.SystemParam;
@@ -24,11 +24,12 @@ import lz.utils.IdGenerateUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-@Transactional
+@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	@Autowired
@@ -37,14 +38,17 @@ public class UserServiceImpl implements UserService {
 	private UserRoleMapper userRoleMapper;
 	@Autowired
 	private RoleMapper roleMapper;
-	@Resource(name="paramService")
+	@Autowired
 	private ParamService paramService;
+	@Autowired
+	private MessageMapper messageMapper;
 	@Override
 	public User getUserById(String id) {
 		User user = userMapper.selectById(id);
 		return user;
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int insertUser(User user) {
 		user.setId(IdGenerateUtils.getId());
 		String userRoleIds = user.getPwd();
@@ -65,6 +69,7 @@ public class UserServiceImpl implements UserService {
 	 * 注册用户
 	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int insertRegisterUser(User user) {
 		String userId = IdGenerateUtils.getId();
 		user.setId(userId);
@@ -106,6 +111,7 @@ public class UserServiceImpl implements UserService {
 		else return null;
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int updateUser(User user) {
 		String userRoleIds = user.getPwd();
 		UserRoleExample ure = new UserRoleExample();
@@ -123,16 +129,19 @@ public class UserServiceImpl implements UserService {
 		return userMapper.updateByPrimaryKeySelective(user);
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int updatePersonInfo(User user){
 		user.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		return userMapper.updateByPrimaryKeySelective(user);
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int updateUserStatus(User user) {
 		user.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		return userMapper.updateByPrimaryKeySelective(user);
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int delUser(User user) {
 		UserRoleExample ure = new UserRoleExample();
 		ure.createCriteria().andUserIdEqualTo(user.getId());
@@ -151,12 +160,15 @@ public class UserServiceImpl implements UserService {
 	 * 更改密码
 	 */
 	@Override
-	public int updatePswByName(User user) {
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
+	public int updatePswByName(User user,Message message) {
 		User record = new User();
 		record.setPwd(user.getPwd());
 		UserExample ue = new UserExample();
 		ue.createCriteria().andNameEqualTo(user.getName());
+		if(message!=null){
+			messageMapper.insertSelective(message);		
+		}
 		return userMapper.updateByExampleSelective(record, ue);
 	}
-	
 }

@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/bootstrapController")
 public class BootstrapController {
 	
+	@RequestMapping("/webSocket")
+	public String webSocket(HttpServletRequest request){
+		return "/webSocket/webSocket";
+	}
+	
 	@RequestMapping("/dashboard")
 	public String dashboardMethod(HttpServletRequest request){
 		return "/bootstrap/dashboard";

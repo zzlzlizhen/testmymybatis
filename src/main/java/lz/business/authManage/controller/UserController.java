@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +16,7 @@ import lz.exception.ControllerException;
 import lz.model.Role;
 import lz.model.User;
 
-import org.apache.commons.lang.time.DateFormatUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,9 +29,9 @@ import com.github.pagehelper.PageInfo;
 @Controller
 @RequestMapping("/userController")
 public class UserController {
-	@Resource
+	@Autowired
 	private UserService userService;
-	@Resource
+	@Autowired
 	private RoleService roleService;
 	/**
 	 * 描述：用户列表首页

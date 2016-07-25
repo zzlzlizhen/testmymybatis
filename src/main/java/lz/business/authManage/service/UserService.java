@@ -3,10 +3,10 @@ package lz.business.authManage.service;
 import java.util.List;
 import java.util.Map;
 
-import com.github.pagehelper.PageInfo;
-
-import lz.model.Role;
+import lz.model.Message;
 import lz.model.User;
+
+import com.github.pagehelper.PageInfo;
 
 public interface UserService {
 	
@@ -22,7 +22,7 @@ public interface UserService {
 	
 	int delUser(User user);
 	
-	int updatePswByName(User user);
+	int updatePswByName(User user,Message message);
 	
 	User getUserByNameAndPwd(User user);
 

@@ -2,7 +2,6 @@ package lz.business.authManage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -20,14 +19,13 @@ import lz.model.Resource;
 import lz.model.Role;
 import lz.model.User;
 
-import org.apache.commons.lang.time.DateFormatUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
@@ -35,9 +33,9 @@ import com.github.pagehelper.PageInfo;
 @Controller
 @RequestMapping("/resourceController")
 public class ResourceController {
-	@javax.annotation.Resource
+	@Autowired
 	private ResourceService resourceService;
-	@javax.annotation.Resource
+	@Autowired
 	private RoleService roleService;
 	/**
 	 * 描述：跳转资源首页列表

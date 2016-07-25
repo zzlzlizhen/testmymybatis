@@ -13,7 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import lz.business.authManage.service.UserService;
  
-@ServerEndpoint("/websocket")
+@ServerEndpoint("/mywebsocket")
 public class MyWebSocket {
 	
 	@Resource

@@ -7,23 +7,23 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<name>testmybatis Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<properties>  
+        <spring.group>org.springframework</spring.group>  
+        <spring.version>4.0.1.RELEASE</spring.version>  
+    </properties> 
+	
 	<dependencies>
 		<dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>jstl</artifactId>
-    <version>1.2</version>
-</dependency>
-		<!-- javax.servlet -->
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
 		<dependency>
 		    <groupId>javax.servlet</groupId>
-		    <artifactId>servlet-api</artifactId>
-		    <version>2.5</version>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>4.0.0-b01</version>
 		</dependency>
-		<dependency>
-		    <groupId>javax.websocket</groupId>
-		    <artifactId>javax.websocket-api</artifactId>
-		    <version>1.0</version>
-		</dependency>
+		
 		<!-- 单元测试包 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -32,9 +32,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>${spring.group}</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- jedis依赖包 -->
 		<dependency>
@@ -62,9 +62,9 @@
 		</dependency>
 		<!-- springmvc依赖包 -->
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>${spring.group}</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -79,9 +79,9 @@
 
 		<!-- spring依赖包 -->
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>${spring.group}</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>3.2.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -126,30 +126,41 @@
 		</dependency>
 		<!-- 定时任务 -->
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>${spring.group}</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>${spring.group}</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>${spring.group}</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>${spring.group}</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>1.8.5</version>
 		</dependency>
+		<!-- websocket -->
+		<dependency>  
+		   <groupId>${spring.group}</groupId>  
+		   <artifactId>spring-websocket</artifactId>  
+		   <version>${spring.version}</version>  
+		</dependency>  
+		<dependency>  
+		   <groupId>${spring.group}</groupId>  
+		   <artifactId>spring-messaging</artifactId>  
+		   <version>${spring.version}</version>  
+		</dependency>  
 		<!-- 工具包 -->
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -187,11 +198,6 @@
 		    <version>3.12</version>
 		</dependency>
 		
-		<!-- 由于无法从maven中央库下载，故手动添加系统本地的json工具包 -->
-		<!-- <dependency> <groupId>com.alibaba</groupId> <artifactId>fastjson</artifactId> 
-			<version>1.2.4</version> <scope>system</scope> <systemPath>F:\mavenJar\com\alibaba\fastjson\1.2.4\fastjson-1.2.4.jar</systemPath> 
-			</dependency> -->
-
 	</dependencies>
 	<build>
 		<plugins>

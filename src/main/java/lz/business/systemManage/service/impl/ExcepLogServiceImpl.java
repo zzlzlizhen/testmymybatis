@@ -8,16 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 import lz.business.systemManage.service.ExcepLogService;
-import lz.business.systemManage.service.OperLogService;
 import lz.dao.ExcepLogMapper;
-import lz.dao.OperLogMapper;
 import lz.model.ExcepLog;
-import lz.model.ExcepLogExample;
-import lz.model.OperLog;
-import lz.model.SystemParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
@@ -27,7 +23,7 @@ import com.github.pagehelper.PageInfo;
  * @author lizhen_pc
  *123
  */
-@Transactional
+@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
 @Service("excepLogService")
 public class ExcepLogServiceImpl implements ExcepLogService {
 
@@ -35,11 +31,13 @@ public class ExcepLogServiceImpl implements ExcepLogService {
 	private ExcepLogMapper excepLogMapper;
 	
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int insertExcepLog(ExcepLog excepLog) {
 		return excepLogMapper.insert(excepLog);
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int batchDelExcepLog(String batchDelId) {
 		List<String> batchDelIds = new ArrayList<String>();
 		for(String id:batchDelId.split(",")){

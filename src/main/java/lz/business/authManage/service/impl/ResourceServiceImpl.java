@@ -5,35 +5,28 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import lz.business.authManage.service.ResourceService;
+import lz.dao.ResourceMapper;
+import lz.model.Resource;
+import lz.model.ResourceExample;
+import lz.utils.IdGenerateUtils;
+
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
-import lz.business.authManage.service.ResourceService;
-import lz.dao.ResourceMapper;
-import lz.dao.UserMapper;
-import lz.model.Resource;
-import lz.model.ResourceExample;
-import lz.model.SystemParam;
-import lz.utils.IdGenerateUtils;
-@Transactional
+@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
 @Service("resourceService")
 public class ResourceServiceImpl implements ResourceService {
-
+	@Autowired
 	private ResourceMapper resourceMapper;
 	
-	public ResourceMapper getResourceMapper() {
-		return resourceMapper;
-	}
-	@Autowired
-	public void setResourceMapper(ResourceMapper resourceMapper) {
-		this.resourceMapper = resourceMapper;
-	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int insertResource(Resource resource) {
 		resource.setId(IdGenerateUtils.getId());
 		resource.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
@@ -41,17 +34,20 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int updateResource(Resource resource) {
 		resource.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		return resourceMapper.updateByPrimaryKeySelective(resource);
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int delResource(Resource resource) {
 		return resourceMapper.deleteByPrimaryKey(resource.getId());
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int batchDelResource(String batchDelId) {
 		List<String> batchDelIds = new ArrayList<String>();
 		for(String id:batchDelId.split(",")){
@@ -84,5 +80,4 @@ public class ResourceServiceImpl implements ResourceService {
 	public List<Resource> getResourceMenuByUserId(Map<String, Object> map) {
 		return resourceMapper.getResourceMenuByUserId(map);
 	}
-
 }

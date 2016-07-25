@@ -49,25 +49,6 @@ public class SessionFilter implements Filter {
 		String servletPath = hreq.getServletPath();
 		User user = (User)hreq.getSession().getAttribute("loginUser");
 		if(user!=null){
-			/*//验证是否是我配置的一些不需要拦截的请求
-			List<SystemParam> params = paramService.getParamByParamKey("noFilterUrl");
-			if(params!=null&&params.size()>0){
-				SystemParam param = params.get(0);
-				boolean flag = false;
-				for(String url:param.getParamValue().split(";")){
-					if(servletPath.indexOf(url)>-1){
-						flag = true;
-						break;
-					}
-				}
-				if(flag){
-					hres.sendRedirect(hreq.getContextPath()+"/loginController/loginSuccess");
-				}else{
-					chain.doFilter(request, response);
-				}
-			}else{
-				chain.doFilter(request, response);
-			}*/
 			chain.doFilter(request, response);
 		}else{
 			//如果没登录，验证请求是否是资源文件

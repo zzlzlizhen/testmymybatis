@@ -12,11 +12,12 @@ import lz.utils.IdGenerateUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-@Transactional
+@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
 @Service("paramService")
 public class ParamServiceImpl implements ParamService {
 
@@ -32,12 +33,14 @@ public class ParamServiceImpl implements ParamService {
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int insertParam(SystemParam systemParam) {
 		systemParam.setId(IdGenerateUtils.getId());
 		return systemParamMapper.insertSelective(systemParam);
 	}
 	
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int updateParam(SystemParam systemParam) {
 		return systemParamMapper.updateByPrimaryKeySelective(systemParam);
 	}
@@ -69,11 +72,13 @@ public class ParamServiceImpl implements ParamService {
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int delSystemParam(String id) {
 		return systemParamMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int batchDelSystemParam(String batchDelId) {
 		List<String> batchDelIds = new ArrayList<String>();
 		for(String id:batchDelId.split(",")){
@@ -81,6 +86,4 @@ public class ParamServiceImpl implements ParamService {
 		}
 		return systemParamMapper.batchDelSystemParam(batchDelIds);
 	}
-
-	
 }

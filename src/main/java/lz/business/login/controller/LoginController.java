@@ -19,6 +19,7 @@ import lz.utils.MathUtils;
 
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.commons.lang.time.DateUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +28,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/loginController")
 public class LoginController {
-	@javax.annotation.Resource
+	@Autowired
 	UserService userService;
-	@javax.annotation.Resource
+	@Autowired
 	private ResourceService resourceService;
-	@javax.annotation.Resource
+	@Autowired
 	private SecurityService securityService;
 	/**
 	 * 
@@ -334,7 +335,7 @@ public class LoginController {
 						if(userService.getUserByNameAndPwd(user)!=null){
 							map.put("result","pwdIsExsit");
 						}else{
-							userService.updatePswByName(user);
+							userService.updatePswByName(user,null);
 							map.put("result","success");
 						}
 					}else{

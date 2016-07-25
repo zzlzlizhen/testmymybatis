@@ -11,7 +11,7 @@ public class TestMy {
 	public static final BigDecimal REVENUE_REMOVE = new BigDecimal(1005);
 	
 	public static void main(String [] args) {
-		BigDecimal mySalary = getMySalary(new BigDecimal(16000),new BigDecimal(0),new BigDecimal(20),new BigDecimal(2),new BigDecimal(400));
+		BigDecimal mySalary = getMySalary(new BigDecimal(16000),new BigDecimal(8),new BigDecimal(0),new BigDecimal(16),new BigDecimal(0));
 		System.out.println(mySalary.doubleValue());
 	}
 	/*

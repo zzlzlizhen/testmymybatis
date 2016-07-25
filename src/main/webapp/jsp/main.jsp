@@ -13,10 +13,43 @@
 .dropdown-menu li {list-style-type:none;}
 </style>
 <script type="text/javascript">
+	var ws = null;  
+	var url = null;  
+	var urlPath = "/testmybatis/websocket;jsessionid=<%=request.getSession(true).getId()%>";
 	$(function() {
 		iFrameWidth();
 		initMenu();
+		$(".close").click(function(){
+			$("#myHomeModal").hide();
+		});
+		initWebSocket();
 	});
+	function initWebSocket(){
+		if (window.location.protocol == 'http:') {  
+            url = 'ws://' + window.location.host + urlPath;  
+        } else {  
+            url = 'wss://' + window.location.host + urlPath;  
+        }  
+		ws = new WebSocket(url); 
+        ws.onopen = function () {  
+        };  
+        ws.onmessage = function (event) {  
+        	var url = "";
+        	$("#myHomeModal").show();
+           	var jsonData = JSON.parse(event.data);
+            $("#messageHead").html(jsonData.messageHead);
+            //通知类消息，跳转到消息管理。
+            if(jsonData.messageType==1){
+            	url = "${appctx}/messageController/viewPage/"+jsonData.id;
+            }else{
+            	//提醒类消息，跳转到个人消息
+            	url = "${appctx}/messageController/personViewPage/"+jsonData.id;
+            }
+            $("#messageBody").html('<a href="javascript:void(0)" onclick="linkedHerf(\''+url+'\')">'+jsonData.messageContent+'</a>');
+        };  
+        ws.onclose = function (event) {  
+        };  
+	}
 	function iFrameHeight() {
 		var ifm = document.getElementById("iframepage");
 		var subWeb = document.frames ? document.frames["iframepage"].document
@@ -106,6 +139,10 @@
 	        $ul.slideToggle();
 	    });
 	}
+	function linkedHerf(url){
+		main_target.location.href=url
+		$("#myHomeModal").hide();
+	}
 </script>
 </head>
 <body>
@@ -193,21 +230,15 @@
 					marginwidth="0" onLoad="iFrameHeight()"></iframe>
 			</div>
 			<hr>
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
+			<div id="myHomeModal" style="display: none;">
+				<div class="modal-dialog" style="width:350px;height:175px;position: absolute;right:3px;bottom:3px;">
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">Ã</button>
-							<h3>Settings</h3>
+							<button type="button" class="close">&times;</button>
+							<font color="red" id="messageHead">消息提醒</font>
 						</div>
-						<div class="modal-body">
-							<p>Here settings can be configured...</p>
-						</div>
-						<div class="modal-footer">
-							<a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-							<a href="#" class="btn btn-primary" data-dismiss="modal">Save
-								changes</a>
+						<div class="modal-body" id="messageBody" style="height:150px;">
+							<!-- <a href="javascript:void(0)" onclick="linkedHerf()">请重新设置密码</a> -->
 						</div>
 					</div>
 				</div>

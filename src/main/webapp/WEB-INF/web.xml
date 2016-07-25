@@ -20,7 +20,9 @@
   	<description>用来在普通的方法中获取上下文，通过注解</description>
     <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
   </listener>
-  
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
   <filter>
     <description>字符集过滤器</description>
     <filter-name>encodingFilter</filter-name>
@@ -47,9 +49,23 @@
     <filter-name>sessionFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <listener>
-    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-  </listener>
+  
+  <servlet>  
+    <servlet-name>DruidStatView</servlet-name>  
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>  
+  </servlet>  
+  <servlet-mapping>  
+    <servlet-name>DruidStatView</servlet-name>  
+    <url-pattern>/druid/*</url-pattern>  
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CXFService</servlet-name>
+    <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CXFService</servlet-name>
+    <url-pattern>/ws/*</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description>spring mvc servlet</description>
     <servlet-name>springMvc</servlet-name>
@@ -65,14 +81,7 @@
     <servlet-name>springMvc</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>CXFService</servlet-name>
-    <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CXFService</servlet-name>
-    <url-pattern>/ws/*</url-pattern>
-  </servlet-mapping>
+  
   <error-page>
     <error-code>404</error-code>
     <location>/404.jsp</location>

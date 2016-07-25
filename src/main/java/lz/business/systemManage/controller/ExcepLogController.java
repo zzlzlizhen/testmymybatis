@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,8 +12,8 @@ import lz.annotation.LogAspectAnnotation;
 import lz.business.systemManage.service.ExcepLogService;
 import lz.exception.ControllerException;
 import lz.model.ExcepLog;
-import lz.model.SystemParam;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +26,7 @@ import com.github.pagehelper.PageInfo;
 @Controller
 @RequestMapping("/excepLogController")
 public class ExcepLogController {
-	@Resource
+	@Autowired
 	private ExcepLogService excepLogService;
 	@RequestMapping("/excepLogIndex")
 	public String excepLogIndex(HttpServletRequest request){

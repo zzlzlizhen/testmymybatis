@@ -16,4 +16,17 @@ public class ConstantInfo {
 	//验证码的类型
 	public static final String SECURITY_CODE_PHONE="securityCodePhone";
 	public static final String SECURITY_CODE_EMAIL="securityCodeEmail";
+	//登录的用户,放入HttpSession里
+	public static final String LOGIN_USER = "loginUser";
+	//消息类型 messageType 1,表示系统通知消息，2表示用户提醒消息
+	public static final String SYSTEM_MESSAGE = "1";
+	public static final String USER_MESSAGE="2";
+	//消息状态messageStatus 1,表示已保存，2，表示已发布，3，表示已销毁
+	public static final String MESSAGE_SAVE="1";
+	public static final String MESSAGE_PUBLISH="2";
+	public static final String MESSAGE_DESTORY="3";
+	//消息是否已读
+	public static final String MESSAGE_NOT_READ = "0";
+	public static final String MESSAGE_READ = "1";
+	
 }

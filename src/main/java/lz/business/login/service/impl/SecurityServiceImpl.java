@@ -7,25 +7,23 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.time.DateFormatUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.github.pagehelper.PageInfo;
-
 import lz.business.login.service.SecurityService;
 import lz.dao.SecurityMapper;
 import lz.model.Security;
 import lz.model.SecurityExample;
-import lz.model.User;
 import lz.utils.IdGenerateUtils;
+
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author lizhen_pc
  *123
  */
-@Transactional
+@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
 @Service("securityService")
 public class SecurityServiceImpl implements SecurityService {
 	@Autowired
@@ -61,6 +59,7 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int insertSecurity(Security security) {
 		security.setId(IdGenerateUtils.getId());
 		security.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
@@ -68,6 +67,7 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int updateSecurity(Security security) {
 		security.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		return securityMapper.updateByPrimaryKeySelective(security);

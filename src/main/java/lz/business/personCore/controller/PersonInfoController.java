@@ -3,6 +3,7 @@
  */
 package lz.business.personCore.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,13 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 
 import lz.annotation.LogAspectAnnotation;
 import lz.business.authManage.service.UserService;
+import lz.constant.ConstantInfo;
 import lz.exception.ControllerException;
+import lz.model.Message;
 import lz.model.User;
+import lz.utils.IdGenerateUtils;
+import lz.webSocket.WebSocketEndPoint;
 
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.socket.TextMessage;
 
 /**
  * @author lizhen_pc
@@ -28,8 +36,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/personInfoController")
 public class PersonInfoController {
 
-	@Resource
+	@Autowired
 	private UserService userService;
+	@Autowired
+	private WebSocketEndPoint websocket;
 	@RequestMapping("/setPasswordPage")
 	public String setPasswordPage(HttpServletRequest request){
 		return "/personCore/personInfo/setPassword";
@@ -61,11 +71,21 @@ public class PersonInfoController {
 			}else if(loginUser.getPwd().equals(user.getPwd())){
 				map.put("result","pswIsExist");
 			}else{
+				Message message = new Message();
+				message.setId(IdGenerateUtils.getId());
+				message.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
+				message.setPublishTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
+				message.setCreatedUser(user.getName());
+				message.setMessageType(ConstantInfo.USER_MESSAGE);
+				message.setMessageStatus(ConstantInfo.MESSAGE_PUBLISH);
+				message.setMessageHead("修改密码成功");
+				message.setMessageContent("恭喜您的密码在"+DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss")+"时间修改成功");
 				user.setName(loginUser.getName());
-				userService.updatePswByName(user);
+				userService.updatePswByName(user,message);
 				map.put("result","success");
 				loginUser.setPwd(user.getPwd());
 				request.getSession().setAttribute("loginUser",loginUser);
+				websocket.sendMessageToUser(user,message);
 			}
 		} catch (Exception e) {
 			map.put("result","error");

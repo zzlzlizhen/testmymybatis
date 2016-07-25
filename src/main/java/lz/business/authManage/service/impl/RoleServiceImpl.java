@@ -17,43 +17,34 @@ import lz.utils.IdGenerateUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-@Transactional
+@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
 @Service("roleService")
 public class RoleServiceImpl implements RoleService {
-
+	@Autowired
 	private RoleMapper roleMapper;
+	@Autowired
 	private RoleResourceMapper roleResourceMapper;
-	public RoleMapper getRoleMapper() {
-		return roleMapper;
-	}
-	@Autowired
-	public void setRoleMapper(RoleMapper roleMapper) {
-		this.roleMapper = roleMapper;
-	}
 	
-	public RoleResourceMapper getRoleResourceMapper() {
-		return roleResourceMapper;
-	}
-	@Autowired
-	public void setRoleResourceMapper(RoleResourceMapper roleResourceMapper) {
-		this.roleResourceMapper = roleResourceMapper;
-	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int insertRole(Role role) {
 		role.setId(IdGenerateUtils.getId());
 		role.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		return roleMapper.insertSelective(role);
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int updateRole(Role role) {
 		role.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		return roleMapper.updateByPrimaryKeySelective(role);
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int delRole(Role role) {
 		RoleResourceExample rre = new RoleResourceExample();
 		rre.createCriteria().andRoleIdEqualTo(role.getId());
@@ -61,6 +52,7 @@ public class RoleServiceImpl implements RoleService {
 		return roleMapper.deleteByPrimaryKey(role.getId());
 	}
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int batchDelRole(String batchDelId) {
 		List<String> batchDelIds = new ArrayList<String>();
 		for(String id:batchDelId.split(",")){
@@ -96,6 +88,7 @@ public class RoleServiceImpl implements RoleService {
 	 * 角色授权
 	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public int insertRoleResource(Role role) {
 		String resources = role.getRemark();
 		RoleResourceExample rre = new RoleResourceExample();
