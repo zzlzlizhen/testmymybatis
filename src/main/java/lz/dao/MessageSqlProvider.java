@@ -335,7 +335,7 @@ public class MessageSqlProvider {
     	return sb.toString();
     }
     public String selectPersonMessageByPage(Map<String,Object> map){
-    	StringBuffer sb = new StringBuffer("SELECT t.id,t.message_head,t.message_content,t.message_type,t.publish_time,u.message_type message_status FROM t_message t LEFT JOIN t_message_user u ON (t.id=u.message_id AND u.user_id=#{userId}) WHERE (t.receiver IS NULL OR t.receiver=#{userName})");
+    	StringBuffer sb = new StringBuffer("SELECT t.id,t.message_head,t.message_content,t.message_type,t.publish_time,u.message_type message_status FROM t_message t LEFT JOIN t_message_user u ON (t.id=u.message_id AND u.user_id=#{userId}) WHERE (t.receiver IS NULL OR t.receiver=#{userName}) and message_status='2' ");
     	if(map.get("messageHead")!=null){
     		sb.append(" and t.message_head like #{messageHead} ");
     	}

@@ -78,6 +78,7 @@ public class PersonInfoController {
 				message.setCreatedUser(user.getName());
 				message.setMessageType(ConstantInfo.USER_MESSAGE);
 				message.setMessageStatus(ConstantInfo.MESSAGE_PUBLISH);
+				message.setReceiver(loginUser.getName());
 				message.setMessageHead("修改密码成功");
 				message.setMessageContent("恭喜您的密码在"+DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss")+"时间修改成功");
 				user.setName(loginUser.getName());
@@ -85,7 +86,7 @@ public class PersonInfoController {
 				map.put("result","success");
 				loginUser.setPwd(user.getPwd());
 				request.getSession().setAttribute("loginUser",loginUser);
-				websocket.sendMessageToUser(user,message);
+				websocket.sendMessageToUser(loginUser,message);
 			}
 		} catch (Exception e) {
 			map.put("result","error");
