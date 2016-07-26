@@ -71,8 +71,8 @@
 										"sWidth": "8%",
 										"mRender" : function(data, type, full) {
 											var msg;
-											if(full[3]==1) msg="通知";
-											else if(full[3]==2) msg="提醒";
+											if(full[3]==1) msg='<span class="label-danger label label-default">通知</span>';
+											else if(full[3]==2) msg='<span class="label-info label label-default">提醒</span>';
 											return msg;
 										}
 									},
@@ -82,10 +82,7 @@
 										"bSortable": false,
 										"sWidth": "8%",
 										"mRender" : function(data, type, full) {
-											var msg;
-											if(full[4]==1) msg="已读";
-											else msg="未读";
-											return msg;
+											return full[4]==1?'<span class="label-success label label-default">已读</span>':'<span class="label-danger label-default label">未读</span>'
 										}
 									},
 									{
@@ -126,8 +123,8 @@
 	<div class="ch-container">
 		<div>
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Tables</a></li>
+				<li><a href="#">个人中心</a></li>
+				<li><a href="#">个人消息</a></li>
 			</ul>
 		</div>
 

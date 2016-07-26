@@ -78,8 +78,8 @@
 										"sWidth": "6%",
 										"mRender" : function(data, type, full) {
 											var msg;
-											if(full[3]==1) msg="通知";
-											else if(full[3]==2) msg="提醒";
+											if(full[3]==1) msg='<span class="label-danger label label-default">通知</span>';
+											else if(full[3]==2) msg='<span class="label-info label label-default">提醒</span>';
 											return msg;
 										}
 									},
@@ -90,9 +90,9 @@
 										"sWidth": "8%",
 										"mRender" : function(data, type, full) {
 											var msg;
-											if(full[4]==1) msg="已保存";
-											else if(full[4]==2) msg="已发布";
-											else if(full[4]==3) msg="已销毁"
+											if(full[4]==1) msg='<span class="label-info label label-default">已保存</span>';
+											else if(full[4]==2) msg='<span class="label-success label label-default">已发布</span>';
+											else if(full[4]==3) msg='<span class="label-danger label label-default">已销毁</span>';
 											return msg;
 										}
 									},
@@ -139,13 +139,13 @@
 		return '<a class="btn btn-info" style="margin-left:10px;" href="#" onclick="editFun(\''+ id+ '\')"><i class="glyphicon glyphicon-edit icon-white"></i>修改</a>'
 	}
 	function publishLinked(id){
-		return '<a class="btn btn-danger" style="margin-left:10px;" href="#" onclick="publishFun(\''+ id+ '\')"><i class="glyphicon glyphicon-edit icon-white"></i>发布</a>'
+		return '<a class="btn btn-danger" style="margin-left:10px;" href="#" onclick="publishFun(\''+ id+ '\')"><i class="glyphicon glyphicon-arrow-up"></i>发布</a>'
 	}
 	function deleteLinked(id){
 		return '<a class="btn btn-danger" style="margin-left:10px;" href="#" onclick="delFun(\''+ id+ '\')"><i class="glyphicon glyphicon-trash icon-white"></i>删除</a>';
 	}
 	function destoryLinked(id){
-		return '<a class="btn btn-danger" style="margin-left:10px;" href="#" onclick="destoryFun(\''+ id+ '\')"><i class="glyphicon glyphicon-trash icon-white"></i>销毁</a>';
+		return '<a class="btn btn-danger" style="margin-left:10px;" href="#" onclick="destoryFun(\''+ id+ '\')"><i class="glyphicon glyphicon-arrow-down"></i>销毁</a>';
 	}
 	function selectAll(obj){
 		if(obj.checked){
@@ -319,8 +319,8 @@
 	<div class="ch-container">
 		<div>
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Tables</a></li>
+				<li><a href="#">系统管理</a></li>
+				<li><a href="#">消息管理</a></li>
 			</ul>
 		</div>
 

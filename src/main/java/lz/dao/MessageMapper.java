@@ -139,6 +139,19 @@ public interface MessageMapper {
         @Result(column="publish_time", property="publishTime", jdbcType=JdbcType.CHAR),
     })
     List<Message> selectPersonMessageByPage(Map<String,Object> map);
+    /*
+     * 个人消息，分页查询
+     */
+    @SelectProvider(type=MessageSqlProvider.class, method="selectLatestMessage")
+    @Results({
+    	@Result(column="id", property="id", jdbcType=JdbcType.CHAR, id=true),
+        @Result(column="message_type", property="messageType", jdbcType=JdbcType.CHAR),
+        @Result(column="message_head", property="messageHead", jdbcType=JdbcType.CHAR),
+        @Result(column="message_content", property="messageContent", jdbcType=JdbcType.VARCHAR),
+        @Result(column="message_status", property="messageStatus", jdbcType=JdbcType.CHAR),
+        @Result(column="publish_time", property="publishTime", jdbcType=JdbcType.CHAR),
+    })
+    Message selectLatestMessage(Map<String,Object> map);
     /**
      * 批量删除
      * @param id

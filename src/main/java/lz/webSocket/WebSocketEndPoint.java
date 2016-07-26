@@ -6,9 +6,12 @@ package lz.webSocket;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 
 import lz.constant.ConstantInfo;
+import lz.dao.MessageMapper;
 import lz.dao.MessageUserMapper;
 import lz.model.Message;
 import lz.model.MessageUser;
@@ -30,7 +33,8 @@ import com.alibaba.fastjson.JSON;
 public class WebSocketEndPoint extends TextWebSocketHandler{
 	@Autowired
 	private MessageUserMapper messageUserMapper;
-	private Timer timer;
+	@Autowired
+	private MessageMapper messageMapper;
 	private static final ArrayList<WebSocketSession> users;
     static {
         users = new ArrayList<WebSocketSession>();
@@ -42,7 +46,6 @@ public class WebSocketEndPoint extends TextWebSocketHandler{
     protected void handleTextMessage(WebSocketSession session,  
             TextMessage message) throws Exception {  
 		if(!session.isOpen()){
-            timer.cancel();
             return;
         }
         super.handleTextMessage(session, message);  
@@ -50,34 +53,22 @@ public class WebSocketEndPoint extends TextWebSocketHandler{
         session.sendMessage(returnMessage);  
     }  
 	/**
-	 * socket握手完成之后执行
+	 * socket握手完成之后执行,如果收到的最后一条信息是未读，则推送提醒
 	 */
 	@Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		Map<String,Object> map = new HashMap<String,Object>();
 		users.add(session);
-		//TextMessage textMessage = new TextMessage(new Date().getTime()+"");
-        //handleMessage(session,textMessage);
-        /*timer = new Timer(true);
-        long delay = 0;
-        OrderTimeTask orderTimeTask = new OrderTimeTask(session);
-        timer.schedule(orderTimeTask,delay, 3000);// 设定指定的时间time,此处为1分钟
-*/    }
-	/*class OrderTimeTask extends TimerTask{
-        private WebSocketSession session;
-        public OrderTimeTask(WebSocketSession session){
-            this.session = session;
-        }
-        @Override
-        public void run() {
-            try {
-            	User user = (User)session.getHandshakeAttributes().get("currentUser");
-                TextMessage textMessage = new TextMessage(new Date().getTime()+""+user.getName());
-                handleMessage(session,textMessage);
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-    }*/
+		User user = (User)session.getHandshakeAttributes().get(ConstantInfo.LOGIN_USER);
+		if(session.isOpen()){
+			map.put("userId",user.getId());
+			map.put("userName",user.getName());
+			Message message = messageMapper.selectLatestMessage(map);
+			if(!ConstantInfo.MESSAGE_READ.equals(message.getMessageStatus())){
+				session.sendMessage(new TextMessage(JSON.toJSONString(message)));
+			}
+		}
+	}
 	/**
      * 给所有在线用户发送消息,并记录未读
      *
@@ -140,6 +131,5 @@ public class WebSocketEndPoint extends TextWebSocketHandler{
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     	users.remove(session);
-    	System.out.println("Connection Closed！");
     }
 }

@@ -320,6 +320,14 @@ public class MessageSqlProvider {
         }
     }
   //************************自定义sql**********************
+    /**
+     * 消息管理列表分页
+     * 描述：
+     * 作者：李震
+     * 时间：2016年7月26日 下午2:54:33
+     * @param map
+     * @return
+     */
     public String selectMessageByPage(Map<String,Object> map){
     	StringBuffer sb = new StringBuffer("select id, message_type, message_head, message_content, message_status, created_user, create_time, receiver,publish_time,destory_time from t_message where 1=1 ");
     	if(map.get("messageHead")!=null){
@@ -334,6 +342,14 @@ public class MessageSqlProvider {
     	sb.append(" order by id desc ");
     	return sb.toString();
     }
+    /**
+     * 个人消息列表分页
+     * 描述：
+     * 作者：李震
+     * 时间：2016年7月26日 下午2:54:45
+     * @param map
+     * @return
+     */
     public String selectPersonMessageByPage(Map<String,Object> map){
     	StringBuffer sb = new StringBuffer("SELECT t.id,t.message_head,t.message_content,t.message_type,t.publish_time,u.message_type message_status FROM t_message t LEFT JOIN t_message_user u ON (t.id=u.message_id AND u.user_id=#{userId}) WHERE (t.receiver IS NULL OR t.receiver=#{userName}) and message_status='2' ");
     	if(map.get("messageHead")!=null){
@@ -351,6 +367,18 @@ public class MessageSqlProvider {
     		}
     	}
     	sb.append(" order by id desc ");
+    	return sb.toString();
+    }
+    /**
+     * 获取最近发布的一条个人消息
+     * 描述：
+     * 作者：李震
+     * 时间：2016年7月26日 下午2:59:17
+     * @param map
+     * @return
+     */
+    public String selectLatestMessage(Map<String,Object> map){
+    	StringBuffer sb = new StringBuffer("SELECT t.id,t.message_head,t.message_content,t.message_type,t.publish_time,u.message_type message_status FROM t_message t LEFT JOIN t_message_user u ON (t.id=u.message_id AND u.user_id=#{userId}) WHERE (t.receiver IS NULL OR t.receiver=#{userName}) and message_status='2' order by t.publish_time desc limit 0,1");
     	return sb.toString();
     }
     public String batchDelMessage(Map<String,Object> map){

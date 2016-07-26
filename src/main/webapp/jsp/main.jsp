@@ -38,13 +38,7 @@
         	$("#myHomeModal").show();
            	var jsonData = JSON.parse(event.data);
             $("#messageHead").html(jsonData.messageHead);
-            //通知类消息，跳转到消息管理。
-            if(jsonData.messageType==1){
-            	url = "${appctx}/messageController/viewPage/"+jsonData.id;
-            }else{
-            	//提醒类消息，跳转到个人消息
-            	url = "${appctx}/messageController/personViewPage/"+jsonData.id;
-            }
+            url = "${appctx}/messageController/personViewPage/"+jsonData.id;
             $("#messageBody").html('<a href="javascript:void(0)" onclick="linkedHerf(\''+url+'\')">'+jsonData.messageContent+'</a>');
         };  
         ws.onclose = function (event) {  

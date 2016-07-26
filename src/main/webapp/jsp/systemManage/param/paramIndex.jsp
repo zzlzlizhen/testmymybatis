@@ -248,8 +248,8 @@
 	<div class="ch-container">
 		<div>
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Tables</a></li>
+				<li><a href="#">系统管理</a></li>
+				<li><a href="#">系统参数</a></li>
 			</ul>
 		</div>
 
