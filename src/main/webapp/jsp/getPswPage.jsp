@@ -185,7 +185,7 @@
     		        	  $("#alertId").show();
     		        	  countdown = 5;
    			        	  settime1();
-    		          }else if(data.result=="pswIsExist"){
+    		          }else if(data.result=="pwdIsExsit"){
     		        	  $("#alertId").show();
     		        	  $("#alertContent").html("新设置的密码不能与原密码一致，请修改!");
     		          }else if(data.result=="securityTimeOut"){

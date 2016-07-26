@@ -249,6 +249,7 @@ public class LoginController {
 						security.setSecurityCode(securityCode);
 						securityService.updateSecurity(security);
 						request.getSession().setAttribute("getPwdSecurityCode",securityCode);
+						request.getSession().setAttribute("getPwdName",args.get("name"));
 						map.put("result","success");
 						map.put("securityCode", securityCode);
 						map.put("resetPswUserName",args.get("name"));
@@ -320,7 +321,7 @@ public class LoginController {
 	public Map<String,Object> getPwdValidateResetPsw(@RequestBody User user,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
 		Map<String,Object> queryMap = new HashMap<String,Object>();
-		String getPswName = (String)request.getSession().getAttribute("getPswName");
+		String getPswName = (String)request.getSession().getAttribute("getPwdName");
 		try {
 			String security = (String)request.getSession().getAttribute("getPwdSecurityCode");
 			String securityCode = user.getSecurityCode();
