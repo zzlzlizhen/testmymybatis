@@ -1,4 +1,4 @@
 1£ºtoday is good day ready?
 2£ºtoday is bad day yes
-3£ºtoday i am happy
+3£ºtoday i am happy no
 4£ºtoday you are happy
