@@ -9,7 +9,11 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 ">
 
 	<!-- JNDI方式配置数据源 -->
-	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> <property name="jndiName" value="${jndiName}"></property> </bean> -->
+	<!-- 
+		<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+			<property name="jndiName" value="${jndiName}"></property> 
+		</bean>
+	-->
 
 	<!-- 配置数据源 -->
 	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
