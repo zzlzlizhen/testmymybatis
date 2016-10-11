@@ -1,10 +1,15 @@
 package lz.test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
+import lz.model.User;
+import lz.utils.SerializeUtil;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -21,11 +26,31 @@ public class RedisClient {
     public RedisClient() 
     { 
         initialPool(); 
-        initialShardedPool(); 
-        shardedJedis = shardedJedisPool.getResource(); 
+        //initialShardedPool(); 
+        //shardedJedis = shardedJedisPool.getResource(); 
         jedis = jedisPool.getResource(); 
     } 
  
+    public static void main(String args[]){
+    	Map<String,Object> map = new HashMap<String,Object>();
+    	RedisClient rc = new RedisClient();
+    	/*User user = new User();
+    	user.setId("1");
+    	user.setName("张三");
+    	user.setPhone("1232343445");
+    	map.put(user.getId(),user);
+    	rc.setString(map);*/
+    	User user = (User)rc.getString("1");
+    	System.out.println(user.getName());
+    }
+    public void setString(Map<String,Object> map){
+    	for(Map.Entry<String,Object> entry : map.entrySet()){
+    		jedis.set(entry.getKey().getBytes(),SerializeUtil.serialize(entry.getValue()));
+    	}
+    }
+    public Object getString(String key){
+    	return SerializeUtil.unserialize(jedis.get(key.getBytes()));
+    }
     /**
      */
     private void initialPool() 
@@ -35,7 +60,8 @@ public class RedisClient {
         config.setMaxIdle(5); 
         config.setMaxWaitMillis(1000l);
         config.setTestOnBorrow(false); 
-        jedisPool = new JedisPool(config,"192.168.132.200",6379,1000,"");
+        //jedisPool = new JedisPool(config,"192.168.132.129",6379,1000,"");
+        jedisPool = new JedisPool(config, "192.168.132.129",6379); 
     }
     
     /** 
