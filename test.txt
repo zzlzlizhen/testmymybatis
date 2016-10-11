@@ -1,4 +1,4 @@
-1£ºtoday is good day
-2£ºtoday is bad day
+1£ºtoday is good day hello
+2£ºtoday is bad day word
 3£ºtoday i am happy
 4£ºtoday you are happy
