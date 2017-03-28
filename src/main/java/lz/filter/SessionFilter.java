@@ -58,7 +58,10 @@ public class SessionFilter implements Filter {
 					servletPath.startsWith("/fonts/")||
 					servletPath.startsWith("/img/")||
 					servletPath.startsWith("/misc/")||
-					servletPath.startsWith("/asset/")
+					servletPath.startsWith("/asset/")||
+					servletPath.startsWith("/indexController/")||
+					servletPath.startsWith("/otherController/")||
+					servletPath.startsWith("/test.html")
 					){
 				chain.doFilter(request, response);
 			}else{
