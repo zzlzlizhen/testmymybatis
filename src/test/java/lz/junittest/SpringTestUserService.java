@@ -3,6 +3,8 @@ package lz.junittest;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.annotation.Resource;
+
 import lz.business.authManage.service.UserService;
 import lz.business.systemManage.service.ParamService;
 import lz.model.SystemParam;
@@ -14,20 +16,28 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)  
+@ContextConfiguration(locations={"classpath:spring.xml","classpath:spring-Mybatis.xml"})  
 public class SpringTestUserService {
 	private static final Logger log = Logger.getLogger(SpringTestUserService.class);
-	private ApplicationContext ac;
+	//private ApplicationContext ac;
+	@Resource
 	private ParamService paramService;
+	@Resource
 	private UserService us;
-	@Before
+	/*@Before
 	public void before(){
-		ac = new ClassPathXmlApplicationContext(new String[]{"spring*.xml"});
-		paramService = (ParamService)ac.getBean("paramService");
+		ac = new ClassPathXmlApplicationContext(new String[]{"/spring*.xml"});
+		//paramService = (ParamService)ac.getBean("paramService");
 		us = (UserService)ac.getBean("userService");
-	}
+	}*/
 	@Test
 	public void TestInsertUser(){
 		for(int i=0;i<10;i++){

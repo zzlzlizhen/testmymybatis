@@ -28,6 +28,7 @@ http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd"
 	<mvc:resources location="/img/" mapping="/img/**"/>
 	<mvc:resources location="/misc/" mapping="/misc/**"/>
 	<mvc:resources location="/asset/" mapping="/asset/**"/>
+	<mvc:resources location="/" mapping="/*.html"/>
 
 	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
 	<context:component-scan base-package="lz.business.*.controller" />
