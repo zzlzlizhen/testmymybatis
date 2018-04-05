@@ -86,4 +86,5 @@ public class ParamServiceImpl implements ParamService {
 		}
 		return systemParamMapper.batchDelSystemParam(batchDelIds);
 	}
+
 }
