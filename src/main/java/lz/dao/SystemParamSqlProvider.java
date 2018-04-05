@@ -239,9 +239,12 @@ public class SystemParamSqlProvider {
     
     //************************自定义sql**********************
     public String selectParamByPage(Map<String,Object> map){
-    	StringBuffer sb = new StringBuffer("select id,param_key,param_value,create_time from t_param");
+    	StringBuffer sb = new StringBuffer("select id,param_key,param_value,create_time from t_param where 1=1 ");
     	if(map.get("searchId")!=null){
-    		sb.append(" where param_key like #{searchId} or param_value like #{searchId} ");
+    		sb.append(" and param_key like #{searchId} or param_value like #{searchId} ");
+    	}
+    	if(map.get("pre_key")!=null){
+    		sb.append(" and param_key like #{pre_key}");
     	}
     	sb.append(" order by id desc ");
     	return sb.toString();

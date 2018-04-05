@@ -29,4 +29,7 @@ public class ConstantInfo {
 	public static final String MESSAGE_NOT_READ = "0";
 	public static final String MESSAGE_READ = "1";
 	
+	//衣服属性前缀  对应param表的key
+	public static final String YZNZ_CLOTHESPROPERTIES = "YZNZ_CLOTHESPROPERTIES";
+	
 }
