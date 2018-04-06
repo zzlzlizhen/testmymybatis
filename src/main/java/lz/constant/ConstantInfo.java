@@ -29,4 +29,6 @@ public class ConstantInfo {
 	public static final String MESSAGE_NOT_READ = "0";
 	public static final String MESSAGE_READ = "1";
 	
+	public static final String YZNZ_CLOUTHES="YZNZ_CLOUTHES";
+	
 }

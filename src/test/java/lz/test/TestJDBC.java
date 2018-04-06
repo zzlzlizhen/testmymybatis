@@ -12,11 +12,11 @@ public class TestJDBC {
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql;
-        String url = "jdbc:mysql://localhost:3306/lz?"
+        String url = "jdbc:mysql://192.168.121.131:3306/lz?"
                 + "useUnicode=true&characterEncoding=UTF8";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(url,"root","123456");
+            conn = DriverManager.getConnection(url,"root","zsm123456");
             sql = "select name from t_user where id = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1,"38015227-b8fa-4c10-b7ea-79658fc407c7");
