@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - drag & drop</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
-	<SCRIPT type="text/javascript">
+<TITLE>ZTREE DEMO - drag & drop</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			edit: {
@@ -98,39 +99,46 @@
 </HEAD>
 
 <BODY>
-<h1>Normal Drag Node Operation</h1>
-<h6>[ File Path: exedit/drag.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>Normal Drag Node Operation</h1>
+	<h6>[ File Path: exedit/drag.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>1, Explanation of setting</h2>
+					<ul class="list">
+						<li>This Demo only shows how to drag & drop nodes using the
+							basic method and configure parameters.</li>
+						<li class="highlight_red">1) Must set 'setting.edit'
+							attributes, see the API documentation for more related contents.</li>
+						<li class="highlight_red">2) If you want to use drag & drop
+							callback, muse to set 'setting.callback.beforeDrag / onDrag /
+							beforeDrop / onDrop' attributes, see the API documentation for
+							more related contents.</li>
+						<li><p>
+								Basic settings:<br /> <input type="checkbox" id="copy"
+									class="checkbox first" checked /><span>can Copy</span> <input
+									type="checkbox" id="move" class="checkbox " checked /><span>can
+									Move</span><br />
+							<ul id="code1" class="log" style="height: 42px;"></ul>
+							</p></li>
+						<li><p>
+								Position settings:<br /> <input type="checkbox" id="prev"
+									class="checkbox first" checked /><span>prev</span> <input
+									type="checkbox" id="inner" class="checkbox " checked /><span>inner</span>
+								<input type="checkbox" id="next" class="checkbox " checked /><span>next</span><br />
+							<ul id="code2" class="log" style="height: 65px;"></ul>
+							</p></li>
+					</ul></li>
+				<li class="title"><h2>2, Explanation of treeNode</h2>
+					<ul class="list">
+						<li>No special requirements on the node data, the user can
+							add custom attributes.</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>1, Explanation of setting</h2>
-				<ul class="list">
-				<li>This Demo only shows how to drag & drop nodes using the basic method and configure parameters.</li>
-				<li class="highlight_red">1) Must set 'setting.edit' attributes, see the API documentation for more related contents.</li>
-				<li class="highlight_red">2) If you want to use drag & drop callback, muse to set 'setting.callback.beforeDrag / onDrag / beforeDrop / onDrop' attributes, see the API documentation for more related contents.</li>
-				<li><p>Basic settings:<br/>
-						<input type="checkbox" id="copy" class="checkbox first" checked /><span>can Copy</span>
-						<input type="checkbox" id="move" class="checkbox " checked /><span>can Move</span><br/>
-						<ul id="code1" class="log" style="height:42px;"></ul></p>
-				</li>
-				<li><p>Position settings:<br/>
-						<input type="checkbox" id="prev" class="checkbox first" checked /><span>prev</span>
-						<input type="checkbox" id="inner" class="checkbox " checked /><span>inner</span>
-						<input type="checkbox" id="next" class="checkbox " checked /><span>next</span><br/>
-						<ul id="code2" class="log" style="height:65px;"></ul></p>
-				</li>
-				</ul>
-			</li>
-			<li class="title"><h2>2, Explanation of treeNode</h2>
-				<ul class="list">
-				<li>No special requirements on the node data, the user can add custom attributes.</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

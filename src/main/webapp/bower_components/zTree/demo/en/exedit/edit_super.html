@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - beforeEditName / beforeRemove / onRemove / beforeRename / onRename</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
-	<SCRIPT type="text/javascript">
+<TITLE>ZTREE DEMO - beforeEditName / beforeRemove / onRemove /
+	beforeRename / onRename</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			view: {
@@ -137,47 +139,64 @@
 		});
 		//-->
 	</SCRIPT>
-	<style type="text/css">
-.ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
-	</style>
+<style type="text/css">
+.ztree li span.button.add {
+	margin-left: 2px;
+	margin-right: -1px;
+	background-position: -144px 0;
+	vertical-align: top;
+	*vertical-align: middle
+}
+</style>
 </HEAD>
 
 <BODY>
-<h1>Advanced Edit Nodes</h1>
-<h6>[ File Path: exedit/edit_super.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>Advanced Edit Nodes</h1>
+	<h6>[ File Path: exedit/edit_super.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>
+						1, 'beforeDrag / onDrag'<br />&nbsp;&nbsp;'beforeEditName'<br />&nbsp;&nbsp;'beforeRemove
+						/ onRemove'<br />&nbsp;&nbsp;'beforeRename / onRename' callback
+						function
+					</h2>
+					<ul class="list">
+						<li>This demo shows the use of custom controls, the callback
+							function to enhance the user experience, the operation can be
+							compared with "Basic Edit Nodes" example.</li>
+						<li>This demo achieve the Add nodes button.</li>
+						<li>This demo achieve the confirmation when deleting node.</li>
+						<li>This demo use the 'showRenameBtn' to hide the rename
+							button, when the treeNode's isLastNode = true</li>
+						<li>This demo use the 'showRemoveBtn' to hide the delete
+							button, when the treeNode's isFirstNode = true</li>
+						<li class="highlight_red">Can use 'beforeEditName' callback
+							trigger custom editing.</li>
+						<li><p>
+								<span class="highlight_red">After be familiar with these
+									configurations, I think you can design a more flexible and
+									rational rules!</span><br /> &nbsp;&nbsp;&nbsp;&nbsp;<input
+									type="checkbox" id="selectAll" checked /> Whether select all
+								text, when edit node's name.<br /> remove / rename
+								log:&nbsp;&nbsp;<span style="color: red">RED</span> is cancel
+								edit (v3.5.13+)<br />
+							<ul id="log" class="log"></ul>
+							</p></li>
+					</ul></li>
+				<li class="title"><h2>2, Explanation of setting</h2>
+					<ul class="list">
+						<li>Same as 'Basic Edit Nodes'</li>
+					</ul></li>
+				<li class="title"><h2>3, Explanation of treeNode</h2>
+					<ul class="list">
+						<li>Same as 'Basic Edit Nodes'</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>1, 'beforeDrag / onDrag'<br/>&nbsp;&nbsp;'beforeEditName'<br/>&nbsp;&nbsp;'beforeRemove / onRemove'<br/>&nbsp;&nbsp;'beforeRename / onRename' callback function</h2>
-				<ul class="list">
-				<li>This demo shows the use of custom controls, the callback function to enhance the user experience, the operation can be compared with "Basic Edit Nodes" example.</li>
-				<li>This demo achieve the Add nodes button.</li>
-				<li>This demo achieve the confirmation when deleting node.</li>
-				<li>This demo use the 'showRenameBtn' to hide the rename button, when the treeNode's isLastNode = true</li>
-				<li>This demo use the 'showRemoveBtn' to hide the delete button, when the treeNode's isFirstNode = true</li>
-				<li class="highlight_red">Can use 'beforeEditName' callback trigger custom editing.</li>
-				<li><p><span class="highlight_red">After be familiar with these configurations, I think you can design a more flexible and rational rules!</span><br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="selectAll" checked /> Whether select all text, when edit node's name.<br/>
-					remove / rename log:&nbsp;&nbsp;<span style="color:red">RED</span> is cancel edit (v3.5.13+)<br/>
-					<ul id="log" class="log"></ul></p>
-				</li>
-				</ul>
-			</li>
-			<li class="title"><h2>2, Explanation of setting</h2>
-				<ul class="list">
-				<li>Same as 'Basic Edit Nodes'</li>
-				</ul>
-			</li>
-			<li class="title"><h2>3, Explanation of treeNode</h2>
-				<ul class="list">
-				<li>Same as 'Basic Edit Nodes'</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

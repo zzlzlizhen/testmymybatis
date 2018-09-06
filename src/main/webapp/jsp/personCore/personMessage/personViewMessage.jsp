@@ -27,16 +27,14 @@
 			<div class="box col-md-12">
 				<div class="box-inner">
 					<div class="box-header well" data-original-title="">
-						<h2>
-							信息内容
-						</h2>
+						<h2>信息内容</h2>
 					</div>
 					<div class="box-content">
-						<div class="btn-toolbar" >
+						<div class="btn-toolbar">
 							<h1>${message.messageHead}</h1>
 						</div>
 						<div style="height: 15px;"></div>
-					
+
 						<div class="row-fluid">
 							<h3>${message.messageContent}</h3>
 						</div>

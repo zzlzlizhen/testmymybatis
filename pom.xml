@@ -7,23 +7,24 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<name>testmybatis Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	<properties>  
-        <spring.group>org.springframework</spring.group>  
-        <spring.version>4.0.1.RELEASE</spring.version>  
-    </properties> 
-	
+	<properties>
+		<spring.group>org.springframework</spring.group>
+		<spring.version>4.0.1.RELEASE</spring.version>
+	</properties>
+
 	<dependencies>
+	    <!-- jsp标准标签库 -->
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>jstl</artifactId>
-		    <version>1.2</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 		</dependency>
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>4.0.0-b01</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.0-b01</version>
 		</dependency>
-		
+
 		<!-- 单元测试包 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -102,9 +103,9 @@
 			<version>1.1.1</version>
 		</dependency>
 		<dependency>
-		    <groupId>com.github.pagehelper</groupId>
-		    <artifactId>pagehelper</artifactId>
-		    <version>4.0.3</version>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>4.0.3</version>
 		</dependency>
 		<!-- mysql的驱动包 -->
 		<dependency>
@@ -151,16 +152,16 @@
 			<version>1.8.5</version>
 		</dependency>
 		<!-- websocket -->
-		<dependency>  
-		   <groupId>${spring.group}</groupId>  
-		   <artifactId>spring-websocket</artifactId>  
-		   <version>${spring.version}</version>  
-		</dependency>  
-		<dependency>  
-		   <groupId>${spring.group}</groupId>  
-		   <artifactId>spring-messaging</artifactId>  
-		   <version>${spring.version}</version>  
-		</dependency>  
+		<dependency>
+			<groupId>${spring.group}</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${spring.group}</groupId>
+			<artifactId>spring-messaging</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<!-- 工具包 -->
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -193,11 +194,11 @@
 		</dependency>
 		<!-- poi excel处理 -->
 		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi</artifactId>
-		    <version>3.12</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.12</version>
 		</dependency>
-		
+
 	</dependencies>
 	<build>
 		<plugins>

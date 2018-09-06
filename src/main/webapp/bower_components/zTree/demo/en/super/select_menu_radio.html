@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - radio select menu</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<TITLE>ZTREE DEMO - radio select menu</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
 <!--	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>-->
-	<SCRIPT type="text/javascript">
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			check: {
@@ -93,35 +94,41 @@
 		});
 		//-->
 	</SCRIPT>
-	<style type="text/css">
-	</style>
- </HEAD>
+<style type="text/css">
+</style>
+</HEAD>
 
 <BODY>
-<h1>Drop-down Menu with radio</h1>
-<h6>[ File Path: super/select_menu_radio.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul class="list">
-			<li class="title">&nbsp;&nbsp;<span class="highlight_red">Check the radio to select or click the node</span></li>
-			<li class="title">&nbsp;&nbsp;Test: <input id="citySel" type="text" readonly value="" style="width:120px;" onclick="showMenu();" />
-		&nbsp;<a id="menuBtn" href="#" onclick="showMenu(); return false;">select</a></li>
-		</ul>
+	<h1>Drop-down Menu with radio</h1>
+	<h6>[ File Path: super/select_menu_radio.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul class="list">
+				<li class="title">&nbsp;&nbsp;<span class="highlight_red">Check
+						the radio to select or click the node</span></li>
+				<li class="title">&nbsp;&nbsp;Test: <input id="citySel"
+					type="text" readonly value="" style="width: 120px;"
+					onclick="showMenu();" /> &nbsp;<a id="menuBtn" href="#"
+					onclick="showMenu(); return false;">select</a></li>
+			</ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>Explanation of implementation method</h2>
+					<ul class="list">
+						<li>You can achieve single-selected drop-down menu with
+							radio.</li>
+						<li>This Demo is mainly used for compare with other drop-down
+							menu.</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>Explanation of implementation method</h2>
-				<ul class="list">
-				<li>You can achieve single-selected drop-down menu with radio.</li>
-				<li>This Demo is mainly used for compare with other drop-down menu.</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 
-<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
-	<ul id="treeDemo" class="ztree" style="margin-top:0; width:180px; height: 300px;"></ul>
-</div>
+	<div id="menuContent" class="menuContent"
+		style="display: none; position: absolute;">
+		<ul id="treeDemo" class="ztree"
+			style="margin-top: 0; width: 180px; height: 300px;"></ul>
+	</div>
 </BODY>
 </HTML>

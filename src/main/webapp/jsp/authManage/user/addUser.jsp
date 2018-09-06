@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <c:set var="appctx" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
@@ -12,9 +12,9 @@
 	content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 <meta name="author" content="Muhammad Usman">
 <style type="text/css">
-	.checkbox-inline{
-		margin-left:10px;
-		}
+.checkbox-inline {
+	margin-left: 10px;
+}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -82,47 +82,41 @@
 </script>
 </head>
 <body>
-	<div class="alert alert-danger" id="alertId" style="display:none;">
+	<div class="alert alert-danger" id="alertId" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<strong id="alertContent"></strong>
 	</div>
 	<form class="form-horizontal" role="form">
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         用户名：<font color="red">*</font>
-	      </label>
-	      <div class="col-sm-9">
-	         <input type="text" class="form-control" id="userName1">
-	      </div>
-	   </div>
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	                        角色：<font color="red">*</font>
-	      </label>
-	      <div class="col-sm-9">
-	      	<c:forEach items="${listRoles}" var="role">
-	      		<label class="checkbox-inline">
-				  <input type="checkbox" name="checkRoles" value="${role.id}">${role.roleName}
-				</label>
-	      	</c:forEach>
-	      </div>
-	   </div>
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         手机号：
-	      </label>
-	      <div class="col-sm-9">
-	         <input type="text" class="form-control" id="phone1" maxlength="11">
-	      </div>
-	   </div>
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         邮箱：
-	      </label>
-	      <div class="col-sm-9">
-	         <input type="text" class="form-control" id="email1">
-	      </div>
-	   </div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 用户名：<font color="red">*</font>
+			</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="userName1">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 角色：<font color="red">*</font>
+			</label>
+			<div class="col-sm-9">
+				<c:forEach items="${listRoles}" var="role">
+					<label class="checkbox-inline"> <input type="checkbox"
+						name="checkRoles" value="${role.id}">${role.roleName}
+					</label>
+				</c:forEach>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 手机号： </label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="phone1" maxlength="11">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 邮箱： </label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="email1">
+			</div>
+		</div>
 	</form>
 </body>
 </html>

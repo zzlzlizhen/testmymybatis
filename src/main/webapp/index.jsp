@@ -1,14 +1,15 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ include file="/common/common.jsp" %>
+<%@ include file="/common/common.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>闲玩系统</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
-    <meta name="author" content="Muhammad Usman">
-    <script type="text/javascript">
+<head>
+<meta charset="utf-8">
+<title>闲玩系统</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description"
+	content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+<meta name="author" content="Muhammad Usman">
+<script type="text/javascript">
     	$(function(){
     		//document.onkeydown=keyDownSearch;
     		$("input").keypress(function(e){
@@ -68,51 +69,66 @@
     </script>
 </head>
 <body>
-<div class="ch-container">
-    <div class="row">
-    <div class="row">
-        <div class="col-md-12 center login-header">
-            <h2>闲玩系统</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="well col-md-5 center login-box">
-            <div class="alert alert-danger" id="alertId" style="display: none;">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<strong id="alertContent"></strong>
+	<div class="ch-container">
+		<div class="row">
+			<div class="row">
+				<div class="col-md-12 center login-header">
+					<h2>闲玩系统</h2>
+				</div>
 			</div>
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
-                        <input type="text" class="form-control" id="username" placeholder="Username">
-                    </div>
-                    <div class="clearfix"></div><br>
+			<div class="row">
+				<div class="well col-md-5 center login-box">
+					<div class="alert alert-danger" id="alertId" style="display: none;">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong id="alertContent"></strong>
+					</div>
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-user red"></i></span> <input type="text"
+									class="form-control" id="username" placeholder="Username">
+							</div>
+							<div class="clearfix"></div>
+							<br>
 
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
-                    </div>
-                    <div class="clearfix"></div><br>
-                    <div class="row">
-	                    <div class="col-md-6" style="text-align: left;padding-left:25px;"><a href="${appctx}/loginController/registerPage">注册</a></div>
-	                    <div class="col-md-6" style="text-align: right;padding-right:25px;"><a href="${appctx}/loginController/getPswPage">找回密码</a></div>
-                    </div>
-                    
-                    <div class="clearfix"></div>
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-lock red"></i></span> <input
+									type="password" class="form-control" id="password"
+									placeholder="Password">
+							</div>
+							<div class="clearfix"></div>
+							<br>
+							<div class="row">
+								<div class="col-md-6"
+									style="text-align: left; padding-left: 25px;">
+									<a href="${appctx}/loginController/registerPage">注册</a>
+								</div>
+								<div class="col-md-6"
+									style="text-align: right; padding-right: 25px;">
+									<a href="${appctx}/loginController/getPswPage">找回密码</a>
+								</div>
+							</div>
 
-                    <p class="center col-md-5">
-                    	<button type="button" class="btn btn-primary" id="loginId" onclick="loginFunction()">登录</button>
-                    </p>
-                    
-                </fieldset>
-            </form>
-        </div>
-        <!--/span-->
-    </div><!--/row-->
-</div><!--/fluid-row-->
+							<div class="clearfix"></div>
 
-</div><!--/.fluid-container-->
+							<p class="center col-md-5">
+								<button type="button" class="btn btn-primary" id="loginId"
+									onclick="loginFunction()">登录</button>
+							</p>
+
+						</fieldset>
+					</form>
+				</div>
+				<!--/span-->
+			</div>
+			<!--/row-->
+		</div>
+		<!--/fluid-row-->
+
+	</div>
+	<!--/.fluid-container-->
 
 </body>
 </html>

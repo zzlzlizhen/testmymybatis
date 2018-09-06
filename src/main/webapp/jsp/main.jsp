@@ -10,7 +10,9 @@
 	content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 <meta name="author" content="Muhammad Usman">
 <style type="text/css">
-.dropdown-menu li {list-style-type:none;}
+.dropdown-menu li {
+	list-style-type: none;
+}
 </style>
 <script type="text/javascript">
 	var ws = null;  
@@ -152,9 +154,11 @@
 						class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a target='main_target' href="${appctx}/indexController/homePage">首页</a></li>
+					<li><a target='main_target'
+						href="${appctx}/indexController/homePage">首页</a></li>
 					<li class="divider"></li>
-					<li><a href="${appctx}/indexController/logout/${loginUser.name}">退出</a></li>
+					<li><a
+						href="${appctx}/indexController/logout/${loginUser.name}">退出</a></li>
 				</ul>
 			</div>
 		</div>
@@ -225,13 +229,14 @@
 			</div>
 			<hr>
 			<div id="myHomeModal" style="display: none;">
-				<div class="modal-dialog" style="width:350px;height:175px;position: absolute;right:3px;bottom:3px;">
+				<div class="modal-dialog"
+					style="width: 350px; height: 175px; position: absolute; right: 3px; bottom: 3px;">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close">&times;</button>
 							<font color="red" id="messageHead">消息提醒</font>
 						</div>
-						<div class="modal-body" id="messageBody" style="height:150px;">
+						<div class="modal-body" id="messageBody" style="height: 150px;">
 							<!-- <a href="javascript:void(0)" onclick="linkedHerf()">请重新设置密码</a> -->
 						</div>
 					</div>
@@ -239,8 +244,8 @@
 			</div>
 		</div>
 		<footer style="text-align: center">
-       		<p style="text-align:center;">Copyright@2016-2020 @author lizhen</p>
-   		</footer>
+			<p style="text-align: center;">Copyright@2016-2020 @author lizhen</p>
+		</footer>
 	</div>
 </body>
 </html>

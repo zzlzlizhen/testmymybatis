@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <c:set var="appctx" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
@@ -85,13 +85,13 @@
 </script>
 </head>
 <body>
-	<div class="alert alert-danger" id="alertId" style="display:none;">
+	<div class="alert alert-danger" id="alertId" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<strong id="alertContent"></strong>
 	</div>
-	<input type="hidden" id="id" value="${id}"/>
-	<div style="width:100%;">
-		<ul id="roleTree" class="ztree" style="width:100%;"></ul>
+	<input type="hidden" id="id" value="${id}" />
+	<div style="width: 100%;">
+		<ul id="roleTree" class="ztree" style="width: 100%;"></ul>
 	</div>
 </body>
 </html>

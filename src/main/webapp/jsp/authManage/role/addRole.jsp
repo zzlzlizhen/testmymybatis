@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <c:set var="appctx" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
@@ -57,35 +57,31 @@
 </script>
 </head>
 <body>
-	<div class="alert alert-danger" id="alertId" style="display:none;">
+	<div class="alert alert-danger" id="alertId" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<strong id="alertContent"></strong>
 	</div>
 	<form class="form-horizontal" role="form">
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         角色名字：<font color="red">*</font>
-	      </label>
-	      <div class="col-sm-9">
-	         <input type="text" class="form-control" id="roleName1">
-	      </div>
-	   </div>
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         角色标志：<font color="red">*</font>
-	      </label>
-	      <div class="col-sm-9">
-	         <input type="text" class="form-control" id="roleType">
-	      </div>
-	   </div>
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         备注：
-	      </label>
-	      <div class="col-sm-9">
-	      		<textarea class="form-control" rows="3" id="remark"></textarea>
-	      </div>
-	   </div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 角色名字：<font color="red">*</font>
+			</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="roleName1">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 角色标志：<font color="red">*</font>
+			</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="roleType">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 备注： </label>
+			<div class="col-sm-9">
+				<textarea class="form-control" rows="3" id="remark"></textarea>
+			</div>
+		</div>
 	</form>
 </body>
 </html>

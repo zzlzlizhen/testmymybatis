@@ -10,32 +10,32 @@
 	<!--配置connection-factory，指定连接rabbit server参数 -->
 	<rabbit:connection-factory id="connectionFactory"
 		username="lizhen" password="123456" host="192.168.132.128" port="5672" />
-		
+
 	<!--定义rabbit template用于数据的接收和发送 -->
-	<rabbit:template id="amqpTemplate"  connection-factory="connectionFactory" 
-	    exchange="exchangeTest" />
-		
+	<rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
+		exchange="exchangeTest" />
+
 	<!--通过指定下面的admin信息，当前producer中的exchange和queue会在rabbitmq服务器上自动生成 -->
 	<rabbit:admin connection-factory="connectionFactory" />
 
 	<!--定义queue -->
-	<rabbit:queue name="queueTest" durable="true" auto-delete="false" exclusive="false" />
+	<rabbit:queue name="queueTest" durable="true" auto-delete="false"
+		exclusive="false" />
 
 	<!-- 定义direct exchange，绑定queueTest -->
-	<rabbit:direct-exchange name="exchangeTest" durable="true" auto-delete="false" >
+	<rabbit:direct-exchange name="exchangeTest"
+		durable="true" auto-delete="false">
 		<rabbit:bindings>
 			<rabbit:binding queue="queueTest" key="queueTestKey"></rabbit:binding>
 		</rabbit:bindings>
 	</rabbit:direct-exchange>
-	
+
 	<!-- 消息接收者01 -->
 	<bean id="messageReceiver01" class="lz.mq.MessageConsumer01"></bean>
 	<!-- 消息接收者02 -->
 	<bean id="messageReceiver02" class="lz.mq.MessageConsumer02"></bean>
-	<!-- queue litener  观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象   关闭自动确认 acknowledge="manual"-->
-    <!--<rabbit:listener-container connection-factory="connectionFactory">
-             <rabbit:listener queues="queueTest" ref="messageReceiver01"/>
-             <rabbit:listener queues="queueTest" ref="messageReceiver02"/>
-    </rabbit:listener-container>
-    -->
+	<!-- queue litener 观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象 关闭自动确认 acknowledge="manual" -->
+	<!--<rabbit:listener-container connection-factory="connectionFactory"> <rabbit:listener 
+		queues="queueTest" ref="messageReceiver01"/> <rabbit:listener queues="queueTest" 
+		ref="messageReceiver02"/> </rabbit:listener-container> -->
 </beans>

@@ -10,9 +10,9 @@
 	content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 <meta name="author" content="Muhammad Usman">
 <style type="text/css">
-	.checkbox-inline{
-		margin-left:10px;
-		}
+.checkbox-inline {
+	margin-left: 10px;
+}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -63,37 +63,43 @@
 </script>
 </head>
 <body>
-<div class="ch-container">
-    <div class="row">
-        <div class="well col-md-5 center login-box">
-            <div class="alert alert-danger" id="alertId" style="display: none;">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<strong id="alertContent"></strong>
+	<div class="ch-container">
+		<div class="row">
+			<div class="well col-md-5 center login-box">
+				<div class="alert alert-danger" id="alertId" style="display: none;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong id="alertContent"></strong>
+				</div>
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-lock red"></i></span> <input type="password"
+								class="form-control" id="oldPassword" placeholder="请输入旧密码">
+						</div>
+						<div class="clearfix"></div>
+						<br>
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-lock red"></i></span> <input type="password"
+								class="form-control" id="newPassword" placeholder="请输入新密码">
+						</div>
+						<div class="clearfix"></div>
+						<br>
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-lock red"></i></span> <input type="password"
+								class="form-control" id="newPassword1" placeholder="请再次输入新密码">
+						</div>
+						<div class="clearfix"></div>
+						<p class="center col-md-5">
+							<button type="button" class="btn btn-primary"
+								onclick="updatePassword()">修改密码</button>
+						</p>
+					</fieldset>
+				</form>
 			</div>
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
-                        <input type="password" class="form-control" id="oldPassword" placeholder="请输入旧密码">
-                    </div>
-                    <div class="clearfix"></div><br>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
-                        <input type="password" class="form-control" id="newPassword" placeholder="请输入新密码">
-                    </div>
-                    <div class="clearfix"></div><br>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
-                        <input type="password" class="form-control" id="newPassword1" placeholder="请再次输入新密码">
-                    </div>
-                    <div class="clearfix"></div>
-                    <p class="center col-md-5">
-                    	<button type="button" class="btn btn-primary" onclick="updatePassword()">修改密码</button>
-                    </p>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-</div>
+		</div>
+	</div>
 </body>
 </html>

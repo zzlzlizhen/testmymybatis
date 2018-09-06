@@ -10,12 +10,12 @@
 	content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 <meta name="author" content="Muhammad Usman">
 <style type="text/css">
-	/* #dataTables{
+/* #dataTables{
 		font-size: 12px;
 	} */
-	#opr{
-		white-space:nowrap;
-	}
+#opr {
+	white-space: nowrap;
+}
 </style>
 <script type="text/javascript">
 	var table;
@@ -336,35 +336,30 @@
 						<div class="btn-toolbar">
 							<div class="pull-right">
 								<div class="input-append">
-									消息类型：
-									<select id="messageType">
+									消息类型： <select id="messageType">
 										<option value="-1">全部</option>
 										<option value="1">通知</option>
 										<option value="2">提醒</option>
-									</select>
-									&nbsp;&nbsp;
-									消息状态：
-									<select id="messageStatus">
+									</select> &nbsp;&nbsp; 消息状态： <select id="messageStatus">
 										<option value="-1">全部</option>
 										<option value="1">已保存</option>
 										<option value="2">已发布</option>
 										<option value="3">已销毁</option>
-									</select>
-									&nbsp;&nbsp;
-									消息标题：<input type="text" placeholder="消息标题" id="messageHead">
-									<a class="btn btn-primary" href="#" onclick="searchFun()">
-										<i class="glyphicon glyphicon-search"></i>查询
+									</select> &nbsp;&nbsp; 消息标题：<input type="text" placeholder="消息标题"
+										id="messageHead"> <a class="btn btn-primary" href="#"
+										onclick="searchFun()"> <i
+										class="glyphicon glyphicon-search"></i>查询
 									</a>
 								</div>
 							</div>
-							<a class="btn btn-primary" href="#" onclick="addFun()">
-								<i class="glyphicon glyphicon-plus"></i>添加
+							<a class="btn btn-primary" href="#" onclick="addFun()"> <i
+								class="glyphicon glyphicon-plus"></i>添加
 							</a>
 						</div>
 						<div style="height: 15px;"></div>
-					
+
 						<div class="row-fluid">
-							<table id="dataTables" 
+							<table id="dataTables"
 								class="table table-striped table-bordered table-hover table-condensed datatable">
 								<thead>
 									<tr>
@@ -397,12 +392,11 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3>Settings</h3>
 				</div>
-				<div class="modal-body">
-					
-				</div>
+				<div class="modal-body"></div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</a>
-					<a href="#" onclick="" class="btn btn-primary" id="saveBtn">Save</a>
+					<a href="#" class="btn btn-default" id="closeBtn"
+						data-dismiss="modal">Close</a> <a href="#" onclick=""
+						class="btn btn-primary" id="saveBtn">Save</a>
 				</div>
 			</div>
 		</div>

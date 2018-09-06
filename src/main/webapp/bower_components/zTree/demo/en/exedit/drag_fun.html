@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - copyNode / moveNode</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
-	<SCRIPT type="text/javascript">
+<TITLE>ZTREE DEMO - copyNode / moveNode</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			view: {
@@ -138,43 +139,58 @@
 		});
 		//-->
 	</SCRIPT>
-	<style type="text/css">
-.ztree li a.copy{padding-top:0; background-color:#316AC5; color:white; border:1px #316AC5 solid;}
-.ztree li a.cut{padding-top:0; background-color:silver; color:#111; border:1px #316AC5 dotted;}
-	</style>
+<style type="text/css">
+.ztree li a.copy {
+	padding-top: 0;
+	background-color: #316AC5;
+	color: white;
+	border: 1px #316AC5 solid;
+}
+
+.ztree li a.cut {
+	padding-top: 0;
+	background-color: silver;
+	color: #111;
+	border: 1px #316AC5 dotted;
+}
+</style>
 </HEAD>
 
 <BODY>
-<h1>Move / Copy - zTree methods</h1>
-<h6>[ File Path: exedit/drag_fun.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>Move / Copy - zTree methods</h1>
+	<h6>[ File Path: exedit/drag_fun.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>1, Explanation of 'copyNode /
+						moveNode' method</h2>
+					<ul class="list">
+						<li>Use 'copyNode / moveNode' method can also be achieved
+							copy / move nodes.</li>
+						<li><p>
+								Try to copy or cut node:<br /> &nbsp;&nbsp;&nbsp;&nbsp;[ <a
+									id="copy" href="#" title="copy" onclick="return false;">copy</a>
+								] &nbsp;&nbsp;&nbsp;&nbsp;[ <a id="cut" href="#" title="cut"
+									onclick="return false;">cut</a> ] &nbsp;&nbsp;&nbsp;&nbsp;[ <a
+									id="paste" href="#" title="paste" onclick="return false;">paste</a>
+								]
+							</p>
+						<li class="highlight_red">How to use 'zTreeObj.copyNode /
+							moveNode' method, please see the API documentation.</li>
+					</ul></li>
+				<li class="title"><h2>2, Explanation of setting</h2>
+					<ul class="list">
+						<li>Same as 'Normal Drag Node Operation'</li>
+					</ul></li>
+				<li class="title"><h2>3, Explanation of treeNode</h2>
+					<ul class="list">
+						<li>Same as 'Normal Drag Node Operation'</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>1, Explanation of 'copyNode / moveNode' method</h2>
-				<ul class="list">
-				<li>Use 'copyNode / moveNode' method can also be achieved copy / move nodes.</li>
-				<li><p>Try to copy or cut node:<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="copy" href="#" title="copy" onclick="return false;">copy</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="cut" href="#" title="cut" onclick="return false;">cut</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="paste" href="#" title="paste" onclick="return false;">paste</a> ]</p>
-				<li class="highlight_red">How to use 'zTreeObj.copyNode / moveNode' method,  please see the API documentation.</li>
-				</ul>
-			</li>
-			<li class="title"><h2>2, Explanation of setting</h2>
-				<ul class="list">
-				<li>Same as 'Normal Drag Node Operation'</li>
-				</ul>
-			</li>
-			<li class="title"><h2>3, Explanation of treeNode</h2>
-				<ul class="list">
-				<li>Same as 'Normal Drag Node Operation'</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

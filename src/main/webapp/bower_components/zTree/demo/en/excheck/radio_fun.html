@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - beforeCheck / onCheck</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<!--
+<TITLE>ZTREE DEMO - beforeCheck / onCheck</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<!--
 	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
 	-->
-	<SCRIPT type="text/javascript">
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			view: {
@@ -113,39 +114,48 @@
 </HEAD>
 
 <BODY>
-<h1>Radio - zTree methods</h1>
-<h6>[ File Path: excheck/radio_fun.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>Radio - zTree methods</h1>
+	<h6>[ File Path: excheck/radio_fun.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>1, 'beforeCheck / onCheck' callback
+						function</h2>
+					<ul class="list">
+						<li>Use 'beforeCheck / onCheck' callback function can control
+							whether to allow changes to the node check state. This simple
+							demo shows how to monitor the check event.</li>
+						<li><p>
+								By the way also demonstrates how to use the 'checkNode' method
+								triggers 'beforeCheck / onCheck' callback, Try: <br />
+								&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"
+									id="callbackTrigger" checked /> Whether trigger the callback
+								when execution checkNode() method.<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="checkTrue" href="#"
+									title="check..." onclick="return false;">check</a> ]
+								&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="checkFalse" href="#"
+									title="uncheck..." onclick="return false;">uncheck</a> ]
+							</p>
+						<li><p>
+								<span class="highlight_red">How to use
+									'zTreeObj.checkNode' method, please see the API documentation.</span><br />
+								beforeCheck / onCheck log:<br />
+							<ul id="log" class="log" style="height: 130px;"></ul>
+							</p></li>
+					</ul></li>
+				<li class="title"><h2>2, Explanation of setting</h2>
+					<ul class="list">
+						<li>Same as 'Radio Operation'</li>
+					</ul></li>
+				<li class="title"><h2>3, Explanation of treeNode</h2>
+					<ul class="list">
+						<li>Same as 'Radio Operation'</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>1, 'beforeCheck / onCheck' callback function</h2>
-				<ul class="list">
-				<li>Use 'beforeCheck / onCheck' callback function can control whether to allow changes to the node check state. This simple demo shows how to monitor the check event.</li>
-				<li><p>By the way also demonstrates how to use the 'checkNode' method triggers 'beforeCheck / onCheck' callback, Try: <br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="callbackTrigger" checked /> Whether trigger the callback when execution checkNode() method.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="checkTrue" href="#" title="check..." onclick="return false;">check</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="checkFalse" href="#" title="uncheck..." onclick="return false;">uncheck</a> ]</p>
-				<li><p><span class="highlight_red">How to use 'zTreeObj.checkNode' method,  please see the API documentation.</span><br/>
-					beforeCheck / onCheck log:<br/>
-					<ul id="log" class="log" style="height:130px;"></ul></p>
-				</li>
-				</ul>
-			</li>
-			<li class="title"><h2>2, Explanation of setting</h2>
-				<ul class="list">
-				<li>Same as 'Radio Operation'</li>
-				</ul>
-			</li>
-			<li class="title"><h2>3, Explanation of treeNode</h2>
-				<ul class="list">
-				<li>Same as 'Radio Operation'</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

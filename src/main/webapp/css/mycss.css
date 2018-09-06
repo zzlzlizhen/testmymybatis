@@ -1,3 +1,10 @@
-#dataTables table{table-layout: fixed;} 
-#dataTables td{vertical-align:middle;word-break:break-all;word-wrap:break-word;};
+#dataTables table {
+	table-layout: fixed;
+}
 
+#dataTables td {
+	vertical-align: middle;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+;

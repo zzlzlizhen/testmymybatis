@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - single path</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<!--  <script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<TITLE>ZTREE DEMO - single path</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<!--  <script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
 	  <script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>-->
-	<SCRIPT type="text/javascript">
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			view: {
@@ -136,31 +137,46 @@
 		});
 		//-->
 	</SCRIPT>
-	<style type="text/css">
-.ztree li button.switch {visibility:hidden; width:1px;}
-.ztree li button.switch.roots_docu {visibility:visible; width:16px;}
-.ztree li button.switch.center_docu {visibility:visible; width:16px;}
-.ztree li button.switch.bottom_docu {visibility:visible; width:16px;}
-	</style>
- </HEAD>
+<style type="text/css">
+.ztree li button.switch {
+	visibility: hidden;
+	width: 1px;
+}
+
+.ztree li button.switch.roots_docu {
+	visibility: visible;
+	width: 16px;
+}
+
+.ztree li button.switch.center_docu {
+	visibility: visible;
+	width: 16px;
+}
+
+.ztree li button.switch.bottom_docu {
+	visibility: visible;
+	width: 16px;
+}
+</style>
+</HEAD>
 
 <BODY>
-<h1>保持展开单一路径</h1>
-<h6>[ 文件路径: super/singlepath.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>保持展开单一路径</h1>
+	<h6>[ 文件路径: super/singlepath.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>实现方法说明</h2>
+					<ul class="list">
+						<li>此 Demo 是在 "单击展开/折叠节点" 基础上改造而来，树节点保持始终只展开一条路径。</li>
+						<li class="highlight_red">利用 setting.callback.beforeExpand /
+							onExpand 事件回调函数实现展开规则</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>实现方法说明</h2>
-				<ul class="list">
-				<li>此 Demo 是在 "单击展开/折叠节点" 基础上改造而来，树节点保持始终只展开一条路径。</li>
-				<li class="highlight_red">利用 setting.callback.beforeExpand / onExpand 事件回调函数实现展开规则</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

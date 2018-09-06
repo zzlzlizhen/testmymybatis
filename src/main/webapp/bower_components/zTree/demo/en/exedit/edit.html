@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - edit</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
-	<SCRIPT type="text/javascript">
+<TITLE>ZTREE DEMO - edit</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			edit: {
@@ -80,36 +81,47 @@
 </HEAD>
 
 <BODY>
-<h1>Basic Edit Nodes</h1>
-<h6>[ File Path: exedit/edit.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>Basic Edit Nodes</h1>
+	<h6>[ File Path: exedit/edit.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>1, Explanation of setting</h2>
+					<ul class="list">
+						<li>This Demo only shows how to edit nodes using the basic
+							method and configure parameters.</li>
+						<li class="highlight_red">1) Must set 'setting.edit'
+							attributes, see the API documentation for more related contents.</li>
+						<li class="highlight_red">2) If you want to use remove /
+							rename callback, muse to set 'setting.callback.beforeRemove /
+							onRemove / beforeRename / onRename' attributes, see the API
+							documentation for more related contents.</li>
+						<li class="highlight_red">3) zTree do not provide buttons for
+							add nodes, please use the custom control methods 'addHoverDom /
+							removeHoverDom' to achieve added functionality, see the API
+							documentation for more related contents. Another way, you can see
+							the demo named 'Advanced Edit Nodes'.</li>
+						<li><p>
+								Edit button setting:<br /> <input type="checkbox" id="remove"
+									class="checkbox first" checked /><span>show remove
+									button</span> <input type="checkbox" id="rename" class="checkbox "
+									checked /><span>show edit button</span><br /> title for
+								remove: <input type="text" id="removeTitle" value="remove" /><br />
+								title for rename: <input type="text" id="renameTitle"
+									value="rename" />
+							<ul id="code" class="log" style="height: 85px;"></ul>
+							</p></li>
+					</ul></li>
+				<li class="title"><h2>2, Explanation of treeNode</h2>
+					<ul class="list">
+						<li>No special requirements on the node data, the user can
+							add custom attributes.</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>1, Explanation of setting</h2>
-				<ul class="list">
-				<li>This Demo only shows how to edit nodes using the basic method and configure parameters.</li>
-				<li class="highlight_red">1) Must set 'setting.edit' attributes, see the API documentation for more related contents.</li>
-				<li class="highlight_red">2) If you want to use remove / rename callback, muse to set 'setting.callback.beforeRemove / onRemove / beforeRename / onRename' attributes, see the API documentation for more related contents.</li>
-				<li class="highlight_red">3) zTree do not provide buttons for add nodes, please use the custom control methods 'addHoverDom / removeHoverDom' to achieve added functionality, see the API documentation for more related contents. Another way, you can see the demo named 'Advanced Edit Nodes'.</li>
-				<li><p>Edit button setting:<br/>
-						<input type="checkbox" id="remove" class="checkbox first" checked /><span>show remove button</span>
-						<input type="checkbox" id="rename" class="checkbox " checked /><span>show edit button</span><br/>
-						title for remove: <input type="text" id="removeTitle" value="remove" /><br/>
-						title for rename: <input type="text" id="renameTitle" value="rename" />
-						<ul id="code" class="log" style="height:85px;"></ul></p>
-				</li>
-				</ul>
-			</li>
-			<li class="title"><h2>2, Explanation of treeNode</h2>
-				<ul class="list">
-				<li>No special requirements on the node data, the user can add custom attributes.</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

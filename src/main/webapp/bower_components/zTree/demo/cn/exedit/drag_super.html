@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - beforeDrag / onDrag / beforeDrop / onDrop</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
-	<SCRIPT type="text/javascript">
+<TITLE>ZTREE DEMO - beforeDrag / onDrag / beforeDrop / onDrop</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			edit: {
@@ -174,37 +175,41 @@
 </HEAD>
 
 <BODY>
-<h1>拖拽节点高级控制</h1>
-<h6>[ 文件路径: exedit/drag_super.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>拖拽节点高级控制</h1>
+	<h6>[ 文件路径: exedit/drag_super.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>
+						1、beforeDrag / onDrag<br />&nbsp;&nbsp;beforeDrop / onDrop
+						事件回调函数控制
+					</h2>
+					<ul class="list">
+						<li>此 Demo 演示合理利用配置参数实现更加灵活、更加合理的拖拽规则，操作时可以对比"基本控制"的例子</li>
+						<li>此 Demo 默认 允许复制 / 移动</li>
+						<li class="highlight_red">此 Demo 中拖拽相对位置设置为
+							function，可以根据节点动态设定，从而可以放弃使用 beforeDrop 回调函数，拖拽时的效果会更好</li>
+						<li><p>
+								<span class="highlight_red">在对这些灵活的配置熟悉以后，相信你能够做出更加合理的拖拽规则！</span><br />
+								&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"
+									id="callbackTrigger" checked /> 拖拽节点时自动展开父节点是否触发 callback<br />
+								drag / drop log:<br />
+							<ul id="log" class="log"></ul>
+							</p></li>
+					</ul></li>
+				<li class="title"><h2>2、setting 配置信息说明</h2>
+					<ul class="list">
+						<li>同 "拖拽 节点 基本控制"</li>
+					</ul></li>
+				<li class="title"><h2>3、treeNode 节点数据说明</h2>
+					<ul class="list">
+						<li>同 "拖拽 节点 基本控制"</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>1、beforeDrag / onDrag<br/>&nbsp;&nbsp;beforeDrop / onDrop 事件回调函数控制</h2>
-				<ul class="list">
-				<li>此 Demo 演示合理利用配置参数实现更加灵活、更加合理的拖拽规则，操作时可以对比"基本控制"的例子</li>
-				<li>此 Demo 默认 允许复制 / 移动</li>
-				<li class="highlight_red">此 Demo 中拖拽相对位置设置为 function，可以根据节点动态设定，从而可以放弃使用 beforeDrop 回调函数，拖拽时的效果会更好</li>
-				<li><p><span class="highlight_red">在对这些灵活的配置熟悉以后，相信你能够做出更加合理的拖拽规则！</span><br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="callbackTrigger" checked /> 拖拽节点时自动展开父节点是否触发 callback<br/>
-					drag / drop log:<br/>
-					<ul id="log" class="log"></ul></p></li>
-				</ul>
-			</li>
-			<li class="title"><h2>2、setting 配置信息说明</h2>
-				<ul class="list">
-				<li>同 "拖拽 节点 基本控制"</li>
-				</ul>
-			</li>
-			<li class="title"><h2>3、treeNode 节点数据说明</h2>
-				<ul class="list">
-				<li>同 "拖拽 节点 基本控制"</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - beforeDrag / onDrag / beforeDrop / onDrop</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
-	<SCRIPT type="text/javascript">
+<TITLE>ZTREE DEMO - beforeDrag / onDrag / beforeDrop / onDrop</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			edit: {
@@ -174,37 +175,47 @@
 </HEAD>
 
 <BODY>
-<h1>Advanced Drag Node Operation</h1>
-<h6>[ File Path: exedit/drag_super.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>Advanced Drag Node Operation</h1>
+	<h6>[ File Path: exedit/drag_super.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>
+						1, 'beforeDrag / onDrag'<br />&nbsp;&nbsp;'beforeDrop / onDrop'
+						callback function
+					</h2>
+					<ul class="list">
+						<li>This Demo shows the configuration parameters to achieve a
+							more flexible use of drag and drop rules, the operation can be
+							compared with "Normal Drag Node Operation" example.</li>
+						<li>This Demo default allows copy & move.</li>
+						<li class="highlight_red">This Demo set
+							'setting.edit.drag.prev / inner / next' as 'function', you can
+							dynamically set according to the node, which can not use
+							beforeDrop callback function, the effect of drag and drop will be
+							better.</li>
+						<li><p>
+								<span class="highlight_red">After be familiar with these
+									configurations, I think you can design a more flexible and
+									rational rules!</span><br /> &nbsp;&nbsp;&nbsp;&nbsp;<input
+									type="checkbox" id="callbackTrigger" checked />
+								拖拽节点时自动展开父节点是否触发 callback<br /> drag / drop log:<br />
+							<ul id="log" class="log"></ul>
+							</p></li>
+					</ul></li>
+				<li class="title"><h2>2, Explanation of setting</h2>
+					<ul class="list">
+						<li>Same as 'Normal Drag Node Operation'</li>
+					</ul></li>
+				<li class="title"><h2>3, Explanation of treeNode</h2>
+					<ul class="list">
+						<li>Same as 'Normal Drag Node Operation'</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>1, 'beforeDrag / onDrag'<br/>&nbsp;&nbsp;'beforeDrop / onDrop' callback function</h2>
-				<ul class="list">
-				<li>This Demo shows the configuration parameters to achieve a more flexible use of drag and drop rules, the operation can be compared with "Normal Drag Node Operation" example.</li>
-				<li>This Demo default allows copy & move.</li>
-				<li class="highlight_red">This Demo set 'setting.edit.drag.prev / inner / next'  as 'function', you can dynamically set according to the node, which can not use beforeDrop callback function, the effect of drag and drop will be better.</li>
-				<li><p><span class="highlight_red">After be familiar with these configurations, I think you can design a more flexible and rational rules!</span><br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="callbackTrigger" checked /> 拖拽节点时自动展开父节点是否触发 callback<br/>
-					drag / drop log:<br/>
-					<ul id="log" class="log"></ul></p></li>
-				</ul>
-			</li>
-			<li class="title"><h2>2, Explanation of setting</h2>
-				<ul class="list">
-				<li>Same as 'Normal Drag Node Operation'</li>
-				</ul>
-			</li>
-			<li class="title"><h2>3, Explanation of treeNode</h2>
-				<ul class="list">
-				<li>Same as 'Normal Drag Node Operation'</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

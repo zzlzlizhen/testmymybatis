@@ -140,31 +140,26 @@
 						<div class="btn-toolbar">
 							<div class="pull-right">
 								<div class="input-append">
-									消息类型：
-									<select id="messageType">
+									消息类型： <select id="messageType">
 										<option value="-1">全部</option>
 										<option value="1">通知</option>
 										<option value="2">提醒</option>
-									</select>
-									&nbsp;&nbsp;
-									是否已读：
-									<select id="messageStatus">
+									</select> &nbsp;&nbsp; 是否已读： <select id="messageStatus">
 										<option value="-1">全部</option>
 										<option value="1">已读</option>
 										<option value="0">未读</option>
-									</select>
-									&nbsp;&nbsp;
-									消息标题：<input type="text" placeholder="消息标题" id="messageHead">
-									<a class="btn btn-primary" href="#" onclick="searchFun()">
-										<i class="glyphicon glyphicon-search"></i>查询
+									</select> &nbsp;&nbsp; 消息标题：<input type="text" placeholder="消息标题"
+										id="messageHead"> <a class="btn btn-primary" href="#"
+										onclick="searchFun()"> <i
+										class="glyphicon glyphicon-search"></i>查询
 									</a>
 								</div>
 							</div>
 						</div>
 						<div style="height: 15px;"></div>
-					
+
 						<div class="row-fluid">
-							<table id="dataTables" 
+							<table id="dataTables"
 								class="table table-striped table-bordered table-hover table-condensed datatable">
 								<thead>
 									<tr>
@@ -195,12 +190,11 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3>Settings</h3>
 				</div>
-				<div class="modal-body">
-					
-				</div>
+				<div class="modal-body"></div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</a>
-					<a href="#" onclick="" class="btn btn-primary" id="saveBtn">Save</a>
+					<a href="#" class="btn btn-default" id="closeBtn"
+						data-dismiss="modal">Close</a> <a href="#" onclick=""
+						class="btn btn-primary" id="saveBtn">Save</a>
 				</div>
 			</div>
 		</div>

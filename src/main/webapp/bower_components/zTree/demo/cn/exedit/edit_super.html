@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - beforeEditName / beforeRemove / onRemove / beforeRename / onRename</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
-	<SCRIPT type="text/javascript">
+<TITLE>ZTREE DEMO - beforeEditName / beforeRemove / onRemove /
+	beforeRename / onRename</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			view: {
@@ -137,47 +139,57 @@
 		});
 		//-->
 	</SCRIPT>
-	<style type="text/css">
-.ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
-	</style>
+<style type="text/css">
+.ztree li span.button.add {
+	margin-left: 2px;
+	margin-right: -1px;
+	background-position: -144px 0;
+	vertical-align: top;
+	*vertical-align: middle
+}
+</style>
 </HEAD>
 
 <BODY>
-<h1>高级 增 / 删 / 改 节点</h1>
-<h6>[ 文件路径: exedit/edit_super.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>高级 增 / 删 / 改 节点</h1>
+	<h6>[ 文件路径: exedit/edit_super.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>
+						1、beforeEditName<br />&nbsp;&nbsp;beforeRemove / onRemove<br />&nbsp;&nbsp;beforeRename
+						/ onRename 事件回调函数控制
+					</h2>
+					<ul class="list">
+						<li>此 Demo 演示合理利用自定义控件、事件回调函数配合以增强用户体验，操作时可以对比"基本 增 / 删 / 改
+							节点"的 Demo</li>
+						<li>此 Demo 实现增加节点按钮</li>
+						<li>此 Demo 实现删除节点时进行确认</li>
+						<li>此 Demo 利用 showRenameBtn 对 isLastNode = true 的节点不显示编辑按钮</li>
+						<li>此 Demo 利用 showRemoveBtn 对 isFirstNode = true 的节点不显示删除按钮</li>
+						<li class="highlight_red">可以利用 beforeEditName 触发自定义的编辑操作</li>
+						<li><p>
+								<span class="highlight_red">在对这些灵活的配置熟悉以后，相信你能够做出更加合理的编辑界面！</span><br />
+								&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="selectAll"
+									checked /> 编辑名称时是否全选 text<br /> remove / rename
+								log:&nbsp;&nbsp;<span style="color: red">红色</span> 表示取消编辑操作
+								(v3.5.13+)<br />
+							<ul id="log" class="log"></ul>
+							</p></li>
+					</ul></li>
+				<li class="title"><h2>2、setting 配置信息说明</h2>
+					<ul class="list">
+						<li>同 "基本 增 / 删 / 改 节点"</li>
+					</ul></li>
+				<li class="title"><h2>3、treeNode 节点数据说明</h2>
+					<ul class="list">
+						<li>同 "基本 增 / 删 / 改 节点"</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>1、beforeEditName<br/>&nbsp;&nbsp;beforeRemove / onRemove<br/>&nbsp;&nbsp;beforeRename / onRename 事件回调函数控制</h2>
-				<ul class="list">
-				<li>此 Demo 演示合理利用自定义控件、事件回调函数配合以增强用户体验，操作时可以对比"基本 增 / 删 / 改 节点"的 Demo</li>
-				<li>此 Demo 实现增加节点按钮</li>
-				<li>此 Demo 实现删除节点时进行确认</li>
-				<li>此 Demo 利用 showRenameBtn 对 isLastNode = true 的节点不显示编辑按钮 </li>
-				<li>此 Demo 利用 showRemoveBtn 对 isFirstNode = true 的节点不显示删除按钮 </li>
-				<li class="highlight_red">可以利用 beforeEditName 触发自定义的编辑操作</li>
-				<li><p><span class="highlight_red">在对这些灵活的配置熟悉以后，相信你能够做出更加合理的编辑界面！</span><br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="selectAll" checked /> 编辑名称时是否全选 text<br/>
-					remove / rename log:&nbsp;&nbsp;<span style="color:red">红色</span> 表示取消编辑操作 (v3.5.13+)<br/>
-					<ul id="log" class="log"></ul></p>
-				</li>
-				</ul>
-			</li>
-			<li class="title"><h2>2、setting 配置信息说明</h2>
-				<ul class="list">
-				<li>同 "基本 增 / 删 / 改 节点"</li>
-				</ul>
-			</li>
-			<li class="title"><h2>3、treeNode 节点数据说明</h2>
-				<ul class="list">
-				<li>同 "基本 增 / 删 / 改 节点"</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

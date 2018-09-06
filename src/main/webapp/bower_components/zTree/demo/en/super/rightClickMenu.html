@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - select menu</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
-	<SCRIPT type="text/javascript">
+<TITLE>ZTREE DEMO - select menu</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			view: {
@@ -125,44 +126,53 @@
 		});
 		//-->
 	</SCRIPT>
-	<style type="text/css">
-div#rMenu {position:absolute; visibility:hidden; top:0; background-color: #555;text-align: left;padding: 2px;}
-div#rMenu ul li{
+<style type="text/css">
+div#rMenu {
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	background-color: #555;
+	text-align: left;
+	padding: 2px;
+}
+
+div#rMenu ul li {
 	margin: 1px 0;
 	padding: 0 5px;
 	cursor: pointer;
 	list-style: none outside none;
 	background-color: #DFDFDF;
 }
-	</style>
- </HEAD>
+</style>
+</HEAD>
 
 <BODY>
-<h1>Right-click Menu</h1>
-<h6>[ File Path: super/rightClickMenu.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>Right-click Menu</h1>
+	<h6>[ File Path: super/rightClickMenu.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>Explanation of implementation method</h2>
+					<ul class="list">
+						<li>Use 'beforeRightClick / onRightClick' callback function
+							achieve right-click menu.</li>
+						<li class="highlight_red">Demo's menu is ugly, you can use a
+							custom menu fine style.</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>Explanation of implementation method</h2>
-				<ul class="list">
-				<li>Use 'beforeRightClick / onRightClick' callback function achieve right-click menu.</li>
-				<li class="highlight_red">Demo's menu is ugly, you can use a custom menu fine style.</li>
-				</ul>
-			</li>
+	<div id="rMenu">
+		<ul>
+			<li id="m_add" onclick="addTreeNode();">Add Node</li>
+			<li id="m_del" onclick="removeTreeNode();">Delete Node</li>
+			<li id="m_check" onclick="checkTreeNode(true);">Check Node</li>
+			<li id="m_unCheck" onclick="checkTreeNode(false);">Uncheck Node</li>
+			<li id="m_reset" onclick="resetTree();">Resume zTree</li>
 		</ul>
 	</div>
-</div>
-<div id="rMenu">
-	<ul>
-		<li id="m_add" onclick="addTreeNode();">Add Node</li>
-		<li id="m_del" onclick="removeTreeNode();">Delete Node</li>
-		<li id="m_check" onclick="checkTreeNode(true);">Check Node</li>
-		<li id="m_unCheck" onclick="checkTreeNode(false);">Uncheck Node</li>
-		<li id="m_reset" onclick="resetTree();">Resume zTree</li>
-	</ul>
-</div>
 </BODY>
 </HTML>

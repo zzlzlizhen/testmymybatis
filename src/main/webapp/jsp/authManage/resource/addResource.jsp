@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <c:set var="appctx" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
@@ -59,55 +59,49 @@
 </script>
 </head>
 <body>
-	<div class="alert alert-danger" id="alertId" style="display:none;">
+	<div class="alert alert-danger" id="alertId" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<strong id="alertContent"></strong>
 	</div>
 	<font color="red">注意：如果资源地址没有，就录入“#”(表示是父菜单)</font>
 	<form class="form-horizontal" role="form">
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         资源名字：<font color="red">*</font>
-	      </label>
-	      <div class="col-sm-9">
-	         <input type="text" class="form-control" id="resourceName1">
-	      </div>
-	   </div>
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         资源地址：<font color="red">*</font>
-	      </label>
-	      <div class="col-sm-9">
-	         <input type="text" class="form-control" id="resourceUrl">
-	      </div>
-	   </div>
-	   <div class="form-group">
-          <label class="control-label col-sm-3 " for="selectError">父资源：</label>
-		  <div class="col-sm-9">
-		  	<select id="pid" class="col-sm-9 form-control">
-		  	  <option value="0"></option>
-		  	  <c:forEach items="${listResource}" var="resource">
-		  	  	<option value="${resource.id}">${resource.resourceName}</option>
-		  	  </c:forEach>
-			</select>
-		  </div>
-       </div>
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         资源图标：
-	      </label>
-	      <div class="col-sm-9">
-	         <input type="text" class="form-control" id="icons">
-	      </div>
-	   </div>
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         备注：
-	      </label>
-	      <div class="col-sm-9">
-	      		<textarea class="form-control" rows="3" id="remark"></textarea>
-	      </div>
-	   </div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 资源名字：<font color="red">*</font>
+			</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="resourceName1">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 资源地址：<font color="red">*</font>
+			</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="resourceUrl">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-3 " for="selectError">父资源：</label>
+			<div class="col-sm-9">
+				<select id="pid" class="col-sm-9 form-control">
+					<option value="0"></option>
+					<c:forEach items="${listResource}" var="resource">
+						<option value="${resource.id}">${resource.resourceName}</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 资源图标： </label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="icons">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 备注： </label>
+			<div class="col-sm-9">
+				<textarea class="form-control" rows="3" id="remark"></textarea>
+			</div>
+		</div>
 	</form>
 </body>
 </html>

@@ -1,44 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html>  
-<html>  
-<head>  
-    <title>WebSocket/SockJS Echo Sample (Adapted from Tomcat's echo sample)</title>  
-    <style type="text/css">  
-        #connect-container {  
-            float: left;  
-            width: 400px  
-        }  
-  
-        #connect-container div {  
-            padding: 5px;  
-        }  
-  
-        #console-container {  
-            float: left;  
-            margin-left: 15px;  
-            width: 400px;  
-        }  
-  
-        #console {  
-            border: 1px solid #CCCCCC;  
-            border-right-color: #999999;  
-            border-bottom-color: #999999;  
-            height: 170px;  
-            overflow-y: scroll;  
-            padding: 5px;  
-            width: 100%;  
-        }  
-  
-        #console p {  
-            padding: 0;  
-            margin: 0;  
-        }  
-    </style>  
-  
-    <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>  
-  
-    <script type="text/javascript">  
+	pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>WebSocket/SockJS Echo Sample (Adapted from Tomcat's echo
+	sample)</title>
+<style type="text/css">
+#connect-container {
+	float: left;
+	width: 400px
+}
+
+#connect-container div {
+	padding: 5px;
+}
+
+#console-container {
+	float: left;
+	margin-left: 15px;
+	width: 400px;
+}
+
+#console {
+	border: 1px solid #CCCCCC;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	height: 170px;
+	overflow-y: scroll;
+	padding: 5px;
+	width: 100%;
+}
+
+#console p {
+	padding: 0;
+	margin: 0;
+}
+</style>
+
+<script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+
+<script type="text/javascript">  
         var ws = null;  
         var url = null;  
         var urlPath = "/testmybatis/websocket;jsessionid=<%=request.getSession(true).getId()%>";
@@ -98,28 +99,31 @@
         } else {  
             url = 'wss://' + window.location.host + urlPath;  
         }  
-    </script>  
-</head>  
-<body>  
-<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websockets   
-    rely on Javascript being enabled. Please enable  
-    Javascript and reload this page!</h2></noscript>  
-<div>  
-    <div id="connect-container">  
-        <div>  
-            <button id="connect" onclick="connect();">Connect</button>  
-            <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>  
-        </div>  
-        <div>  
-            <textarea id="message" style="width: 350px">Here is a message!</textarea>  
-        </div>  
-        <div>  
-            <button id="echo" onclick="echo();" disabled="disabled">Echo message</button>  
-        </div>  
-    </div>  
-    <div id="console-container">  
-        <div id="console"></div>  
-    </div>  
-</div>  
-</body>  
-</html>  
+    </script>
+</head>
+<body>
+	<noscript>
+		<h2 style="color: #ff0000">Seems your browser doesn't support
+			Javascript! Websockets rely on Javascript being enabled. Please
+			enable Javascript and reload this page!</h2>
+	</noscript>
+	<div>
+		<div id="connect-container">
+			<div>
+				<button id="connect" onclick="connect();">Connect</button>
+				<button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+			</div>
+			<div>
+				<textarea id="message" style="width: 350px">Here is a message!</textarea>
+			</div>
+			<div>
+				<button id="echo" onclick="echo();" disabled="disabled">Echo
+					message</button>
+			</div>
+		</div>
+		<div id="console-container">
+			<div id="console"></div>
+		</div>
+	</div>
+</body>
+</html>

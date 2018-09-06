@@ -280,23 +280,22 @@
 									</a>
 								</div>
 							</div>
-							<a class="btn btn-primary" href="#" onclick="addFun()">
-								<i class="glyphicon glyphicon-plus"></i>添加
-							</a>
-							<a class="btn btn-danger" href="#" onclick="batchDelFun()" data-toggle="modal" data-target="#myModal">
-								<i class="glyphicon glyphicon-trash "></i>批量删除
+							<a class="btn btn-primary" href="#" onclick="addFun()"> <i
+								class="glyphicon glyphicon-plus"></i>添加
+							</a> <a class="btn btn-danger" href="#" onclick="batchDelFun()"
+								data-toggle="modal" data-target="#myModal"> <i
+								class="glyphicon glyphicon-trash "></i>批量删除
 							</a>
 						</div>
 						<div style="height: 15px;"></div>
-					
+
 						<div class="row-fluid">
-							<table id="dataTables" 
+							<table id="dataTables"
 								class="table table-striped table-bordered table-hover table-condensed datatable">
 								<thead>
 									<tr>
-										<th>
-											<input type="checkbox" onclick="selectAll(this)" name="cb-check-all">
-										</th>
+										<th><input type="checkbox" onclick="selectAll(this)"
+											name="cb-check-all"></th>
 										<th>id</th>
 										<th>资源名字</th>
 										<th>资源地址</th>
@@ -323,12 +322,11 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3>Settings</h3>
 				</div>
-				<div class="modal-body">
-					
-				</div>
+				<div class="modal-body"></div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</a>
-					<a href="#" onclick="" class="btn btn-primary" id="saveBtn">Save</a>
+					<a href="#" class="btn btn-default" id="closeBtn"
+						data-dismiss="modal">Close</a> <a href="#" onclick=""
+						class="btn btn-primary" id="saveBtn">Save</a>
 				</div>
 			</div>
 		</div>

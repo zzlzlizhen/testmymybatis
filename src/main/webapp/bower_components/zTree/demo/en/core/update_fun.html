@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - updateNode</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<!--  <script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<TITLE>ZTREE DEMO - updateNode</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<!--  <script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
 	  <script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>-->
-	<SCRIPT type="text/javascript">
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			view: {
@@ -86,58 +87,131 @@
 		});
 		//-->
 	</SCRIPT>
-	<style type="text/css">
-.ztree li span.button.pIcon01_ico_open{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/1_open.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
-.ztree li span.button.pIcon01_ico_close{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/1_close.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
-.ztree li span.button.icon01_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/2.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
-.ztree li span.button.icon02_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/3.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
-.ztree li span.button.icon03_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/4.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
-.ztree li span.button.icon04_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/5.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
-.ztree li span.button.icon05_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/6.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
-.ztree li span.button.icon06_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/7.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
-.ztree li span.button.icon07_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/8.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
-.ztree li span.button.icon08_ico_docu{margin-right:2px; background: url(../../../css/zTreeStyle/img/diy/9.png) no-repeat scroll 0 0 transparent; vertical-align:top; *vertical-align:middle}
-	</style>
+<style type="text/css">
+.ztree li span.button.pIcon01_ico_open {
+	margin-right: 2px;
+	background: url(../../../css/zTreeStyle/img/diy/1_open.png) no-repeat
+		scroll 0 0 transparent;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+.ztree li span.button.pIcon01_ico_close {
+	margin-right: 2px;
+	background: url(../../../css/zTreeStyle/img/diy/1_close.png) no-repeat
+		scroll 0 0 transparent;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+.ztree li span.button.icon01_ico_docu {
+	margin-right: 2px;
+	background: url(../../../css/zTreeStyle/img/diy/2.png) no-repeat scroll
+		0 0 transparent;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+.ztree li span.button.icon02_ico_docu {
+	margin-right: 2px;
+	background: url(../../../css/zTreeStyle/img/diy/3.png) no-repeat scroll
+		0 0 transparent;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+.ztree li span.button.icon03_ico_docu {
+	margin-right: 2px;
+	background: url(../../../css/zTreeStyle/img/diy/4.png) no-repeat scroll
+		0 0 transparent;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+.ztree li span.button.icon04_ico_docu {
+	margin-right: 2px;
+	background: url(../../../css/zTreeStyle/img/diy/5.png) no-repeat scroll
+		0 0 transparent;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+.ztree li span.button.icon05_ico_docu {
+	margin-right: 2px;
+	background: url(../../../css/zTreeStyle/img/diy/6.png) no-repeat scroll
+		0 0 transparent;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+.ztree li span.button.icon06_ico_docu {
+	margin-right: 2px;
+	background: url(../../../css/zTreeStyle/img/diy/7.png) no-repeat scroll
+		0 0 transparent;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+.ztree li span.button.icon07_ico_docu {
+	margin-right: 2px;
+	background: url(../../../css/zTreeStyle/img/diy/8.png) no-repeat scroll
+		0 0 transparent;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+.ztree li span.button.icon08_ico_docu {
+	margin-right: 2px;
+	background: url(../../../css/zTreeStyle/img/diy/9.png) no-repeat scroll
+		0 0 transparent;
+	vertical-align: top;
+	*vertical-align: middle
+}
+</style>
 </HEAD>
 
 <BODY>
-<h1>Update Node - zTree methods</h1>
-<h6>[ File Path: core/update_fun.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>Update Node - zTree methods</h1>
+	<h6>[ File Path: core/update_fun.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>1, Explanation of updateNode</h2>
+					<ul class="list">
+						<li class="highlight_red">How to use zTreeObj.updateNode
+							method, please see the API documentation.</li>
+						<li><p>
+								This Demo can only select one parent node<br /> Try: [ <a
+									id="rename" href="#" onclick="return false;">Change Name</a> ]
+								&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="changeIcon" href="#"
+									onclick="return false;">Change Icon</a> ]<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="changeColor" href="#"
+									onclick="return false;">Change Color</a> ]
+								&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="changeFont" href="#"
+									onclick="return false;">Change Italic Font</a> ]
+							</p></li>
+					</ul></li>
+				<li class="title"><h2>2, Explanation of setting</h2>
+					<ul class="list">
+						<li>Do not need to set the setting.</li>
+						<li class="highlight_red">You can modify the node style with
+							setting.view.fontCss.</li>
+					</ul></li>
+				<li class="title"><h2>3, Explanation of treeNode</h2>
+					<ul class="list">
+						<li class="highlight_red">In the API documentation has detail
+							description about the 'zTreeObj.updateNode method'.</li>
+					</ul></li>
+				<li class="title"><h2>4、Other explanation</h2>
+					<ul class="list">
+						<li>This demo only made ​by the core js, so does not include
+							the checkbox update.</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>1, Explanation of updateNode</h2>
-				<ul class="list">
-				<li class="highlight_red">How to use zTreeObj.updateNode method,  please see the API documentation.</li>
-				<li><p>This Demo can only select one parent node<br/>
-					Try: [ <a id="rename" href="#" onclick="return false;">Change Name</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="changeIcon" href="#" onclick="return false;">Change Icon</a> ]<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="changeColor" href="#" onclick="return false;">Change Color</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="changeFont" href="#" onclick="return false;">Change Italic Font</a> ]</p>
-				</li>
-				</ul>
-			</li>
-			<li class="title"><h2>2, Explanation of setting</h2>
-				<ul class="list">
-				<li>Do not need to set the setting.</li>
-				<li class="highlight_red">You can modify the node style with setting.view.fontCss.</li>
-				</ul>
-			</li>
-			<li class="title"><h2>3, Explanation of treeNode</h2>
-				<ul class="list">
-				<li class="highlight_red">In the API documentation has detail description about the 'zTreeObj.updateNode method'.</li>
-				</ul>
-			</li>
-			<li class="title"><h2>4、Other explanation</h2>
-				<ul class="list">
-				<li>This demo only made ​by the core js, so does not include the checkbox update.</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

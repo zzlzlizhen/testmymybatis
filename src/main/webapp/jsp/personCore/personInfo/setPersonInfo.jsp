@@ -10,9 +10,9 @@
 	content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 <meta name="author" content="Muhammad Usman">
 <style type="text/css">
-	.checkbox-inline{
-		margin-left:10px;
-		}
+.checkbox-inline {
+	margin-left: 10px;
+}
 </style>
 <script type="text/javascript">
 	var phoneRegex = /^[1][0-9]{10}$/;
@@ -56,32 +56,37 @@
 </script>
 </head>
 <body>
-<div class="ch-container">
-    <div class="row">
-        <div class="well col-md-5 center login-box">
-            <div class="alert alert-danger" id="alertId" style="display: none;">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<strong id="alertContent"></strong>
+	<div class="ch-container">
+		<div class="row">
+			<div class="well col-md-5 center login-box">
+				<div class="alert alert-danger" id="alertId" style="display: none;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong id="alertContent"></strong>
+				</div>
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon"><i class="glyphicon red">手机号：</i></span>
+							<input type="text" class="form-control"
+								value="${loginUser.phone}" id="phone1" placeholder="请输入手机号">
+						</div>
+						<div class="clearfix"></div>
+						<br>
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon"><i class="glyphicon red">&nbsp;邮箱：</i></span>
+							<input type="text" class="form-control"
+								value="${loginUser.email}" id="email1" placeholder="请输入邮箱">
+						</div>
+						<div class="clearfix"></div>
+						<br>
+						<p class="center col-md-5">
+							<button type="button" class="btn btn-primary"
+								onclick="updateInfo()">修改信息</button>
+						</p>
+					</fieldset>
+				</form>
 			</div>
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon"><i class="glyphicon red">手机号：</i></span>
-                        <input type="text" class="form-control" value="${loginUser.phone}" id="phone1" placeholder="请输入手机号">
-                    </div>
-                    <div class="clearfix"></div><br>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-addon"><i class="glyphicon red">&nbsp;邮箱：</i></span>
-                        <input type="text" class="form-control" value="${loginUser.email}" id="email1" placeholder="请输入邮箱">
-                    </div>
-                    <div class="clearfix"></div><br>
-                    <p class="center col-md-5">
-                    	<button type="button" class="btn btn-primary" onclick="updateInfo()">修改信息</button>
-                    </p>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-</div>
+		</div>
+	</div>
 </body>
 </html>

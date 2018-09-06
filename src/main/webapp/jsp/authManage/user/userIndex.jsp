@@ -251,23 +251,22 @@
 									用户名：<input type="text" placeholder="用户名" id="userName">
 									手机号：<input type="text" placeholder="手机号" id="phone">
 									状态：<select id="status">
-									  	  	<option value="">全部</option>
-									  	  	<option value="1">启用</option>
-									  	  	<option value="0">停用</option>
-										</select>
-									<a class="btn btn-primary" href="#" onclick="searchFun()">
+										<option value="">全部</option>
+										<option value="1">启用</option>
+										<option value="0">停用</option>
+									</select> <a class="btn btn-primary" href="#" onclick="searchFun()">
 										<i class="glyphicon glyphicon-search"></i>查询
 									</a>
 								</div>
 							</div>
-							<a class="btn btn-primary" href="#" onclick="addFun()">
-								<i class="glyphicon glyphicon-plus"></i>添加
+							<a class="btn btn-primary" href="#" onclick="addFun()"> <i
+								class="glyphicon glyphicon-plus"></i>添加
 							</a>
 						</div>
 						<div style="height: 15px;"></div>
-					
+
 						<div class="row-fluid">
-							<table id="dataTables" 
+							<table id="dataTables"
 								class="table table-striped table-bordered table-hover table-condensed datatable">
 								<thead>
 									<tr>
@@ -298,12 +297,11 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3>Settings</h3>
 				</div>
-				<div class="modal-body">
-					
-				</div>
+				<div class="modal-body"></div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</a>
-					<a href="#" onclick="" class="btn btn-primary" id="saveBtn">Save</a>
+					<a href="#" class="btn btn-default" id="closeBtn"
+						data-dismiss="modal">Close</a> <a href="#" onclick=""
+						class="btn btn-primary" id="saveBtn">Save</a>
 				</div>
 			</div>
 		</div>

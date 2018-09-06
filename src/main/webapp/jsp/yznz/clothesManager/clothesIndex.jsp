@@ -276,37 +276,35 @@
 					</div>
 					<div class="box-content">
 						<div class="btn-toolbar">
-							<div class="pull-right">					
+							<div class="pull-right">
 								<div class="input-append">
-								  	<select id="searchId" >
-								  	<option value="">全部</option>
-								  	  <option value="YZNZ_CLOUTHES_SIZE">尺寸</option>
-								  	  <option value="YZNZ_CLOUTHES_STYLE">风格</option>
-								  	  <option value="YZNZ_CLOUTHES_COLOUR">颜色</option>
-								  	  <option value="YZNZ_CLOUTHES_CATEGORY">类型</option>
-									</select>								
-									<a class="btn btn-primary" href="#" onclick="searchFun()">
+									<select id="searchId">
+										<option value="">全部</option>
+										<option value="YZNZ_CLOUTHES_SIZE">尺寸</option>
+										<option value="YZNZ_CLOUTHES_STYLE">风格</option>
+										<option value="YZNZ_CLOUTHES_COLOUR">颜色</option>
+										<option value="YZNZ_CLOUTHES_CATEGORY">类型</option>
+									</select> <a class="btn btn-primary" href="#" onclick="searchFun()">
 										<i class="glyphicon glyphicon-search"></i>查询
 									</a>
 								</div>
 							</div>
-							<a class="btn btn-primary" href="#" onclick="addFun()">
-								<i class="glyphicon glyphicon-plus"></i>添加
-							</a>
-							<a class="btn btn-danger" href="#" onclick="batchDelFun()" data-toggle="modal" data-target="#myModal">
-								<i class="glyphicon glyphicon-trash "></i>批量删除
+							<a class="btn btn-primary" href="#" onclick="addFun()"> <i
+								class="glyphicon glyphicon-plus"></i>添加
+							</a> <a class="btn btn-danger" href="#" onclick="batchDelFun()"
+								data-toggle="modal" data-target="#myModal"> <i
+								class="glyphicon glyphicon-trash "></i>批量删除
 							</a>
 						</div>
 						<div style="height: 15px;"></div>
-					
+
 						<div class="row-fluid">
-							<table id="dataTables" 
+							<table id="dataTables"
 								class="table table-striped table-bordered table-hover table-condensed datatable">
 								<thead>
 									<tr>
-										<th>
-											<input type="checkbox" onclick="selectAll(this)" name="cb-check-all">
-										</th>
+										<th><input type="checkbox" onclick="selectAll(this)"
+											name="cb-check-all"></th>
 										<th>id</th>
 										<th>键</th>
 										<th>值</th>
@@ -332,12 +330,11 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3>Settings</h3>
 				</div>
-				<div class="modal-body">
-					
-				</div>
+				<div class="modal-body"></div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-default" id="closeBtn" data-dismiss="modal">Close</a>
-					<a href="#" onclick="" class="btn btn-primary" id="saveBtn">Save</a>
+					<a href="#" class="btn btn-default" id="closeBtn"
+						data-dismiss="modal">Close</a> <a href="#" onclick=""
+						class="btn btn-primary" id="saveBtn">Save</a>
 				</div>
 			</div>
 		</div>

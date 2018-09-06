@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - select menu</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
-	<SCRIPT type="text/javascript">
+<TITLE>ZTREE DEMO - select menu</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			view: {
@@ -125,44 +126,52 @@
 		});
 		//-->
 	</SCRIPT>
-	<style type="text/css">
-div#rMenu {position:absolute; visibility:hidden; top:0; background-color: #555;text-align: left;padding: 2px;}
-div#rMenu ul li{
+<style type="text/css">
+div#rMenu {
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	background-color: #555;
+	text-align: left;
+	padding: 2px;
+}
+
+div#rMenu ul li {
 	margin: 1px 0;
 	padding: 0 5px;
 	cursor: pointer;
 	list-style: none outside none;
 	background-color: #DFDFDF;
 }
-	</style>
- </HEAD>
+</style>
+</HEAD>
 
 <BODY>
-<h1>右键菜单的实现</h1>
-<h6>[ 文件路径: super/rightClickMenu.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>右键菜单的实现</h1>
+	<h6>[ 文件路径: super/rightClickMenu.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>实现方法说明</h2>
+					<ul class="list">
+						<li>利用 beforeRightClick / onRightClick 事件回调函数简单实现的右键菜单</li>
+						<li class="highlight_red">Demo
+							中的菜单比较简陋，你完全可以配合其他自定义样式的菜单图层混合使用</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>实现方法说明</h2>
-				<ul class="list">
-				<li>利用 beforeRightClick / onRightClick 事件回调函数简单实现的右键菜单</li>
-				<li class="highlight_red">Demo 中的菜单比较简陋，你完全可以配合其他自定义样式的菜单图层混合使用</li>
-				</ul>
-			</li>
+	<div id="rMenu">
+		<ul>
+			<li id="m_add" onclick="addTreeNode();">增加节点</li>
+			<li id="m_del" onclick="removeTreeNode();">删除节点</li>
+			<li id="m_check" onclick="checkTreeNode(true);">Check节点</li>
+			<li id="m_unCheck" onclick="checkTreeNode(false);">unCheck节点</li>
+			<li id="m_reset" onclick="resetTree();">恢复zTree</li>
 		</ul>
 	</div>
-</div>
-<div id="rMenu">
-	<ul>
-		<li id="m_add" onclick="addTreeNode();">增加节点</li>
-		<li id="m_del" onclick="removeTreeNode();">删除节点</li>
-		<li id="m_check" onclick="checkTreeNode(true);">Check节点</li>
-		<li id="m_unCheck" onclick="checkTreeNode(false);">unCheck节点</li>
-		<li id="m_reset" onclick="resetTree();">恢复zTree</li>
-	</ul>
-</div>
 </BODY>
 </HTML>

@@ -25,10 +25,8 @@
 		</property>
 	</bean>
 	<!-- 目前我用过的EMAIL账号都是网易的,下面列出网易的SMTP服务器名和端口号: 网易邮箱 SMTP服务器 SMTP端口 POP3服务器 
-		POP3端口 
-		@126.com smtp.126.com 25 pop3.126.com 110 
-		@163.com smtp.163.com 25 pop3.163.com 110 
-		@yeah.net smtp.yeah.net 25 pop3.yeah.net 110 -->
+		POP3端口 @126.com smtp.126.com 25 pop3.126.com 110 @163.com smtp.163.com 25 
+		pop3.163.com 110 @yeah.net smtp.yeah.net 25 pop3.yeah.net 110 -->
 
 	<bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">
 		<!-- 发件人email -->
@@ -38,9 +36,8 @@
 			</property> -->
 	</bean>
 
-	<!-- <bean id="simpleMail" class="lz.mail.Mail">
-		<property name="mailSender" ref="mailSender" />
-		<property name="simpleMailMessage" ref="simpleMailMessage" />
-	</bean> -->
+	<!-- <bean id="simpleMail" class="lz.mail.Mail"> <property name="mailSender" 
+		ref="mailSender" /> <property name="simpleMailMessage" ref="simpleMailMessage" 
+		/> </bean> -->
 
 </beans>

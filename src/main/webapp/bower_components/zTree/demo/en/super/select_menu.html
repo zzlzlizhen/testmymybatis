@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - select menu</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<!--  <script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<TITLE>ZTREE DEMO - select menu</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<!--  <script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
 	  <script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>-->
-	<SCRIPT type="text/javascript">
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			view: {
@@ -89,36 +90,41 @@
 		});
 		//-->
 	</SCRIPT>
-	<style type="text/css">
-	</style>
- </HEAD>
+<style type="text/css">
+</style>
+</HEAD>
 
 <BODY>
-<h1>Drop-down Menu</h1>
-<h6>[ File Path: super/select_menu.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul class="list">
-			<li class="title">&nbsp;&nbsp;<span class="highlight_red">Press Ctrl-key or Cmd-key to select multiple cities</span></li>
-			<li class="title">&nbsp;&nbsp;city: <input id="citySel" type="text" readonly value="" style="width:120px;"/>
-		&nbsp;<a id="menuBtn" href="#" onclick="showMenu(); return false;">select</a></li>
-		</ul>
+	<h1>Drop-down Menu</h1>
+	<h6>[ File Path: super/select_menu.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul class="list">
+				<li class="title">&nbsp;&nbsp;<span class="highlight_red">Press
+						Ctrl-key or Cmd-key to select multiple cities</span></li>
+				<li class="title">&nbsp;&nbsp;city: <input id="citySel"
+					type="text" readonly value="" style="width: 120px;" /> &nbsp;<a
+					id="menuBtn" href="#" onclick="showMenu(); return false;">select</a></li>
+			</ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>Explanation of implementation method</h2>
+					<ul class="list">
+						<li>Achieve this drop-down menu, it is relatively easy, you
+							only need to control zTree Hide / Show, and location.</li>
+						<li class="highlight_red">Use zTree v3.x, you can select
+							multiple nodes, so the multi-selection is also easy.</li>
+						<li class="highlight_red">Use the configuration parameters
+							setting, fully meet the needs of most of the functionality.</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>Explanation of implementation method</h2>
-				<ul class="list">
-				<li>Achieve this drop-down menu, it is relatively easy, you only need to control zTree Hide / Show, and location.</li>
-				<li class="highlight_red">Use zTree v3.x, you can select multiple nodes, so the multi-selection is also easy.</li>
-				<li class="highlight_red">Use the configuration parameters setting, fully meet the needs of most of the functionality.</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 
-<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
-	<ul id="treeDemo" class="ztree" style="margin-top:0; width:160px;"></ul>
-</div>
+	<div id="menuContent" class="menuContent"
+		style="display: none; position: absolute;">
+		<ul id="treeDemo" class="ztree" style="margin-top: 0; width: 160px;"></ul>
+	</div>
 </BODY>
 </HTML>

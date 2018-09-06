@@ -67,25 +67,22 @@
 							<i class="glyphicon glyphicon-info-sign"></i>框架介绍
 						</h2>
 						<div class="box-icon">
-							<a href="#" class="btn btn-minimize btn-round btn-default">
-								<i class="glyphicon glyphicon-chevron-up"></i>
+							<a href="#" class="btn btn-minimize btn-round btn-default"> <i
+								class="glyphicon glyphicon-chevron-up"></i>
 							</a>
 						</div>
 					</div>
 					<div class="box-content row">
 						<div class="col-lg-7 col-md-12">
 							<h1>
-								框架说明<br> 
-								<small>基于java架构的一个企业级项目快速开发平台</small>
+								框架说明<br> <small>基于java架构的一个企业级项目快速开发平台</small>
 							</h1>
 							<p>
 								1、本框架是由maven基于springMVC，mybatis，spring整合的框架<br>
 								2、前台是使用bootstrap框架搭建的页面结构，交互采用的是jquery的插件处理<br>
 								2、数据库mysql，缓存redis集群<br>
-								3、消息通信rabbitmq，webService(cxf)，webSocket<br>
-								4、任务调度quartz<br>
-								5、邮件发送mail，短信发送sms<br>
-								6、日志记录log4j<br>
+								3、消息通信rabbitmq，webService(cxf)，webSocket<br> 4、任务调度quartz<br>
+								5、邮件发送mail，短信发送sms<br> 6、日志记录log4j<br>
 							</p>
 						</div>
 					</div>

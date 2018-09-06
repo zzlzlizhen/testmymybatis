@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<TITLE> ZTREE DEMO - addNodes / editName / removeNode / removeChildNodes</TITLE>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
-	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
-	<SCRIPT type="text/javascript">
+<TITLE>ZTREE DEMO - addNodes / editName / removeNode /
+	removeChildNodes</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+<SCRIPT type="text/javascript">
 		<!--
 		var setting = {
 			view: {
@@ -150,45 +152,58 @@
 </HEAD>
 
 <BODY>
-<h1>Edit Nodes - zTree methods</h1>
-<h6>[ File Path: exedit/edit_fun.html ]</h6>
-<div class="content_wrap">
-	<div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+	<h1>Edit Nodes - zTree methods</h1>
+	<h6>[ File Path: exedit/edit_fun.html ]</h6>
+	<div class="content_wrap">
+		<div class="zTreeDemoBackground left">
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		<div class="right">
+			<ul class="info">
+				<li class="title"><h2>1, Explanation of 'addNodes /
+						editName / removeNode / removeChildNodes' method</h2>
+					<ul class="list">
+						<li>Use 'addNodes / editName / removeNode / removeChildNodes'
+							method can also be achieved copy / move nodes.</li>
+						<li>Method 'cancelEditName' is effective, only when edit the
+							node name. Please use it when necessary, this demo doesn't show
+							how to use the method.</li>
+						<li class="highlight_red">Use setting.data.keep.parent / leaf
+							attribute, you can lock the parent node and leaf node.</li>
+						<li><p>
+								Try to edit node:<br /> &nbsp;&nbsp;&nbsp;&nbsp;<input
+									type="checkbox" id="callbackTrigger" checked /> Whether
+								trigger the callback when execution removeNode() method.<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="addParent" href="#"
+									title="add parent node" onclick="return false;">add parent
+									node</a> ] &nbsp;&nbsp;&nbsp;&nbsp;[ <a id="addLeaf" href="#"
+									title="add leaf node" onclick="return false;">add leaf node</a>
+								] &nbsp;&nbsp;&nbsp;&nbsp;[ <a id="edit" href="#"
+									title="edit name" onclick="return false;">edit name</a> ]<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="remove" href="#"
+									title="remove node" onclick="return false;">remove node</a> ]
+								&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="clearChildren" href="#"
+									title="make child nodes to empty" onclick="return false;">make
+									child nodes to empty</a> ]<br /> remove log:<br />
+							<ul id="log" class="log"></ul>
+							</p></li>
+						<li class="highlight_red">How to use 'zTreeObj.addNodes /
+							cancelEditName / editName / removeNode / removeChildNodes'
+							method, please see the API documentation.</li>
+					</ul></li>
+				<li class="title"><h2>2, Explanation of setting</h2>
+					<ul class="list">
+						<li>Same as 'Basic Edit Nodes'</li>
+						<li class="highlight_red">Lock the parent / leaf node status,
+							need to set setting.data.keep.parent / leaf attribute, see the
+							API documentation for more related contents</li>
+					</ul></li>
+				<li class="title"><h2>3, Explanation of treeNode</h2>
+					<ul class="list">
+						<li>Same as 'Basic Edit Nodes'</li>
+					</ul></li>
+			</ul>
+		</div>
 	</div>
-	<div class="right">
-		<ul class="info">
-			<li class="title"><h2>1, Explanation of 'addNodes / editName / removeNode / removeChildNodes' method</h2>
-				<ul class="list">
-				<li>Use 'addNodes / editName / removeNode / removeChildNodes' method can also be achieved copy / move nodes.</li>
-				<li>Method 'cancelEditName' is effective, only when edit the node name. Please use it when necessary, this demo doesn't show how to use the method.</li>
-				<li class="highlight_red">Use setting.data.keep.parent / leaf attribute, you can lock the parent node and leaf node.</li>
-				<li><p>Try to edit node:<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="callbackTrigger" checked /> Whether trigger the callback when execution removeNode() method.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="addParent" href="#" title="add parent node" onclick="return false;">add parent node</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="addLeaf" href="#" title="add leaf node" onclick="return false;">add leaf node</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="edit" href="#" title="edit name" onclick="return false;">edit name</a> ]<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="remove" href="#" title="remove node" onclick="return false;">remove node</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="clearChildren" href="#" title="make child nodes to empty" onclick="return false;">make child nodes to empty</a> ]<br/>
-					remove log:<br/>
-					<ul id="log" class="log"></ul></p>
-				</li>
-				<li class="highlight_red">How to use 'zTreeObj.addNodes / cancelEditName / editName / removeNode / removeChildNodes' method,  please see the API documentation.</li>
-				</ul>
-			</li>
-			<li class="title"><h2>2, Explanation of setting</h2>
-				<ul class="list">
-				<li>Same as 'Basic Edit Nodes'</li>
-				<li class="highlight_red">Lock the parent / leaf node status, need to set setting.data.keep.parent / leaf attribute, see the API documentation for more related contents</li>
-				</ul>
-			</li>
-			<li class="title"><h2>3, Explanation of treeNode</h2>
-				<ul class="list">
-				<li>Same as 'Basic Edit Nodes'</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
 </BODY>
 </HTML>

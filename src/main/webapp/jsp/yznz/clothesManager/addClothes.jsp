@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <c:set var="appctx" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
@@ -55,32 +55,28 @@
 </script>
 </head>
 <body>
-	<div class="alert alert-danger" id="alertId" style="display:none;">
+	<div class="alert alert-danger" id="alertId" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<strong id="alertContent">键值不能为空</strong>
 	</div>
 	<form class="form-horizontal" role="form">
-	   <div class="form-group">
-	      <label class="col-sm-3 control-label">
-	         衣服属性：
-	      </label>
-	      <div class="col-sm-9">
-			<select id="paramKey" class="col-sm-9 form-control">
-		  	  <option value="YZNZ_CLOUTHES_SIZE">尺寸</option>
-		  	  <option value="YZNZ_CLOUTHES_STYLE">风格</option>
-		  	  <option value="YZNZ_CLOUTHES_COLOUR">颜色</option>
-		  	  <option value="YZNZ_CLOUTHES_CATEGORY">类型</option>
-			</select>	
-	      </div>
-	   </div>
-	   <div class="form-group">
-	      <label class="col-sm-2 control-label">
-	          值：
-	      </label>
-	      <div class="col-sm-10">
-	      		<textarea class="form-control" rows="3" id="paramValue"></textarea>
-	      </div>
-	   </div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label"> 衣服属性： </label>
+			<div class="col-sm-9">
+				<select id="paramKey" class="col-sm-9 form-control">
+					<option value="YZNZ_CLOUTHES_SIZE">尺寸</option>
+					<option value="YZNZ_CLOUTHES_STYLE">风格</option>
+					<option value="YZNZ_CLOUTHES_COLOUR">颜色</option>
+					<option value="YZNZ_CLOUTHES_CATEGORY">类型</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"> 值： </label>
+			<div class="col-sm-10">
+				<textarea class="form-control" rows="3" id="paramValue"></textarea>
+			</div>
+		</div>
 	</form>
 </body>
 </html>
