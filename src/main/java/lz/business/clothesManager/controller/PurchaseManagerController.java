@@ -18,6 +18,7 @@ import lz.model.YznzColthes;
 
 
 
+
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +42,7 @@ public class PurchaseManagerController {
 	@RequestMapping("/viewPage/{id}")
 	public String viewPage(@PathVariable String id,HttpServletRequest request){
 		YznzColthes yznzCloth = cpmService.getParamById(id);
-		request.setAttribute("systemParam",yznzCloth);
+		request.setAttribute("yznzCloth",yznzCloth);
 		return "/yznz/purchaseManager/viewPurchase";
 	}
 	@RequestMapping("/addPage")
@@ -51,7 +52,7 @@ public class PurchaseManagerController {
 	@RequestMapping("/editPage/{id}")
 	public String editPage(@PathVariable String id,HttpServletRequest request){
 		YznzColthes yznzCloth = cpmService.getParamById(id);
-		request.setAttribute("systemParam",yznzCloth);
+		request.setAttribute("yznzCloth",yznzCloth);
 		return "/yznz/purchaseManager/editPurchase";
 	}
 
@@ -101,13 +102,8 @@ public class PurchaseManagerController {
 	public Map<String,Object> add(@RequestBody YznzColthes yznz){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
-			if(cpmService.getParamCountByParamKey(yznz.getId())>0){
-				map.put("result","paramKeyIsExist");
-			}else{
-//				yznz.setCreateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
-				cpmService.insertYznzClother(yznz);
-				map.put("result","success");
-			}
+			cpmService.insertYznzClother(yznz);
+			map.put("result","success");
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
@@ -115,19 +111,21 @@ public class PurchaseManagerController {
 		}
 		return map;
 	}
-//	@RequestMapping(value="/add")
-//	@ResponseBody
-//	@LogAspectAnnotation(logDesc="添加进货管理参数信息",logBusiness="进货参数管理")
-//	public Map<String,Object> add(@RequestBody YznzColthes yznzColthes){
-//		Map<String,Object> map = new HashMap<String,Object>();
-//		try {
-//			cpmService.insertYznzClother(yznzColthes);
-//			map.put("result","success");
-//		} catch (Exception e) {
-//			map.put("result","error");
-//			e.printStackTrace();
-//			throw new ControllerException(e,"保存衣服管理信息失败","衣服管理","/purchaseManagerController/add");
-//		}
-//		return map;
-//	}
+	@RequestMapping(value="/edit")
+	@ResponseBody
+	@LogAspectAnnotation(logDesc="进货管理信息修改",logBusiness="进货管理")
+	public Map<String,Object> edit(@RequestBody YznzColthes yznz){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+//			YznzColthes yznzCloth = cpmService.getParamById(yznz.getId());
+			
+			cpmService.updateYznzClother(yznz);
+			map.put("result","success");
+		} catch (Exception e) {
+			map.put("result","error");
+			e.printStackTrace();
+			throw new ControllerException(e,"修改衣服属性系统参数信息失败","衣服属性管理","/clothesManagerController/edit");
+		}
+		return map;
+	}
 }

@@ -2,6 +2,7 @@ package lz.business.clothesManager.service;
 
 import java.util.Map;
 
+import lz.model.Resource;
 import lz.model.SystemParam;
 import lz.model.YznzColthes;
 
@@ -13,4 +14,5 @@ public interface ClothesPurchaseManagerService {
 	int insertYznzClother(YznzColthes yznzColthes);
 	YznzColthes getParamById(String id);
 	int getParamCountByParamKey(String paramKey);
+	int updateYznzClother(YznzColthes yznzColthes);
 }

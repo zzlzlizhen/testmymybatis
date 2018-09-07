@@ -56,8 +56,12 @@ public class ClothesPurchaseManagerServiceImpl implements ClothesPurchaseManager
 		// TODO Auto-generated method stub
 		return 0;
 	}
-    
-	
-	
+
+	@Override
+	public int updateYznzClother(YznzColthes yznzColthes) {
+		yznzColthes.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
+		return ycMapper.updateByPrimaryKeySelective(yznzColthes);
+		
+	}
 	
 }

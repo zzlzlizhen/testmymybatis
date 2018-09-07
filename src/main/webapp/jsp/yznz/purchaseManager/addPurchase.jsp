@@ -56,7 +56,7 @@
 		        async: true,
 		        contentType:"application/json",
 		        type: 'POST',
-		        data: JSON.stringify({clothName:$("#clothName").val(),purchaseCount:$("#purchaseCount").val(),saleCount:$("#saleCount").val(),purchasePrice:$("#purchasePrice").val(),prechasePrice:$("#prechasePrice").val(),businessType:$("#businessType").val(),styleType:$("#styleType").val(),categoryType:$("#categoryType").val(),picUrl:$("#picUrl").val(),businessAddress:$("#businessAddress").val(),addBy:$("#addBy").val()}),
+		        data: JSON.stringify({name:$("#clothName").val(),purchaseCount:$("#purchaseCount").val(),saleCount:$("#saleCount").val(),prechasePrice:$("#prechasePrice").val(),businessType:$("#businessType").val(),styleType:$("#styleType").val(),categoryType:$("#categoryType").val(),picUrl:$("#picUrl").val(),businessAddress:$("#businessAddress").val(),addBy:$("#addBy").val()}),
 		        success: function(data , textStatus){
 		          $("#alertId").show();
 		          if(data.result=="success"){

@@ -13,25 +13,62 @@
 	content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 <meta name="author" content="Muhammad Usman">
 <script type="text/javascript">
-	$(function() {
-		var orginValue = $("#paramKey").val();
-		$("#paramKey").val(translationAttr(orginValue));
-	});
+
 	function saveSubmit(){
-		if($("#paramKey").val()==null||(!$("#paramKey").val().length>0)){
+		if($("#clothName").val()==null||(!$("#clothName").val().length>0)){
 			$("#alertId").show();
-			$("#alertContent").html("键不能为空");
-		}else if($("#paramValue").val()==null||(!$("#paramValue").val().length>0)){
+			$("#alertContent").html("衣服名字不能为空");
+		}else if($("#purchaseCount").val()==null||(!$("#purchaseCount").val().length>0)){
 			$("#alertId").show();
-			$("#alertContent").html("值不能为空");
+			$("#alertContent").html("衣服的购买数量不能为空");
+		}else if($("#saleCount").val()==null || (!$("#saleCount").val().length > 0)){
+			$("#alertId").show();
+			$("#alertContent").html("衣服销售数量不能为空");
+		}else if($("#purchasePrice").val()==null || (!$("#purchasePrice").val().length > 0)){
+			$("#alertId").show();
+			$("#alertContent").html("衣服原价不能为空");
+		}else if($("#preSalePrice").val()==null || (!$("#preSalePrice").val().length > 0)){
+			$("#alertId").show();
+			$("#alertContent").html("衣服销售价格不能为空");
+		}else if($("#businessType").val()==null || (!$("#businessType").val().length > 0)){
+			$("#alertId").show();
+			$("#alertContent").html("衣服购买类型不能为空");
+		}else if($("#styleType").val()==null || (!$("#styleType").val().length > 0)){
+			$("#alertId").show();
+			$("#alertContent").html("衣服风格类型不能为空");
+		}else if($("#categoryType").val()==null || (!$("#categoryType").val().length > 0)){
+			$("#alertId").show();
+			$("#alertContent").html("衣服分类不能为空");
+		}else if($("#picUrl").val()==null || (!$("#picUrl").val().length > 0)){
+			$("#alertId").show();
+			$("#alertContent").html("衣服图片不能为空");
+		}else if($("#businessAddress").val()==null || (!$("#businessAddress").val().length > 0)){
+			$("#alertId").show();
+			$("#alertContent").html("购买衣服商家地址不能为空");
+		}else if($("#addBy").val()==null || (!$("#addBy").val().length > 0)){
+			$("#alertId").show();
+			$("#alertContent").html("添加记录人不能为空");
 		}
 		else{
+			var jsonData  = {};
+			jsonData.id=$("#id").val();
+			jsonData.name=$("#clothName").val();
+			jsonData.purchaseCount=$("#purchaseCount").val();
+			jsonData.saleCount=$("#saleCount").val();
+			jsonData.purchasePrice=$("#purchasePrice").val();
+			jsonData.preSalePrice=$("#preSalePrice").val();
+			jsonData.businessType=$("#businessType").val();
+			jsonData.categoryType=$("#categoryType").val();
+			jsonData.styleType=$("#styleType").val();
+			jsonData.picUrl=$("#picUrl").val();
+			jsonData.businessAddress=$("#businessAddress").val();
+			jsonData.addBy=$("#addBy").val();
 			$.ajax({
-		        url: '${appctx}/clothesManagerController/edit',
+		        url: '${appctx}/purchaseManagerController/edit',
 		        async: true,
 		        contentType:"application/json",
 		        type: 'POST',
-		        data: JSON.stringify({id:$("#id").val(),paramKey:'${yznzCloth.name}',paramValue:$("#paramValue").val()}),
+		        data: JSON.stringify(jsonData),
 		        success: function(data , textStatus){
 		          $("#alertId").show();
 		          if(data.result=="success"){
@@ -39,8 +76,6 @@
 		        	  setTimeout("$('#myModal').modal('hide')",1000); 
 		        	  $("#saveBtn").attr("onclick","");
 		        	  table.fnDraw();
-		          }else if(data.result=="paramKeyIsExist"){
-		        	  $("#alertContent").html("键已经存在，请重新换一个！");
 		          }else if(data.result=="error"){
 		        	  $("#alertContent").html("修改失败，请联系管理员");
 		          }
@@ -59,6 +94,7 @@
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<strong id="alertContent"></strong>
 	</div>
+	<input type="hidden" id="id" value="${yznzCloth.id}" />
 	<form class="form-horizontal" role="form">
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 衣服名字：<font color="red">*</font>
@@ -71,7 +107,7 @@
 			<label class="col-sm-3 control-label"> 购买数量：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="purchaseCount" value="${yznzCloth.name}">
+				<input type="text" class="form-control" id="purchaseCount" value="${yznzCloth.purchaseCount}">
 			</div>
 		</div>
 
@@ -79,7 +115,7 @@
 			<label class="col-sm-3 control-label"> 销售数量：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="saleCount" value="${yznzCloth.name}">
+				<input type="text" class="form-control" id="saleCount" value="${yznzCloth.saleCount}">
 			</div>
 		</div>
 
@@ -87,49 +123,49 @@
 			<label class="col-sm-3 control-label"> 原价：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="purchasePrice" value="${yznzCloth.name}">
+				<input type="text" class="form-control" id="purchasePrice" value="${yznzCloth.purchasePrice}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 销售价格：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="preSalePrice" value="${yznzCloth.name}">
+				<input type="text" class="form-control" id="preSalePrice" value="${yznzCloth.preSalePrice}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 购买类型：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="businessType" value="${yznzCloth.name}">
+				<input type="text" class="form-control" id="businessType" value="${yznzCloth.businessType}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 风格类型：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="styleType" value="${yznzCloth.name}">
+				<input type="text" class="form-control" id="styleType" value="${yznzCloth.styleType}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 衣服分类：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="categoryType" value="${value="${yznzCloth.name}"}">
+				<input type="text" class="form-control" id="categoryType" value="${yznzCloth.categoryType}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 图片：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="picUrl" value="${value="${yznzCloth.name}"}">
+				<input type="text" class="form-control" id="picUrl" value="${yznzCloth.picUrl}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 商家地址：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="businessAddress" value="${systemParam.id}" value="${yznzCloth.name}">
+				<input type="text" class="form-control" id="businessAddress"  value="${yznzCloth.businessAddress}">
 			</div>
 		</div>
 		<div class="form-group">
@@ -137,7 +173,7 @@
 				color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="addBy"  value="${value="${yznzCloth.name}"}">
+				<input type="text" class="form-control" id="addBy"  value="${yznzCloth.addBy}">
 			</div>
 		</div>
 	</form>

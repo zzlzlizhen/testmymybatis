@@ -223,7 +223,7 @@
 			$("#saveBtn").show();
 		}
 	}
-	function translationAttr(attrVlue){
+	/*function translationAttr(attrVlue){
 		if((attrVlue.indexOf("YZNZ_CLOUTHES_SIZE")) > -1){
 			return "尺寸";
 		}else if((attrVlue.indexOf("YZNZ_CLOUTHES_STYLE")) > -1){
@@ -235,7 +235,7 @@
 		}else{
 			return "未知";
 		}
-	}
+	}*/
 	function bachDelSelectInfo(){
 		$("#myModal").modal('hide');
 	}
