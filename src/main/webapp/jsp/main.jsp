@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	var ws = null;  
 	var url = null;  
-	var urlPath = "/testmybatis/websocket;jsessionid=<%=request.getSession(true).getId()%>";
+	var urlPath = "${appctx}/websocket;jsessionid=<%=request.getSession(true).getId()%>";
 	$(function() {
 		iFrameWidth();
 		initMenu();
