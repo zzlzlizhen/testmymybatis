@@ -151,4 +151,12 @@ public interface YznzColthesMapper {
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.VARCHAR)
     })
     List<YznzColthes> selectPurchaseByPage(Map<String,Object> map);
+    
+    /**
+     * 批量删除
+     * @param id
+     * @return
+     */
+    @DeleteProvider(type=YznzColthesSqlProvider.class, method="batchDelYznzClothes")
+    int batchDelYznzClothes(@Param("batchDelIds") List<String> delId);
 }

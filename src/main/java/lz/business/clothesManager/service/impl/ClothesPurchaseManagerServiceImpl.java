@@ -1,5 +1,6 @@
 package lz.business.clothesManager.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +63,20 @@ public class ClothesPurchaseManagerServiceImpl implements ClothesPurchaseManager
 		yznzColthes.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		return ycMapper.updateByPrimaryKeySelective(yznzColthes);
 		
+	}
+
+	@Override
+	public int delYznzClother(String id) {
+		return ycMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public int batchDelYznzClothes(String batchDelId) {
+		List<String> batchDelIds = new ArrayList<String>();
+		for(String id:batchDelId.split(",")){
+			batchDelIds.add(id);
+		}
+		return ycMapper.batchDelYznzClothes(batchDelIds);
 	}
 	
 }

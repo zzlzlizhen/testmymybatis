@@ -19,6 +19,8 @@ import lz.model.YznzColthes;
 
 
 
+
+
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +37,13 @@ import com.github.pagehelper.PageInfo;
 public class PurchaseManagerController {
 	@Autowired
 	private ClothesPurchaseManagerService cpmService;
+	
+	@RequestMapping("/test")
+	public String test(HttpServletRequest request){
+		return "/yznz/purchaseManager/purchaseIndex";
+	}
+	
+	
 	@RequestMapping("/purchaseIndex")
 	public String purchaseIndex(HttpServletRequest request){
 		return "/yznz/purchaseManager/purchaseIndex";
@@ -91,7 +100,7 @@ public class PurchaseManagerController {
 			response.getWriter().print(jo.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
-			throw new ControllerException(e,"获取衣服管理系统参数分页列表信息失败","参数管理","/clothesManagerController/getParams");
+			throw new ControllerException(e,"获取进货管理分页列表信息失败","参数管理","/purchaseManagerController/getParams");
 
 		}		
 	}
@@ -107,7 +116,7 @@ public class PurchaseManagerController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
-			throw new ControllerException(e,"添加系统参数信息失败","参数管理","/paramController/add");
+			throw new ControllerException(e,"添加进货管理失败","进货管理管理","/paramController/add");
 		}
 		return map;
 	}
@@ -124,7 +133,40 @@ public class PurchaseManagerController {
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
-			throw new ControllerException(e,"修改衣服属性系统参数信息失败","衣服属性管理","/clothesManagerController/edit");
+			throw new ControllerException(e,"修改进货管理信息失败","进货管理","/purchaseManagerController/edit");
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="/del")
+	@ResponseBody
+	@LogAspectAnnotation(logDesc="进货管理删除",logBusiness="进货管理")
+	public Map<String,Object> del(@RequestBody YznzColthes yznz){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			cpmService.delYznzClother(yznz.getId());
+			map.put("result", "success");
+		}catch(Exception e){
+			map.put("result","error");
+			e.printStackTrace();
+			throw new ControllerException(e,"删除进货管理信息失败","进货管理","/purchaseManagerController/del");
+		}
+		return map;
+	}
+	
+	@RequestMapping(value="batchDel")
+	@ResponseBody
+	@LogAspectAnnotation(logDesc="批量删除进货管理参数",logBusiness="进货管理")
+	public Map<String,Object> batchDel(@RequestBody YznzColthes yznz){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			int delSize = cpmService.batchDelYznzClothes(yznz.getId());
+			map.put("delSize", delSize);
+			map.put("result", "success");
+		}catch(Exception e){
+			map.put("result","error");
+			e.printStackTrace();
+			throw new ControllerException(e,"批量删除进货管理信息失败","进货管理","/purchaseManagerController/batchdel");
 		}
 		return map;
 	}

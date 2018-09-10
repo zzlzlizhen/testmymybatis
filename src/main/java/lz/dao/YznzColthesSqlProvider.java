@@ -396,4 +396,18 @@ public class YznzColthesSqlProvider {
     	sb.append(" order by id desc ");
     	return sb.toString();
     }
+    
+    public String batchDelYznzClothes(Map<String,Object> map){
+    	@SuppressWarnings("unchecked")
+		List<String> list = (List<String>)map.get("batchDelIds");
+    	StringBuffer sb = new StringBuffer("delete from t_yznz_colthes where id in ( ");
+    	for(int i=0;i<list.size();i++){
+    		sb.append("#{batchDelIds["+i+"]}");
+    		if(i<list.size()-1){
+    			sb.append(",");
+    		}
+    	}
+    	sb.append(" )");
+    	return sb.toString();
+    }
 }

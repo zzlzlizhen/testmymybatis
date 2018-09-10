@@ -20,14 +20,14 @@
 			<label class="col-sm-3 control-label"> 衣服名字：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="clothName" value="${yznzCloth.name}">
+				<input type="text" class="form-control" id="clothName" value="${yznzCloth.name}" disabled="disabled">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 购买数量：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="purchaseCount" value="${yznzCloth.purchaseCount}">
+				<input type="text" class="form-control" id="purchaseCount" value="${yznzCloth.purchaseCount}" disabled="disabled">
 			</div>
 		</div>
 
@@ -35,7 +35,7 @@
 			<label class="col-sm-3 control-label"> 销售数量：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="saleCount" value="${yznzCloth.saleCount}">
+				<input type="text" class="form-control" id="saleCount" value="${yznzCloth.saleCount}" disabled="disabled">
 			</div>
 		</div>
 
@@ -43,49 +43,49 @@
 			<label class="col-sm-3 control-label"> 原价：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="purchasePrice" value="${yznzCloth.purchasePrice}">
+				<input type="text" class="form-control" id="purchasePrice" value="${yznzCloth.purchasePrice}" disabled="disabled">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 销售价格：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="preSalePrice" value="${yznzCloth.preSalePrice}">
+				<input type="text" class="form-control" id="preSalePrice" value="${yznzCloth.preSalePrice}" disabled="disabled">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 购买类型：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="businessType" value="${yznzCloth.businessType}">
+				<input type="text" class="form-control" id="businessType" value="${yznzCloth.businessType}" disabled="disabled">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 风格类型：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="styleType" value="${yznzCloth.styleType}">
+				<input type="text" class="form-control" id="styleType" value="${yznzCloth.styleType}" disabled="disabled">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 衣服分类：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="categoryType" value="${yznzCloth.categoryType}">
+				<input type="text" class="form-control" id="categoryType" value="${yznzCloth.categoryType}" disabled="disabled">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 图片：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="picUrl" value="${yznzCloth.picUrl}">
+				<input type="text" class="form-control" id="picUrl" value="${yznzCloth.picUrl}" disabled="disabled">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label"> 商家地址：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="businessAddress"  value="${yznzCloth.businessAddress}">
+				<input type="text" class="form-control" id="businessAddress"  value="${yznzCloth.businessAddress}" disabled="disabled">
 			</div>
 		</div>
 		<div class="form-group">
@@ -93,7 +93,7 @@
 				color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="addBy"  value="${yznzCloth.addBy}">
+				<input type="text" class="form-control" id="addBy"  value="${yznzCloth.addBy}" disabled="disabled">
 			</div>
 		</div>
 	</form>
