@@ -241,11 +241,11 @@
 	}
 	function batchDelSubmit(){
 		$.ajax({
-	        url: '${appctx}/PurchaseManagerController/batchDel',
+	        url: '${appctx}/purchaseManagerController/batchDel',
 	        async: true,
 	        contentType:"application/json",
 	        type: 'POST',
-	        data: JSON.stringify({paramValue:batchDelId}),
+	        data: JSON.stringify({id:batchDelId}),
 	        success: function(data , textStatus){
 	          $("#alertId").show();
 	          if(data.result=="success"){
