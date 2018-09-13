@@ -18,6 +18,9 @@
 	href="${ctx}/asset/lib/dataTables-1.10.7/plugins/integration/bootstrap/2/dataTables.bootstrap.css">
 <link rel="stylesheet"
 	href="${ctx}/asset/lib/dataTables-1.10.7/plugins/integration/font-awesome/dataTables.fontAwesome.css">
+<!-- fileinput -->
+<link rel="stylesheet"
+	  href="${ctx}/asset/lib/bootstrap-2.3.2/css/fileinput.min.css">
 <!-- DataTables CSS end-->
 <script src="${ctx}/asset/lib/json2.js"></script>
 <!-- JQuery -->
@@ -37,3 +40,7 @@
 <!-- DataTables JS end-->
 <script src="${ctx}/asset/js/constant.js"></script>
 <script src="${ctx}/asset/js/user-manage.js"></script>
+<!-- fileinput -->
+<script src="${ctx}/asset/lib/bootstrap-2.3.2/js/fileinput.min.js"></script>
+<!-- fileinput_zh -->
+<script src="${ctx}/asset/lib/bootstrap-2.3.2/js/fileinput_locale_zh.js"></script>

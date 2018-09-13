@@ -239,6 +239,7 @@
 	function bachDelSelectInfo(){
 		$("#myModal").modal('hide');
 	}
+
 	function batchDelSubmit(){
 		$.ajax({
 	        url: '${appctx}/purchaseManagerController/batchDel',

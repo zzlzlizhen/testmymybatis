@@ -84,3 +84,7 @@
 	src="${ctx}/bower_components/zTree/js/jquery.ztree.excheck.js"></script>
 <script type="text/javascript"
 	src="${ctx}/bower_components/My97DatePicker/WdatePicker.js"></script>
+<!-- fileinput -->
+<script src="${ctx}/asset/lib/bootstrap-2.3.2/js/fileinput.min.js"></script>
+<!-- fileinput_zh -->
+<script src="${ctx}/asset/lib/bootstrap-2.3.2/js/fileinput_locale_zh.js"></script>

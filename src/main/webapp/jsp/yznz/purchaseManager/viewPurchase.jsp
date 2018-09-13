@@ -78,7 +78,8 @@
 			<label class="col-sm-3 control-label"> 图片：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="picUrl" value="${yznzCloth.picUrl}" disabled="disabled">
+				<img src="${yznzCloth.picUrl}" id="picUrl" disabled="disabled" class="form-control">
+				<%--<input type="text" class="form-control" id="picUrl" value="${yznzCloth.picUrl}" disabled="disabled">--%>
 			</div>
 		</div>
 		<div class="form-group">
