@@ -38,7 +38,7 @@
 							},
 							"fnServerParams": function (aoData) {  //查询条件
 			                    aoData.push(
-			                    	{ "name": "searchId", "value": $("#searchId").val()}
+			                    	{ "name": "clothName", "value": $("#clothName").val()}
 			                    );
 			                },
 							"aoColumnDefs" : [
@@ -287,13 +287,8 @@
 						<div class="btn-toolbar">
 							<div class="pull-right">
 								<div class="input-append">
-									<select id="searchId">
-										<option value="">全部</option>
-										<option value="YZNZ_CLOUTHES_SIZE">尺寸</option>
-										<option value="YZNZ_CLOUTHES_STYLE">风格</option>
-										<option value="YZNZ_CLOUTHES_COLOUR">颜色</option>
-										<option value="YZNZ_CLOUTHES_CATEGORY">类型</option>
-									</select> <a class="btn btn-primary" href="#" onclick="searchFun()">
+									衣服名字：<input type="text" placeholder="衣服名字名字" id="clothName">
+									<a class="btn btn-primary" href="#" onclick="searchFun()">
 										<i class="glyphicon glyphicon-search"></i>查询
 									</a>
 								</div>

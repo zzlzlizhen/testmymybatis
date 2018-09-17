@@ -70,13 +70,15 @@ public class PurchaseManagerController {
 			String sEcho = request.getParameter("sEcho");
 			Long iDisplayStart = Long.parseLong(request.getParameter("iDisplayStart"));
 			int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
-			String searchId = request.getParameter("searchId");
+
+			String searchId = request.getParameter("clothName");
+			System.out.println("111111111111111"+ searchId);
 			Map<String,Object> map = new HashMap<String,Object>();
 			int pageNum = ((Long)(iDisplayStart/iDisplayLength)).intValue()+1;
 			map.put("pageNum",pageNum);
 			map.put("pageSize",iDisplayLength);
 			if(searchId!=null && !"".equals(searchId)){
-				map.put("searchId","%"+searchId+"%");
+				map.put("clothName","%"+searchId+"%");
 			}
 			PageInfo<YznzColthes> page = cpmService.getPurchaseByPage(map);
 			List<YznzColthes> list = page.getList();
