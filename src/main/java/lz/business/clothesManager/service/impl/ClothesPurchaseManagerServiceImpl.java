@@ -53,12 +53,6 @@ public class ClothesPurchaseManagerServiceImpl implements ClothesPurchaseManager
 	}
 
 	@Override
-	public int getParamCountByParamKey(String paramKey) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int updateYznzClother(YznzColthes yznzColthes) {
 		yznzColthes.setUpdateTime(DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		return ycMapper.updateByPrimaryKeySelective(yznzColthes);

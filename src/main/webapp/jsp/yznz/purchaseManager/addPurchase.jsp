@@ -12,7 +12,7 @@
 	content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
 <meta name="author" content="Muhammad Usman">
 <script type="text/javascript">
-    $(".myfile").fileinput({
+    $(".myfile1").fileinput({
         //上传的地址
         uploadUrl:"${appctx}/purchaseManagerController/uploadFile",
         uploadAsync : true, //默认异步上传
@@ -38,12 +38,12 @@
         language : 'zh'
     })
     //异步上传返回结果处理
-    $('.myfile').on('fileerror', function(event, data, msg) {
+    $('.myfile1').on('fileerror', function(event, data, msg) {
         console.log("fileerror");
         console.log(data);
     });
     //异步上传返回结果处理
-    $(".myfile").on("fileuploaded", function(event, data, previewId, index) {
+    $(".myfile1").on("fileuploaded", function(event, data, previewId, index) {
         console.log("fileuploaded");
         var ref = $(this).attr("data-ref");
         $("input[name='" + ref + "']").val(data.response.url);
@@ -51,20 +51,20 @@
     });
 
     //同步上传错误处理
-    $('.myfile').on('filebatchuploaderror', function(event, data, msg) {
+    $('.myfile1').on('filebatchuploaderror', function(event, data, msg) {
         console.log("filebatchuploaderror");
         console.log(data);
     });
 
     //同步上传返回结果处理
-    $(".myfile").on("filebatchuploadsuccess",
+    $(".myfile1").on("filebatchuploadsuccess",
         function(event, data, previewId, index) {
             console.log("filebatchuploadsuccess");
             console.log(data);
         });
 
     //上传前
-    $('.myfile').on('filepreupload', function(event, data, previewId, index) {
+    $('.myfile1').on('filepreupload', function(event, data, previewId, index) {
         console.log("filepreupload");
     });
 	function saveSubmit(){
@@ -201,10 +201,9 @@
 
 		<div class="form-group">
 			<label class="col-sm-3 control-label">图片</label>
-			<div class="col-sm-9">
+			<div class="col-sm-6">
 				<input type="file" name="myfile"
-					   class="col-sm-9 myfile" value="" id="picUrl" /> <input type="hidden"
-																   name="url2" value="">
+					   class="col-sm-3 myfile1" value="" id="picUrl" />
 			</div>
 		</div>
 		<div class="form-group">
