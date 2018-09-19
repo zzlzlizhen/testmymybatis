@@ -31,6 +31,7 @@
         }   */
 
     	function loginFunction(){
+    	    //点登录时，前台输入检查页面是不是为空
     		if($("#username").val()==null||(!$("#username").val().length>0)){
     			$("#alertContent").html("请输入用户名");
     			$("#alertId").show();
@@ -44,6 +45,7 @@
     		        async: true,
     		        contentType:"application/json",
     		        type: 'POST',
+					/*通过输入用户名跟密码转化为一个User---Json对象 #username是用户在页面中输入的用户名，#password是用户在页面输入的密码*/
     		        data: JSON.stringify({name:$("#username").val(),pwd:$("#password").val()}),
     		        success: function(data , textStatus){
     		          if(data.result=="success"){
@@ -103,10 +105,12 @@
 							<div class="row">
 								<div class="col-md-6"
 									style="text-align: left; padding-left: 25px;">
+									<!--点击注册按钮跳转到注册页-->
 									<a href="${appctx}/loginController/registerPage">注册</a>
 								</div>
 								<div class="col-md-6"
 									style="text-align: right; padding-right: 25px;">
+									<!--点击找回密码跳转到找回密码页面-->
 									<a href="${appctx}/loginController/getPswPage">找回密码</a>
 								</div>
 							</div>
@@ -114,6 +118,7 @@
 							<div class="clearfix"></div>
 
 							<p class="center col-md-5">
+								<!--点登录按钮到登录函数-->
 								<button type="button" class="btn btn-primary" id="loginId"
 									onclick="loginFunction()">登录</button>
 							</p>

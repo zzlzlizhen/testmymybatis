@@ -46,23 +46,30 @@ public class LoginController {
 	@RequestMapping(value="/loginValid")
 	@ResponseBody
 	@LogAspectAnnotation(logDesc="登录成功",logBusiness="登录")
+	//通过RequestBody把jsp页面的json对象转化为实体类中的user对象
 	public Map<String,Object> add(@RequestBody User user,HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
+			//通过这个去数据库查询，是不是有user这个对象
 			User u = userService.getUserByNameAndPwd(user);
+			//如果取回的这个对象为空走if
 			if(u==null){
 				map.put("result","infoError");
 			}else{
+				//如果这个用户的信息状态是停用，走这个
 				if(ConstantInfo.USER_STOP.equals(u.getStatus())){
 					map.put("result","userStop");
 				}else{
+					//否则用户等成功
 					map.put("result","success");
+
 					request.getSession().setAttribute("loginUser",u);
 				}
 			}
 		} catch (Exception e) {
 			map.put("result","error");
 			e.printStackTrace();
+			//如果有任何意外状况，返回登录失败且回到登录也。
 			throw new ControllerException(e,"登录失败","登录","/loginController/loginValid");
 		}
 		return map;

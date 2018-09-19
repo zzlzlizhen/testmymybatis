@@ -278,18 +278,27 @@ public class ResourceController {
 	}
 	@RequestMapping(value="/getResourceMenuByUserId")
 	@ResponseBody
+//	获取用户的资源菜单
 	public List<Resource> getResourceMenuByUserId(HttpServletRequest request,HttpServletResponse response){
+		//获取当前用户信息
 		User user = (User)request.getSession().getAttribute("loginUser");
 		Map<String,Object> map = new HashMap<String,Object>();
+		//把用户id跟一级菜单id放到map
 		map.put("userId",user.getId());
 		map.put("pid",ConstantInfo.ONE_RESOURCE_PID);
+		//通过userId跟pid得到菜单列表（递归）
 		List<Resource> listResourceMenu = getResourceMenu(map);
 		return listResourceMenu;
 	}
+
 	public List<Resource> getResourceMenu(Map<String,Object> map){
+		//通过userid跟pid获取资源菜单节点
 		List<Resource> rootResource = resourceService.getResourceMenuByUserId(map);
+		//遍历菜单
 		for(Resource resource:rootResource){
+			//把pid放到map中
 			map.put("pid",resource.getId());
+			//通过pid查询子菜单
 			List<Resource> childResource = getResourceMenu(map);
 			if(childResource!=null&&childResource.size()>0){
 				resource.setChildResource(childResource);

@@ -39,6 +39,7 @@
    		        type: 'POST',
    		        data: JSON.stringify({name:$("#username").val(),pwd:$("#password").val(),phone:$("#telephone").val(),securityCode:$("#security").val()}),
    		        success: function(data , textStatus){
+   		            //此为提示框
    		        	$("#alertId").show();
    			          if(data.result=="success"){
    			        	  countdown = 5;

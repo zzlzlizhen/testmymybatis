@@ -25,6 +25,7 @@ public class IndexController {
 	 * @param request
 	 * @return
 	 */
+	//如果点登录都符合条件，跳转到main
 	@RequestMapping("/loginSuccess")
 	public String loginSuccess(HttpServletRequest request){
 		return "/main";

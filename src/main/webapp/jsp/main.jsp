@@ -22,8 +22,8 @@
 		iFrameWidth();
 		initMenu();
 		$(".close").click(function(){
-			$("#myHomeModal").hide();
-		});
+            $("#myHomeModal").hide();
+        });
 		initWebSocket();
 	});
 	function initWebSocket(){
@@ -70,6 +70,7 @@
 			contentType : "application/json",
 			type : 'POST',
 			success : function(data, textStatus) {
+			    //初始化左边儿菜单
 				var htmlMenu = "<li class='nav-header'>菜单列表</li>";
 				$.each(data, function() {
 					htmlMenu = htmlMenu + getHtmlMenu(this);
@@ -86,6 +87,7 @@
 	//拼接一个父菜单下所有的列表信息
 	function getHtmlMenu(obj) {
 		var htmlMenu = "";
+//		alert(obj.resourceUrl);
 		if (obj.hasChild) {
 			htmlMenu = htmlMenu
 					+ "<li class='accordion'><a href='"+obj.resourceUrl+"'><i class='"+obj.icons+"'></i><span>"
@@ -170,6 +172,7 @@
 				<div class="sidebar-nav">
 					<div class="nav-canvas">
 						<div class="nav-sm nav nav-stacked"></div>
+						<%--此是左边儿men菜单--%>
 						<ul class="nav nav-pills nav-stacked main-menu" id="menuList">
 							<%-- <c:forEach items="${listResourceMenu}" var="resourceMenu">
 								<c:choose>

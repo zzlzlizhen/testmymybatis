@@ -23,7 +23,8 @@ public interface UserService {
 	int delUser(User user);
 	
 	int updatePswByName(User user,Message message);
-	
+
+	//获取用户对象
 	User getUserByNameAndPwd(User user);
 
 	User getUserById(String id);

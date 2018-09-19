@@ -68,7 +68,7 @@
         console.log("filepreupload");
     });
 	function saveSubmit(){
-		if($("#clothName").val()==null||(!$("#clothName").val().length>0)){
+		if($("#clothName1").val()==null||(!$("#clothName1").val().length>0)){
 			$("#alertId").show();
 			$("#alertContent").html("衣服名字不能为空");
 		}else if($("#purchaseCount").val()==null||(!$("#purchaseCount").val().length>0)){
@@ -108,7 +108,7 @@
 		        async: true,
 		        contentType:"application/json",
 		        type: 'POST',
-		        data: JSON.stringify({name:$("#clothName").val(),purchaseCount:$("#purchaseCount").val(),saleCount:$("#saleCount").val(),purchasePrice:$("#purchasePrice").val(),preSalePrice:$("#preSalePrice").val(),businessType:$("#businessType").val(),styleType:$("#styleType").val(),categoryType:$("#categoryType").val(),picUrl:$("#picUrl").val(),businessAddress:$("#businessAddress").val(),addBy:$("#addBy").val()}),
+		        data: JSON.stringify({name:$("#clothName1").val(),purchaseCount:$("#purchaseCount").val(),saleCount:$("#saleCount").val(),purchasePrice:$("#purchasePrice").val(),preSalePrice:$("#preSalePrice").val(),businessType:$("#businessType").val(),styleType:$("#styleType").val(),categoryType:$("#categoryType").val(),picUrl:$("#picUrl").val(),businessAddress:$("#businessAddress").val(),addBy:$("#addBy").val()}),
 		        success: function(data , textStatus){
 		          $("#alertId").show();
 		          if(data.result=="success"){
@@ -144,7 +144,7 @@
 			<label class="col-sm-3 control-label"> 衣服名字：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="clothName">
+				<input type="text" class="form-control" id="clothName1">
 			</div>
 		</div>
 		<div class="form-group">

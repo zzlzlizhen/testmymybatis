@@ -69,7 +69,7 @@
         console.log("filepreupload");
     });
 	function saveSubmit(){
-		if($("#clothName").val()==null||(!$("#clothName").val().length>0)){
+		if($("#clothName1").val()==null||(!$("#clothName1").val().length>0)){
 			$("#alertId").show();
 			$("#alertContent").html("衣服名字不能为空");
 		}else if($("#purchaseCount").val()==null||(!$("#purchaseCount").val().length>0)){
@@ -106,7 +106,7 @@
 		else{
 			var jsonData  = {};
 			jsonData.id=$("#id").val();
-			jsonData.name=$("#clothName").val();
+			jsonData.name=$("#clothName1").val();
 			jsonData.purchaseCount=$("#purchaseCount").val();
 			jsonData.saleCount=$("#saleCount").val();
 			jsonData.purchasePrice=$("#purchasePrice").val();
@@ -154,7 +154,7 @@
 			<label class="col-sm-3 control-label"> 衣服名字：<font color="red">*</font>
 			</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="clothName" value="${yznzCloth.name}">
+				<input type="text" class="form-control" id="clothName1" value="${yznzCloth.name}">
 			</div>
 		</div>
 		<div class="form-group">
