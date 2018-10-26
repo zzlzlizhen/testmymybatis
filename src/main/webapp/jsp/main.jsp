@@ -16,7 +16,8 @@
 </style>
 <script type="text/javascript">
 	var ws = null;  
-	var url = null;  
+	var url = null;
+//	标注当前用户jsessionid，跟当前在线用户建立socket链接
 	var urlPath = "${appctx}/websocket;jsessionid=<%=request.getSession(true).getId()%>";
 	$(function() {
 		iFrameWidth();
@@ -31,7 +32,8 @@
             url = 'ws://' + window.location.host + urlPath;  
         } else {  
             url = 'wss://' + window.location.host + urlPath;  
-        }  
+        }
+//        建立socket连接
 		ws = new WebSocket(url); 
         ws.onopen = function () {  
         };  

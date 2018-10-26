@@ -106,6 +106,7 @@ public class WebSocketEndPoint extends TextWebSocketHandler{
             if (u!=null&&u.getName().equals(user.getName())) {
                 try {
                     if (userSession.isOpen()) {
+                    	//此推送
                     	userSession.sendMessage(new TextMessage(messageJson));
                         MessageUser messageUser = new MessageUser();
             			messageUser.setId(IdGenerateUtils.getId());

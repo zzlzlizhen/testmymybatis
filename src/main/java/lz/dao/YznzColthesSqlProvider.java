@@ -389,7 +389,8 @@ public class YznzColthesSqlProvider {
             WHERE(sb.toString());
         }
     }
-    
+
+    //分页查询要在此写条件
     public String selectPurchaseByPage(Map<String,Object> map){
     	StringBuffer sb = new StringBuffer("select id, name, purchase_count, sale_count, purchase_price, pre_sale_price, business_type,style_type, category_type, pic_url, business_address, add_by, add_time, update_by,update_time");
     	sb.append(" from t_yznz_colthes ");
